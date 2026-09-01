@@ -1,0 +1,412 @@
+{
+  "version": 1,
+  "scale": {
+    "5": "非常に当てはまる",
+    "4": "やや当てはまる",
+    "3": "どちらともいえない",
+    "2": "あまり当てはまらない",
+    "1": "まったく当てはまらない"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "axis": 1,
+      "polarity": "E",
+      "reversed": false,
+      "text": "新しい場所や未知の状況にワクワクする",
+      "kind": "regular"
+    },
+    {
+      "id": 2,
+      "axis": 1,
+      "polarity": "E",
+      "reversed": false,
+      "text": "一定の報酬が保証されるなら、多少のリスクのある挑戦を選ぶ",
+      "kind": "regular"
+    },
+    {
+      "id": 3,
+      "axis": 1,
+      "polarity": "E",
+      "reversed": false,
+      "text": "知らない人ばかりの集まりでも、積極的に話しかけられる",
+      "kind": "regular"
+    },
+    {
+      "id": 4,
+      "axis": 1,
+      "polarity": "E",
+      "reversed": false,
+      "text": "面白そうなことには、結果が見えなくても手を出してみる",
+      "kind": "regular"
+    },
+    {
+      "id": 5,
+      "axis": 1,
+      "polarity": "V",
+      "reversed": true,
+      "text": "失敗するかもしれない場面を避けて、確実な方を選ぶ",
+      "kind": "regular"
+    },
+    {
+      "id": 6,
+      "axis": 1,
+      "polarity": "V",
+      "reversed": true,
+      "text": "新しいことを始める前には、リスクを徹底的に調べる",
+      "kind": "regular"
+    },
+    {
+      "id": 7,
+      "axis": 1,
+      "polarity": "V",
+      "reversed": true,
+      "text": "初めての状況では、不安や緊張を強く感じる",
+      "kind": "regular"
+    },
+    {
+      "id": 8,
+      "axis": 1,
+      "polarity": "V",
+      "reversed": true,
+      "text": "結果がどうなるか分からない事態は、できるだけ避けたい",
+      "kind": "regular"
+    },
+    {
+      "id": 9,
+      "axis": 2,
+      "polarity": "I",
+      "reversed": false,
+      "text": "決断するときは、論理より「しっくりくる感じ」を信じる",
+      "kind": "regular"
+    },
+    {
+      "id": 10,
+      "axis": 2,
+      "polarity": "I",
+      "reversed": false,
+      "text": "その場のひらめきで、すぐ行動に移すことが多い",
+      "kind": "regular"
+    },
+    {
+      "id": 11,
+      "axis": 2,
+      "polarity": "I",
+      "reversed": false,
+      "text": "物事は、まず体で感じてから理解する",
+      "kind": "regular"
+    },
+    {
+      "id": 12,
+      "axis": 2,
+      "polarity": "I",
+      "reversed": false,
+      "text": "順序立てて考えるより、全体をパッと見て判断する",
+      "kind": "regular"
+    },
+    {
+      "id": 13,
+      "axis": 2,
+      "polarity": "A",
+      "reversed": true,
+      "text": "決断の前に、メリットとデメリットを表にするなど整理して考える",
+      "kind": "regular"
+    },
+    {
+      "id": 14,
+      "axis": 2,
+      "polarity": "A",
+      "reversed": true,
+      "text": "行動する前に、計画や手順をしっかり立てる",
+      "kind": "regular"
+    },
+    {
+      "id": 15,
+      "axis": 2,
+      "polarity": "A",
+      "reversed": true,
+      "text": "結論を出すには、できるだけ多くの情報を集めて比較検討する",
+      "kind": "regular"
+    },
+    {
+      "id": 16,
+      "axis": 2,
+      "polarity": "A",
+      "reversed": true,
+      "text": "急いで決めるより、時間をかけて検証しながら決める",
+      "kind": "regular"
+    },
+    {
+      "id": 17,
+      "axis": 3,
+      "polarity": "N",
+      "reversed": false,
+      "text": "一人で空想や想像に浸る時間が好きだ",
+      "kind": "regular"
+    },
+    {
+      "id": 18,
+      "axis": 3,
+      "polarity": "N",
+      "reversed": false,
+      "text": "自分の内面や気持ちをじっくり振り返るのが好きだ",
+      "kind": "regular"
+    },
+    {
+      "id": 19,
+      "axis": 3,
+      "polarity": "N",
+      "reversed": false,
+      "text": "現実の出来事より、頭の中で考える時間の方が長い",
+      "kind": "regular"
+    },
+    {
+      "id": 20,
+      "axis": 3,
+      "polarity": "N",
+      "reversed": false,
+      "text": "物語や音楽を、自分の体験と重ねて味わうことが多い",
+      "kind": "regular"
+    },
+    {
+      "id": 21,
+      "axis": 3,
+      "polarity": "X",
+      "reversed": true,
+      "text": "外に出て、人や活動・刺激のある場所にいる方が元気になる",
+      "kind": "regular"
+    },
+    {
+      "id": 22,
+      "axis": 3,
+      "polarity": "X",
+      "reversed": true,
+      "text": "人と話したり外の出来事に触れたりして、考えが生まれることが多い",
+      "kind": "regular"
+    },
+    {
+      "id": 23,
+      "axis": 3,
+      "polarity": "X",
+      "reversed": true,
+      "text": "静かな部屋より、賑やかな場所の方が落ち着く/好きだ",
+      "kind": "regular"
+    },
+    {
+      "id": 24,
+      "axis": 3,
+      "polarity": "X",
+      "reversed": true,
+      "text": "頭で考えるより、実際に手を動かしたり現場にいる方がしっくりする",
+      "kind": "regular"
+    },
+    {
+      "id": 25,
+      "axis": 4,
+      "polarity": "S",
+      "reversed": false,
+      "text": "人がつらい思いをしていると、自分も胸が痛む",
+      "kind": "regular"
+    },
+    {
+      "id": 26,
+      "axis": 4,
+      "polarity": "S",
+      "reversed": false,
+      "text": "相手の立場に立って物事を考えるのが得意だ",
+      "kind": "regular"
+    },
+    {
+      "id": 27,
+      "axis": 4,
+      "polarity": "S",
+      "reversed": false,
+      "text": "人の顔や表情から、その人の気持ちを感じ取りやすい",
+      "kind": "regular"
+    },
+    {
+      "id": 28,
+      "axis": 4,
+      "polarity": "S",
+      "reversed": false,
+      "text": "他人の気持ちを考えるのは、自然とやってしまう",
+      "kind": "regular"
+    },
+    {
+      "id": 29,
+      "axis": 4,
+      "polarity": "D",
+      "reversed": true,
+      "text": "人の感情に流されず、客観的に判断する方だ",
+      "kind": "regular"
+    },
+    {
+      "id": 30,
+      "axis": 4,
+      "polarity": "D",
+      "reversed": true,
+      "text": "問題を解決するとき、感情よりも事実と理屈を優先する",
+      "kind": "regular"
+    },
+    {
+      "id": 31,
+      "axis": 4,
+      "polarity": "D",
+      "reversed": true,
+      "text": "人間関係では、必要以上に距離を詰めない",
+      "kind": "regular"
+    },
+    {
+      "id": 32,
+      "axis": 4,
+      "polarity": "D",
+      "reversed": true,
+      "text": "集団での共感より、個人の論理的一貫性を重んじる",
+      "kind": "regular"
+    },
+    {
+      "id": 33,
+      "axis": 5,
+      "polarity": "L",
+      "reversed": true,
+      "text": "気分の浮き沈みが大きい方だ",
+      "kind": "regular"
+    },
+    {
+      "id": 34,
+      "axis": 5,
+      "polarity": "L",
+      "reversed": true,
+      "text": "ちょっとしたことで、不安や心配になりやすい",
+      "kind": "regular"
+    },
+    {
+      "id": 35,
+      "axis": 5,
+      "polarity": "L",
+      "reversed": true,
+      "text": "嫌なことがあると、長い間そのことを考え続けてしまう",
+      "kind": "regular"
+    },
+    {
+      "id": 36,
+      "axis": 5,
+      "polarity": "L",
+      "reversed": true,
+      "text": "批判や失敗を、他の人より長く引きずる",
+      "kind": "regular"
+    },
+    {
+      "id": 37,
+      "axis": 5,
+      "polarity": "T",
+      "reversed": false,
+      "text": "ストレスがあっても、比較的すぐ気持ちを落ち着けられる",
+      "kind": "regular"
+    },
+    {
+      "id": 38,
+      "axis": 5,
+      "polarity": "T",
+      "reversed": false,
+      "text": "感情が安定していて、滅多に激しく動揺しない",
+      "kind": "regular"
+    },
+    {
+      "id": 39,
+      "axis": 5,
+      "polarity": "T",
+      "reversed": false,
+      "text": "困った状況でも、慌てず対処できる方だ",
+      "kind": "regular"
+    },
+    {
+      "id": 40,
+      "axis": 5,
+      "polarity": "T",
+      "reversed": false,
+      "text": "物事をあまり個人的に受け止めず、切り替えが早い",
+      "kind": "regular"
+    },
+    {
+      "id": 41,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "attention",
+      "text": "私はこれまで一度も嘘をついたことがない"
+    },
+    {
+      "id": 42,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "social",
+      "text": "私は誰に対しても、常に完全に誠実だ"
+    },
+    {
+      "id": 43,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "attention",
+      "text": "私は一度も後悔したことがない"
+    },
+    {
+      "id": 44,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "social",
+      "text": "体調が良くない日でも、いつも通りのパフォーマンスを確実に出せる"
+    },
+    {
+      "id": 45,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "social",
+      "text": "私は他人を一度も批判したことがない"
+    },
+    {
+      "id": 46,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "consistency",
+      "text": "「考えるより先に動く」と答えた人は、逆の設問にも一貫して答えたか"
+    },
+    {
+      "id": 47,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "consistency",
+      "text": "「じっくり計画を立てる」と答えた人は、別設問と矛盾していないか"
+    },
+    {
+      "id": 48,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "central",
+      "text": "どんな場面でも、私は常に完璧に落ち着いていられる"
+    },
+    {
+      "id": 49,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "central",
+      "text": "私は何事にも、まったく動揺したり焦ったりしない"
+    },
+    {
+      "id": 50,
+      "axis": null,
+      "polarity": null,
+      "reversed": false,
+      "kind": "meta",
+      "text": "どの選択肢でもない「どちらでもない」を多く選びすぎていないか"
+    }
+  ]
+}

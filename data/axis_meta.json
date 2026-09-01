@@ -1,0 +1,110 @@
+{
+  "axes": [
+    {
+      "id": 1,
+      "name": "動機の方向",
+      "positive": "探索・報酬接近",
+      "negative": "警戒・回避",
+      "positive_short": "探索",
+      "negative_short": "警戒",
+      "high_code": "E",
+      "low_code": "V",
+      "type_role": "primary"
+    },
+    {
+      "id": 2,
+      "name": "処理様式",
+      "positive": "直感・即応",
+      "negative": "分析・計画",
+      "positive_short": "直感",
+      "negative_short": "分析",
+      "high_code": "I",
+      "low_code": "A",
+      "type_role": "primary"
+    },
+    {
+      "id": 3,
+      "name": "処理対象",
+      "positive": "内的世界",
+      "negative": "外的世界",
+      "positive_short": "内的",
+      "negative_short": "外的",
+      "high_code": "N",
+      "low_code": "X",
+      "type_role": "primary"
+    },
+    {
+      "id": 4,
+      "name": "対人志向",
+      "positive": "共感・社会認知",
+      "negative": "独立・分析的対人",
+      "positive_short": "共感",
+      "negative_short": "独立",
+      "high_code": "S",
+      "low_code": "D",
+      "type_role": "primary"
+    },
+    {
+      "id": 5,
+      "name": "情動の安定",
+      "positive": "ゆれ小",
+      "negative": "ゆれ大",
+      "positive_short": "ゆれ小",
+      "negative_short": "ゆれ大",
+      "high_code": "T",
+      "low_code": "L",
+      "type_role": "modifier"
+    }
+  ],
+  "neuro_systems": [
+    {
+      "key": "reward",
+      "label": "報酬・動機づけ系",
+      "region": "腹側線条体を中心とする報酬回路",
+      "description": "目標や報酬に向かって働きかける傾向",
+      "weights": { "1": 0.8, "2": 0.3, "3": 0, "4": 0, "5": 0 }
+    },
+    {
+      "key": "vigilance",
+      "label": "警戒・脅威処理系",
+      "region": "扁桃体を含む",
+      "description": "危険や不確実な手掛かりへの敏感さ",
+      "weights": { "1": -0.8, "2": 0, "3": 0, "4": 0, "5": -0.2 }
+    },
+    {
+      "key": "executive",
+      "label": "実行制御ネットワーク",
+      "region": "前頭前野・頭頂葉",
+      "description": "計画・集中・抑制の傾向",
+      "weights": { "1": 0, "2": 0.7, "3": 0, "4": 0, "5": -0.3 }
+    },
+    {
+      "key": "dmn",
+      "label": "デフォルトモード",
+      "region": "内側前頭・後帯状皮質など",
+      "description": "内的思考・想像・振り返りの傾向",
+      "weights": { "1": 0, "2": 0, "3": 0.8, "4": 0, "5": -0.4 }
+    },
+    {
+      "key": "salience",
+      "label": "サリエンス／内受容系",
+      "region": "島皮質・前帯状皮質",
+      "description": "身体感覚や重要情報への気づき",
+      "weights": { "1": 0, "2": 0.8, "3": 0, "4": 0, "5": 0.1 }
+    },
+    {
+      "key": "social",
+      "label": "社会認知ネットワーク",
+      "region": "側頭頭頂接合部など",
+      "description": "他者の気持ちや視点を読む傾向",
+      "weights": { "1": 0, "2": 0, "3": 0, "4": 0.9, "5": 0 }
+    },
+    {
+      "key": "emotion_reg",
+      "label": "情動調節系",
+      "region": "前頭−辺縁調節回路",
+      "description": "気持ちの揺れからの回復・安定",
+      "weights": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0.9 }
+    }
+  ]
+}

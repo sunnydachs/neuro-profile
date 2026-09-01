@@ -1,0 +1,13 @@
+{
+  "name": "neuro-profile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Brain/cognitive-type self-check (no measurement, just an inference from a 50-item questionnaire).",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/scoring.test.mjs && node tests/integration.test.mjs",
+    "test:scoring": "node tests/scoring.test.mjs",
+    "test:integration": "node tests/integration.test.mjs",
+    "serve": "python3 -m http.server 8000"
+  }
+}
