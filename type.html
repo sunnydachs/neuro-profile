@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light" />
+<title>タイプ詳細 | 脳・認知タイプ</title>
+<meta name="description" content="選択された脳・認知タイプの詳細プロフィールを表示します。" />
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<nav id="site-nav" class="site-nav" aria-label="サイト内ナビゲーション"></nav>
+
+<header class="site-header">
+  <h1 class="site-title" id="page-title">タイプ詳細</h1>
+  <p class="site-subtitle">選択されたタイプのプロフィールを表示します。</p>
+</header>
+
+<main id="main">
+  <div id="type-root" aria-busy="true" aria-live="polite">
+    <p class="card">タイプ情報を読み込み中です…</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p>
+    ※ 本サービスは医学的診断を行うものではありません。<br />
+    質問への回答から認知特性の<strong>傾向</strong>を推定するセルフチェックです。
+  </p>
+  <p class="small">© 脳・認知タイプ診断</p>
+</footer>
+
+<script src="app-nav.js" type="module"></script>
+<script src="type.js" type="module"></script>
+</body>
+</html>
