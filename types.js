@@ -44,7 +44,7 @@ async function loadJSON(url) {
   return res.json();
 }
 
-function renderGroup(def, items) {
+function renderGroup(def, items, currentCode) {
   const section = document.createElement("section");
   section.className = "types-group";
   section.style.setProperty("--group-color", def.color);
