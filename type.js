@@ -11,6 +11,14 @@ function esc(s) {
 }
 function escAttr(s) { return esc(s); }
 
+// types.js と同じ並び・同じ色定義（ナビ/グループ表示用）。types.html と順序を一致させる。
+const GROUP_DEFS = [
+  { id: "EI", title: "探索 × 直感", color: "#FFB454", short: "ひらめきで新しい世界へ" },
+  { id: "EA", title: "探索 × 分析", color: "#E8843C", short: "構想を段取りで形にする" },
+  { id: "VI", title: "警戒 × 直感", color: "#8FB6E0", short: "感性と慎重さで周囲を感じる" },
+  { id: "VA", title: "警戒 × 分析", color: "#5C7CA8", short: "慎重さと計画で確実を積む" },
+];
+
 function nl2br(s) {
   return esc(s).replace(/\n/g, "<br>");
 }
@@ -159,10 +167,12 @@ function renderProfile(profile, types, neuroByLabel) {
   const sh = profile.share || {};
   const shareText = buildShareText(profile);
 
+  const groupMeta = resolveGroupMeta(profile.code, types);
   const heroHTML = `
     <section class="type-hero" aria-label="タイプ名と画像">
       <img class="type-hero-img"
            src="assets/types/${esc(profile.code)}.png"
+           data-detail-src="assets/types-detail/${esc(profile.code)}.png"
            alt="${esc(profile.name)} のアイコン"
            loading="lazy"
            decoding="async"
@@ -171,8 +181,10 @@ function renderProfile(profile, types, neuroByLabel) {
         <span class="type-hero-code">${esc(profile.code)}</span>
         <div class="type-hero-name">${esc(profile.name)}</div>
         <p class="type-hero-catch">${esc(profile.catch || "")}</p>
+        ${groupMeta ? `<p class="type-hero-group" data-group-color="${esc(groupMeta.color)}"><span class="type-hero-group-dot" aria-hidden="true"></span>${esc(groupMeta.title)}</p>` : ""}
       </div>
     </section>
+    ${renderPrevNextNav(profile.code, types)}
   `;
 
   const featuresHTML = section("あなたの特徴", "🧠", `
@@ -214,6 +226,7 @@ function renderProfile(profile, types, neuroByLabel) {
       <div class="share-card">
         <img class="share-card-img"
              src="assets/types/${esc(profile.code)}.png"
+             data-detail-src="assets/types-detail/${esc(profile.code)}.png"
              alt="${esc(profile.name)} のアイコン"
              loading="lazy" decoding="async"
              width="80" height="80" />
@@ -257,6 +270,9 @@ function renderProfile(profile, types, neuroByLabel) {
   // Wire share button
   const btn = document.getElementById("btn-copy-share");
   if (btn) btn.addEventListener("click", () => copyText(shareText, btn));
+
+  // 詳細用画像（assets/types-detail/）があれば差し替える（無ければ何もしない）。
+  swapToDetailImages(root);
 }
 
 function renderRelated(profile, types) {
@@ -314,6 +330,89 @@ async function main() {
     console.error(err);
     renderError(err && err.message ? err.message : String(err));
   }
+}
+
+function resolveGroupMeta(code, types) {
+  if (!types || !code) return null;
+  const id = groupIdFor(code);
+  return GROUP_DEFS.find((g) => g.id === id) || null;
+}
+
+function groupIdFor(code) {
+  if (!code) return null;
+  return code[0] + code[1];
+}
+
+// 前後タイプナビゲーション。types.html と同じ順序（コード昇順）で循環する。
+// types.html のカード順（グループ EI→EA→VI→VA × 各グループ内コード昇順）で連結した列。
+function buildNavOrder(types) {
+  if (!types) return [];
+  const groups = ["EI", "EA", "VI", "VA"];
+  const codes = Object.keys(types);
+  const order = [];
+  for (const g of groups) {
+    const items = codes
+      .filter((c) => c && c.length >= 2 && c.slice(0, 2) === g)
+      .sort((a, b) => a.localeCompare(b));
+    order.push(...items);
+  }
+  // 未知のコードに備えて補完（types.json に存在しない場合のフォールバック）
+  if (order.length === 0) return codes.slice().sort();
+  return order;
+}
+
+function renderPrevNextNav(code, types) {
+  if (!types) return "";
+  const order = buildNavOrder(types);
+  if (order.length === 0) return "";
+  const idx = order.indexOf(code);
+  if (idx === -1) return "";
+  const prev = order[(idx - 1 + order.length) % order.length];
+  const next = order[(idx + 1) % order.length];
+  const prevMeta = types[prev] || {};
+  const nextMeta = types[next] || {};
+  const prevLabel = prev === code ? "最初のタイプへ" : "前のタイプ";
+  const nextLabel = next === code ? "最初のタイプへ" : "次のタイプ";
+  return `
+    <nav class="type-prevnext" aria-label="前後のタイプへ">
+      <a class="type-prevnext-link type-prevnext-prev"
+         href="type.html?type=${encodeURIComponent(prev)}"
+         data-type-color="${esc(prevMeta.color || "")}"
+         aria-label="${esc(prevLabel)}: ${esc(prevMeta.name || prev)}（${esc(prev)}）へ">
+        <span class="type-prevnext-arrow" aria-hidden="true">←</span>
+        <span class="type-prevnext-text">
+          <span class="type-prevnext-eyebrow">${esc(prevLabel)}</span>
+          <span class="type-prevnext-name">${esc(prevMeta.name || prev)}</span>
+          <span class="type-prevnext-code">${esc(prev)}</span>
+        </span>
+      </a>
+      <a class="type-prevnext-link type-prevnext-next"
+         href="type.html?type=${encodeURIComponent(next)}"
+         data-type-color="${esc(nextMeta.color || "")}"
+         aria-label="${esc(nextLabel)}: ${esc(nextMeta.name || next)}（${esc(next)}）へ">
+        <span class="type-prevnext-text">
+          <span class="type-prevnext-eyebrow">${esc(nextLabel)}</span>
+          <span class="type-prevnext-name">${esc(nextMeta.name || next)}</span>
+          <span class="type-prevnext-code">${esc(next)}</span>
+        </span>
+        <span class="type-prevnext-arrow" aria-hidden="true">→</span>
+      </a>
+    </nav>
+  `;
+}
+
+// 詳細用画像があれば src を差し換える（無ければ何もせずフォールバック）。
+function swapToDetailImages(root) {
+  if (!root) return;
+  const imgs = root.querySelectorAll("img[data-detail-src]");
+  imgs.forEach((img) => {
+    const detail = img.getAttribute("data-detail-src");
+    if (!detail) return;
+    const probe = new Image();
+    probe.onload = () => { img.src = detail; };
+    probe.onerror = () => { /* assets/types/ 側の画像のまま */ };
+    probe.src = detail;
+  });
 }
 
 main();
