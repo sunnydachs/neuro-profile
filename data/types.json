@@ -1,7 +1,7 @@
 {
   "EINS": {
     "code": "EINS",
-    "name": "ひらめき探検家",
+    "name": "直感探査型",
     "catch": "内なるビジョンと共感を抱えて、新世界へ飛び込む",
     "color": "#FFB454",
     "axis_labels": [
@@ -40,11 +40,12 @@
       "報酬・動機づけ系",
       "デフォルトモード",
       "サリエンス／内受容系"
-    ]
+    ],
+    "neural_name": "SALIENCE SCOUT"
   },
   "EIND": {
     "code": "EIND",
-    "name": "着想の思索者",
+    "name": "内観直感型",
     "catch": "内なる着想を、独自の道で形にする",
     "color": "#FFB454",
     "axis_labels": [
@@ -83,11 +84,12 @@
       "報酬・動機づけ系",
       "デフォルトモード",
       "サリエンス／内受容系"
-    ]
+    ],
+    "neural_name": "INNER DREAMER"
   },
   "EIXS": {
     "code": "EIXS",
-    "name": "直感の冒険者",
+    "name": "感覚探査型",
     "catch": "感覚のまま、人とともに未知へ踏み出す",
     "color": "#FFB454",
     "axis_labels": [
@@ -126,11 +128,12 @@
       "報酬・動機づけ系",
       "サリエンス／内受容系",
       "社会認知ネットワーク"
-    ]
+    ],
+    "neural_name": "MIRROR SCOUT"
   },
   "EIXD": {
     "code": "EIXD",
-    "name": "軽快なパイオニア",
+    "name": "直感開拓型",
     "catch": "自力で、未踏の地を素早く切り拓く",
     "color": "#FFB454",
     "axis_labels": [
@@ -169,11 +172,12 @@
       "報酬・動機づけ系",
       "サリエンス／内受容系",
       "実行制御ネットワーク"
-    ]
+    ],
+    "neural_name": "SALIENCE PIONEER"
   },
   "EANS": {
     "code": "EANS",
-    "name": "夢描きの戦略家",
+    "name": "構想制御型",
     "catch": "理想を描き、共感と計画で現実にする",
     "color": "#E8843C",
     "axis_labels": [
@@ -212,11 +216,12 @@
       "報酬・動機づけ系",
       "実行制御ネットワーク",
       "デフォルトモード"
-    ]
+    ],
+    "neural_name": "PREFRONTAL DREAMER"
   },
   "EAND": {
     "code": "EAND",
-    "name": "構想する先駆者",
+    "name": "前頭構想型",
     "catch": "新領域を、構想と分析で独自に切り拓く",
     "color": "#E8843C",
     "axis_labels": [
@@ -255,11 +260,12 @@
       "実行制御ネットワーク",
       "報酬・動機づけ系",
       "デフォルトモード"
-    ]
+    ],
+    "neural_name": "CORTEX ARCHITECT"
   },
   "EAXS": {
     "code": "EAXS",
-    "name": "達成志向の挑戦者",
+    "name": "計画統括型",
     "catch": "目標へ向け、計画とチームで成果を掴む",
     "color": "#E8843C",
     "axis_labels": [
@@ -298,11 +304,12 @@
       "報酬・動機づけ系",
       "実行制御ネットワーク",
       "社会認知ネットワーク"
-    ]
+    ],
+    "neural_name": "EXECUTIVE ORCHESTRA"
   },
   "EAXD": {
     "code": "EAXD",
-    "name": "完遂のパイオニア",
+    "name": "実行制御型",
     "catch": "計画を実行し、自力で確実に成果を掴む",
     "color": "#E8843C",
     "axis_labels": [
@@ -341,11 +348,12 @@
       "実行制御ネットワーク",
       "報酬・動機づけ系",
       "警戒・脅威処理系"
-    ]
+    ],
+    "neural_name": "EXECUTIVE ENGINE"
   },
   "VINS": {
     "code": "VINS",
-    "name": "静観の審美家",
+    "name": "警戒内省型",
     "catch": "内なる世界を、丁寧に観察し育む",
     "color": "#8FB6E0",
     "axis_labels": [
@@ -384,11 +392,12 @@
       "警戒・脅威処理系",
       "デフォルトモード",
       "サリエンス／内受容系"
-    ]
+    ],
+    "neural_name": "NEURO SENTINEL"
   },
   "VIND": {
     "code": "VIND",
-    "name": "深慮の思索者",
+    "name": "深慮直感型",
     "catch": "安全な内側で、独自の思索を深める",
     "color": "#8FB6E0",
     "axis_labels": [
@@ -427,11 +436,12 @@
       "警戒・脅威処理系",
       "デフォルトモード",
       "サリエンス／内受容系"
-    ]
+    ],
+    "neural_name": "DEFAULT NAVIGATOR"
   },
   "VIXS": {
     "code": "VIXS",
-    "name": "感性の観察者",
+    "name": "感覚警戒型",
     "catch": "身の回りを、注意深い感性と共感で感じ取る",
     "color": "#8FB6E0",
     "axis_labels": [
@@ -470,11 +480,12 @@
       "警戒・脅威処理系",
       "サリエンス／内受容系",
       "社会認知ネットワーク"
-    ]
+    ],
+    "neural_name": "INSULA WATCHER"
   },
   "VIXD": {
     "code": "VIXD",
-    "name": "鋭敏な警戒者",
+    "name": "警戒反応型",
     "catch": "変化を嗅ぎ分け、独自の判断で守る",
     "color": "#8FB6E0",
     "axis_labels": [
@@ -513,11 +524,12 @@
       "警戒・脅威処理系",
       "サリエンス／内受容系",
       "実行制御ネットワーク"
-    ]
+    ],
+    "neural_name": "AMYGDALA GUARD"
   },
   "VANS": {
     "code": "VANS",
-    "name": "安定の設計士",
+    "name": "共感設計型",
     "catch": "着実に、共感と計画で安心の土台を築く",
     "color": "#5C7CA8",
     "axis_labels": [
@@ -556,11 +568,12 @@
       "警戒・脅威処理系",
       "実行制御ネットワーク",
       "デフォルトモード"
-    ]
+    ],
+    "neural_name": "MIRROR BUILDER"
   },
   "VAND": {
     "code": "VAND",
-    "name": "慎重な構築家",
+    "name": "前頭制御型",
     "catch": "綿密に準備し、自力で確実に積み上げる",
     "color": "#5C7CA8",
     "axis_labels": [
@@ -599,11 +612,12 @@
       "実行制御ネットワーク",
       "警戒・脅威処理系",
       "デフォルトモード"
-    ]
+    ],
+    "neural_name": "CORTEX ARCHITECT"
   },
   "VAXS": {
     "code": "VAXS",
-    "name": "頼れる守り手",
+    "name": "社会認知型",
     "catch": "チームとともに、リスクを見据えて備える",
     "color": "#5C7CA8",
     "axis_labels": [
@@ -642,11 +656,12 @@
       "警戒・脅威処理系",
       "実行制御ネットワーク",
       "社会認知ネットワーク"
-    ]
+    ],
+    "neural_name": "EMPATHY NODE"
   },
   "VAXD": {
     "code": "VAXD",
-    "name": "堅実な司令塔",
+    "name": "統括制御型",
     "catch": "冷静な分析で、秩序と成果を保つ",
     "color": "#5C7CA8",
     "axis_labels": [
@@ -685,6 +700,7 @@
       "実行制御ネットワーク",
       "警戒・脅威処理系",
       "報酬・動機づけ系"
-    ]
+    ],
+    "neural_name": "EXECUTIVE CORE"
   }
 }
