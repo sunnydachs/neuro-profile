@@ -68,9 +68,14 @@ function renderGroup(def, items) {
     a.href = `type.html?type=${encodeURIComponent(t.code)}`;
     a.style.setProperty("--type-color", t.color || def.color);
     a.setAttribute("aria-label", `${t.name}（${t.code}）の詳細を見る`);
+    if (currentCode && currentCode === t.code) {
+      a.classList.add("is-current");
+      a.setAttribute("aria-current", "page");
+    }
     a.innerHTML = `
       <img class="type-card-img"
            src="assets/types/${esc(t.code)}.png"
+           data-detail-src="assets/types-detail/${esc(t.code)}.png"
            alt="${esc(t.name)} のアイコン"
            loading="lazy"
            decoding="async"
@@ -100,7 +105,17 @@ function renderError(msg) {
   `;
 }
 
+function currentTypeCode() {
+  if (typeof location === "undefined") return null;
+  const path = (location.pathname || "").split("/").pop();
+  if (path !== "type.html") return null;
+  const raw = new URLSearchParams(location.search).get("type");
+  if (!raw || !/^[A-Z]{4}$/.test(raw)) return null;
+  return raw;
+}
+
 async function main() {
+  const currentCode = currentTypeCode();
   const root = document.getElementById("types-root");
   if (!root) return;
   try {
@@ -123,15 +138,28 @@ async function main() {
     for (const g of GROUP_DEFS) {
       const items = (buckets.get(g.id) || []).slice().sort((a, b) => a.code.localeCompare(b.code));
       if (items.length === 0) continue;
-      frag.appendChild(renderGroup(g, items));
+      frag.appendChild(renderGroup(g, items, currentCode));
     }
 
     root.removeAttribute("aria-busy");
     root.replaceChildren(frag);
+    swapToDetailImages(root);
   } catch (err) {
     console.error(err);
     renderError(err && err.message ? err.message : String(err));
   }
+}
+
+function swapToDetailImages(root) {
+  const imgs = root.querySelectorAll("img[data-detail-src]");
+  imgs.forEach((img) => {
+    const detail = img.getAttribute("data-detail-src");
+    if (!detail) return;
+    const probe = new Image();
+    probe.onload = () => { img.src = detail; };
+    probe.onerror = () => { /* assets/types/ 側の画像のまま */ };
+    probe.src = detail;
+  });
 }
 
 main();
