@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light" />
+<title>脳・認知タイプ診断（傾向の推定）</title>
+<meta name="description" content="50問の質問に答えて、あなたの「脳・認知タイプの傾向」を推定します。これは脳の測定ではなく、質問回答からの推定です。" />
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
+
+<header class="site-header">
+  <h1 class="site-title">脳・認知タイプ診断</h1>
+  <p class="site-subtitle">あなたの「傾向」を、50問でそっと推定します。</p>
+</header>
+
+<main id="main">
+
+<!-- ========== INTRO ========== -->
+<section id="screen-intro" class="screen" aria-labelledby="intro-heading">
+  <div class="card">
+    <h2 id="intro-heading">この診断について</h2>
+    <p>
+      5 つの認知特性（動機・処理様式・処理対象・対人志向・情動の安定）について、
+      あなたの回答パターンから <strong>16 タイプのうちどれに近い傾向があるか</strong>を推定します。
+    </p>
+    <ul class="check-list">
+      <li>所要時間：目安 8〜12 分</li>
+      <li>質問数：50 問（うち 40 問が本診断、10 問は信頼性チェック）</li>
+      <li>回答形式：5 段階リッカート</li>
+    </ul>
+    <p class="disclaimer">
+      ※ これは fMRI や EEG などの脳計測ではありません。<br />
+      質問への回答パターンから、あなたの<strong>認知特性の傾向</strong>を推定する
+      セルフチェックです。医学的診断や能力の優劣を断定するものではなく、
+      結果は一例としての参考にお使いください。
+    </p>
+    <button id="btn-start" class="btn-primary" type="button">診断を始める</button>
+  </div>
+</section>
+
+<!-- ========== QUIZ ========== -->
+<section id="screen-quiz" class="screen" hidden aria-labelledby="quiz-heading">
+  <h2 id="quiz-heading" class="sr-only">質問への回答</h2>
+  <div class="progress" aria-hidden="true">
+    <div class="progress-bar"><span id="progress-fill" class="progress-fill"></span></div>
+    <div class="progress-text"><span id="progress-current">1</span> / <span id="progress-total">50</span></div>
+  </div>
+  <div class="card">
+    <p class="q-kind" id="q-kind">質問</p>
+    <p class="q-text" id="q-text"></p>
+    <fieldset class="likert">
+      <legend class="sr-only">5 段階での回答</legend>
+      <label class="likert-opt">
+        <input type="radio" name="answer" value="5" />
+        <span class="opt-num">5</span>
+        <span class="opt-text">非常に当てはまる</span>
+      </label>
+      <label class="likert-opt">
+        <input type="radio" name="answer" value="4" />
+        <span class="opt-num">4</span>
+        <span class="opt-text">やや当てはまる</span>
+      </label>
+      <label class="likert-opt">
+        <input type="radio" name="answer" value="3" />
+        <span class="opt-num">3</span>
+        <span class="opt-text">どちらともいえない</span>
+      </label>
+      <label class="likert-opt">
+        <input type="radio" name="answer" value="2" />
+        <span class="opt-num">2</span>
+        <span class="opt-text">あまり当てはまらない</span>
+      </label>
+      <label class="likert-opt">
+        <input type="radio" name="answer" value="1" />
+        <span class="opt-num">1</span>
+        <span class="opt-text">まったく当てはまらない</span>
+      </label>
+    </fieldset>
+    <div class="nav-row">
+      <button id="btn-prev" class="btn-secondary" type="button">← 戻る</button>
+      <button id="btn-next" class="btn-primary" type="button">次へ →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RESULT ========== -->
+<section id="screen-result" class="screen" hidden aria-labelledby="result-heading">
+  <article id="result-root" class="result-root"></article>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <p>
+    ※ 本サービスは医学的診断を行うものではありません。<br />
+    質問への回答から認知特性の<strong>傾向</strong>を推定するセルフチェックです。
+  </p>
+  <p class="small">© 脳・認知タイプ診断</p>
+</footer>
+
+<script src="app.js" type="module"></script>
+</body>
+</html>
