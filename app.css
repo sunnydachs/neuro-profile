@@ -49,6 +49,67 @@ img { max-width: 100%; height: auto; }
 }
 .site-subtitle { color: var(--ink-muted); margin: 0; font-size: 14px; }
 
+.site-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding: 0;
+}
+.fact {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, #fff);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+
+/* ---------- how it works ---------- */
+.how { max-width: var(--max); margin: 20px auto 0; padding: 0 16px; }
+.how-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.how-step {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: var(--shadow);
+}
+.how-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.how-title { margin: 0; font-size: 15px; font-weight: 700; color: var(--ink); }
+.how-desc { margin: 2px 0 0; font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+
+.hero-banner {
+  max-width: var(--max);
+  margin: 12px 16px 0;
+}
+.hero-banner-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  background: var(--surface-2);
+}
+
 main { padding: 8px 16px 32px; max-width: var(--max); margin: 0 auto; }
 
 .screen { display: block; }
@@ -400,6 +461,14 @@ main { padding: 8px 16px 32px; max-width: var(--max); margin: 0 auto; }
   display: block;
 }
 .type-card-meta { min-width: 0; }
+.type-card-neural {
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--type-color, var(--ink-muted));
+  font-weight: 700;
+  margin: 0 0 2px;
+}
 .type-card-name {
   font-size: 17px;
   font-weight: 700;
@@ -451,6 +520,14 @@ main { padding: 8px 16px 32px; max-width: var(--max); margin: 0 auto; }
   line-height: 1.2;
   margin: 6px 0 4px;
   font-weight: 700;
+}
+.type-hero-neural {
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  opacity: .92;
+  margin: 8px 0 0;
 }
 .type-hero-catch { font-size: 14px; margin: 0; opacity: .95; }
 .type-hero-code {

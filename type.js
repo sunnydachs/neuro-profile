@@ -171,14 +171,15 @@ function renderProfile(profile, types, neuroByLabel) {
   const heroHTML = `
     <section class="type-hero" aria-label="タイプ名と画像">
       <img class="type-hero-img"
-           src="assets/types/${esc(profile.code)}.png"
-           data-detail-src="assets/types-detail/${esc(profile.code)}.png"
+           src="assets/brain/${esc(profile.code)}.png"
+           data-detail-src="assets/brain/${esc(profile.code)}.png"
            alt="${esc(profile.name)} のアイコン"
            loading="lazy"
            decoding="async"
            width="160" height="160" />
       <div class="type-hero-meta">
         <span class="type-hero-code">${esc(profile.code)}</span>
+        <div class="type-hero-neural">${esc(profile.neural_name || "")}</div>
         <div class="type-hero-name">${esc(profile.name)}</div>
         <p class="type-hero-catch">${esc(profile.catch || "")}</p>
         ${groupMeta ? `<p class="type-hero-group" data-group-color="${esc(groupMeta.color)}"><span class="type-hero-group-dot" aria-hidden="true"></span>${esc(groupMeta.title)}</p>` : ""}
@@ -225,8 +226,8 @@ function renderProfile(profile, types, neuroByLabel) {
       <h2><span class="icon">📤</span>共有カード</h2>
       <div class="share-card">
         <img class="share-card-img"
-             src="assets/types/${esc(profile.code)}.png"
-             data-detail-src="assets/types-detail/${esc(profile.code)}.png"
+             src="assets/brain/${esc(profile.code)}.png"
+             data-detail-src="assets/brain/${esc(profile.code)}.png"
              alt="${esc(profile.name)} のアイコン"
              loading="lazy" decoding="async"
              width="80" height="80" />

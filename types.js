@@ -74,14 +74,15 @@ function renderGroup(def, items, currentCode) {
     }
     a.innerHTML = `
       <img class="type-card-img"
-           src="assets/types/${esc(t.code)}.png"
-           data-detail-src="assets/types-detail/${esc(t.code)}.png"
+           src="assets/brain/${esc(t.code)}.png"
+           data-detail-src="assets/brain/${esc(t.code)}.png"
            alt="${esc(t.name)} のアイコン"
            loading="lazy"
            decoding="async"
            width="88" height="88" />
       <div class="type-card-meta">
         <p class="type-card-code">${esc(t.code)}</p>
+        <p class="type-card-neural">${esc(t.neural_name || "")}</p>
         <p class="type-card-name">${esc(t.name)}</p>
         <p class="type-card-catch">${esc(t.catch || "")}</p>
       </div>
