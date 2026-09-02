@@ -36,8 +36,9 @@ function getTypeCode() {
     if (/^[A-Z]{4}$/.test(raw)) return raw;
     return null;
   }
-  // Fallback for static pages og/type-<CODE>.html (crawler-friendly, no query).
-  const m = location.pathname.match(/type-([A-Z]{4})\.html$/i);
+  // Fallback for static pages og/type-<CODE>(.html)? — Cloudflare Pages strips the
+  // .html extension (clean-URL redirect), so match with or without it.
+  const m = location.pathname.match(/type-([A-Z]{4})(?:\.html)?$/i);
   if (m) return m[1].toUpperCase();
   return null;
 }
@@ -312,7 +313,7 @@ function renderRelated(profile, types) {
     <section class="section" aria-label="同じグループの他のタイプ">
       <h2><span class="icon">🔗</span>同じグループの他のタイプ</h2>
       <div class="type-related">
-        ${same.map(t => `<a href="og/type-${encodeURIComponent(t.code)}.html">${esc(t.code)} ${esc(t.name)}</a>`).join("")}
+        ${same.map(t => `<a href="og/type-${encodeURIComponent(t.code)}">${esc(t.code)} ${esc(t.name)}</a>`).join("")}
       </div>
     </section>
   `;
@@ -402,7 +403,7 @@ function renderPrevNextNav(code, types) {
   return `
     <nav class="type-prevnext" aria-label="前後のタイプへ">
       <a class="type-prevnext-link type-prevnext-prev"
-         href="og/type-${encodeURIComponent(prev)}.html"
+         href="og/type-${encodeURIComponent(prev)}"
          data-type-color="${esc(prevMeta.color || "")}"
          aria-label="${esc(prevLabel)}: ${esc(prevMeta.name || prev)}（${esc(prev)}）へ">
         <span class="type-prevnext-arrow" aria-hidden="true">←</span>
@@ -413,7 +414,7 @@ function renderPrevNextNav(code, types) {
         </span>
       </a>
       <a class="type-prevnext-link type-prevnext-next"
-         href="og/type-${encodeURIComponent(next)}.html"
+         href="og/type-${encodeURIComponent(next)}"
          data-type-color="${esc(nextMeta.color || "")}"
          aria-label="${esc(nextLabel)}: ${esc(nextMeta.name || next)}（${esc(next)}）へ">
         <span class="type-prevnext-text">
