@@ -344,7 +344,9 @@ function renderResult(result) {
 }
 
 function shareUrlFor(code) {
-  return new URL("og/type-" + encodeURIComponent(code) + ".html", location.href).href;
+  // Cloudflare Pages clean-URL: .html is redirected away, so share the extension-less
+  // form to avoid a 308 hop (both forms work; getTypeCode matches either).
+  return new URL("og/type-" + encodeURIComponent(code), location.href).href;
 }
 
 function buildShareText(profile, result) {
