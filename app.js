@@ -344,7 +344,7 @@ function renderResult(result) {
 }
 
 function shareUrlFor(code) {
-  return new URL("type.html?type=" + encodeURIComponent(code), location.href).href;
+  return new URL("og/type-" + encodeURIComponent(code) + ".html", location.href).href;
 }
 
 function buildShareText(profile, result) {
