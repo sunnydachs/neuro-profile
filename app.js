@@ -301,6 +301,9 @@ function renderResult(result) {
       </div>
       <div class="share-actions">
         <button class="btn-secondary" id="btn-copy-share" type="button">共有テキストをコピー</button>
+        <button class="btn-secondary" id="btn-copy-share-url" type="button">結果URLをコピー</button>
+        <a class="btn-secondary" id="btn-share-x" target="_blank" rel="noopener" href="#" role="button">X でシェア</a>
+        <a class="btn-secondary" id="btn-share-line" target="_blank" rel="noopener" href="#" role="button">LINE でシェア</a>
         <button class="btn-secondary" id="btn-restart" type="button">もう一度診断する</button>
       </div>
     </section>
@@ -329,11 +332,19 @@ function renderResult(result) {
       document.body.removeChild(ta);
     }
   });
+  // Social share buttons — point to the type detail page (server-renderable, crawler-friendly).
+  const shareUrl = shareUrlFor(profile.code);
+  $("#btn-share-x").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(buildShareText(profile, result)) + "&url=" + encodeURIComponent(shareUrl);
+  $("#btn-share-line").href = "https://line.me/R/msg/text/?" + encodeURIComponent(buildShareText(profile, result) + "\n" + shareUrl);
   $("#btn-restart").addEventListener("click", () => {
     if (confirm("回答をリセットして最初に戻ります。よろしいですか？")) {
       startQuiz();
     }
   });
+}
+
+function shareUrlFor(code) {
+  return new URL("type.html?type=" + encodeURIComponent(code), location.href).href;
 }
 
 function buildShareText(profile, result) {
