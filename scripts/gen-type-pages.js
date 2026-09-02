@@ -31,7 +31,7 @@ function main() {
     const p = profiles[code];
     const ogDesc = `${p.name}（${p.code}）— ${p.catch}。脳・認知タイプの傾向プロフィール。`;
     const ogImage = `assets/og/${code}.png`;
-    const pageUrl = `${BASE_URL}/og/type-${code}.html`;
+    const pageUrl = `${BASE_URL}/og/type-${code}`;
     const ogTitle = `${p.name}（${p.code}）| 脳・認知タイプ`;
 
     // Replace head meta block with per-type values (crawler-visible without JS).
