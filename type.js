@@ -42,8 +42,29 @@ function setTitle(profile) {
   document.title = `${profile.code} — ${profile.name} | 脳・認知タイプ`;
   const h1 = document.getElementById("page-title");
   if (h1) h1.textContent = `${profile.name}（${profile.code}）`;
+  const descText = `${profile.name}（${profile.code}）— ${profile.catch}。脳・認知タイプの傾向プロフィール。`;
   const desc = document.querySelector('meta[name="description"]');
-  if (desc) desc.setAttribute("content", escAttr(`${profile.name}（${profile.code}）— ${profile.catch}。脳・認知タイプの傾向プロフィール。`));
+  if (desc) desc.setAttribute("content", escAttr(descText));
+
+  // Dynamic OGP / Twitter — set for each type (crawlers that run JS will pick these up;
+  // the static defaults in type.html cover non-JS crawlers with a generic preview).
+  const ogTitle = `${profile.name}（${profile.code}）| 脳・認知タイプ`;
+  // OGP image: dedicated 1200×624 social card per type (assets/og/), fallback not needed (all 16 present).
+  const ogImage = `assets/og/${profile.code}.png`;
+  const absOgImage = new URL(ogImage, location.href).href;
+  updateMeta('meta[property="og:title"]', ogTitle);
+  updateMeta('meta[property="og:description"]', descText);
+  updateMeta('meta[property="og:url"]', location.href);
+  updateMeta('meta[property="og:image"]', absOgImage);
+  updateMeta('meta[property="og:type"]', "article");
+  updateMeta('meta[name="twitter:title"]', ogTitle);
+  updateMeta('meta[name="twitter:description"]', descText);
+  updateMeta('meta[name="twitter:image"]', absOgImage);
+}
+
+function updateMeta(sel, value) {
+  const el = document.querySelector(sel);
+  if (el) el.setAttribute("content", value);
 }
 
 function axisRowsHTML(axisLabels) {
