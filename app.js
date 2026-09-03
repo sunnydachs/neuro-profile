@@ -38,6 +38,15 @@ const screens = {
 };
 function show(name) {
   for (const [k, node] of Object.entries(screens)) node.hidden = (k !== name);
+  // In quiz/result, hide top-page chrome (header, hero, how-it-works) so the user
+  // focuses on the diagnostic. Restore them when returning to intro.
+  const chrome = ["#site-header", "#hero-banner", "#how-section"];
+  const focusing = (name === "quiz" || name === "result");
+  for (const sel of chrome) {
+    const node = $(sel);
+    if (node) node.hidden = focusing;
+  }
+  document.body.classList.toggle("quiz-active", focusing);
   window.scrollTo({ top: 0, behavior: "instant" });
 }
 
@@ -200,7 +209,7 @@ function renderResult(result) {
       <h2><span class="icon">🧠</span>あなたの特徴</h2>
       <p>${escapeHTML(profile.features_short)}</p>
       <p>${escapeHTML(profile.features_long)}</p>
-      <p class="disclaimer">※ 以下の結果は、回答パターンから推定された<strong>傾向</strong>であり、脳の測定ではありません。</p>
+      <p class="disclaimer">※ 以下は回答パターンからの<strong>傾向推定</strong>です（脳の測定ではありません）。</p>
     </section>
 
     <section class="section" aria-label="特に働きやすい可能性のある神経システム">
@@ -279,11 +288,6 @@ function renderResult(result) {
       <p>${escapeHTML(profile.scientific_background).replace(/\n/g, "<br>")}</p>
     </section>
 
-    <section class="section" aria-label="科学的な注意">
-      <h2><span class="icon">⚠️</span>科学的な注意</h2>
-      <p>${escapeHTML(profile.scientific_note).replace(/\n/g, "<br>")}</p>
-    </section>
-
     <section class="section" aria-label="共有カード">
       <h2><span class="icon">📤</span>共有カード</h2>
       <div class="share-card" id="share-card">
@@ -314,6 +318,10 @@ function renderResult(result) {
       <p><strong>${escapeHTML(gradeLabel)}</strong> ${escapeHTML(flagLine)}</p>
       <p class="disclaimer">※ 信頼度は、回答パターンから自動推定された参考値です。回答を見直す目安としてご確認ください。</p>
     </section>
+
+    <p class="disclaimer" style="margin-top:20px;">
+      ${escapeHTML(profile.scientific_note).replace(/\n/g, "<br>")}
+    </p>
   `;
   $("#result-root").innerHTML = html;
 
