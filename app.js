@@ -302,6 +302,7 @@ function renderResult(result) {
       <div class="share-actions">
         <button class="btn-secondary" id="btn-copy-share" type="button">共有テキストをコピー</button>
         <button class="btn-secondary" id="btn-copy-share-url" type="button">結果URLをコピー</button>
+        <button class="btn-primary" id="btn-download-card" type="button">カード画像を保存</button>
         <a class="btn-secondary" id="btn-share-x" target="_blank" rel="noopener" href="#" role="button">X でシェア</a>
         <a class="btn-secondary" id="btn-share-line" target="_blank" rel="noopener" href="#" role="button">LINE でシェア</a>
         <button class="btn-secondary" id="btn-restart" type="button">もう一度診断する</button>
@@ -336,6 +337,9 @@ function renderResult(result) {
   const shareUrl = shareUrlFor(profile.code);
   $("#btn-share-x").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(buildShareText(profile, result)) + "&url=" + encodeURIComponent(shareUrl);
   $("#btn-share-line").href = "https://line.me/R/msg/text/?" + encodeURIComponent(buildShareText(profile, result) + "\n" + shareUrl);
+  $("#btn-download-card").addEventListener("click", () => {
+    generateShareCard(profile, result);
+  });
   $("#btn-restart").addEventListener("click", () => {
     if (confirm("回答をリセットして最初に戻ります。よろしいですか？")) {
       startQuiz();
@@ -347,6 +351,139 @@ function shareUrlFor(code) {
   // Cloudflare Pages clean-URL: .html is redirected away, so share the extension-less
   // form to avoid a 308 hop (both forms work; getTypeCode matches either).
   return new URL("og/type-" + encodeURIComponent(code), location.href).href;
+}
+
+// Generates a shareable PNG card (brain character + type name + catch + top3 neuro).
+// Uses an offscreen canvas; loads the type image from assets/types/{code}.png.
+async function generateShareCard(profile, result) {
+  const btn = $("#btn-download-card");
+  const orig = btn.textContent;
+  btn.textContent = "生成中…";
+  btn.disabled = true;
+  try {
+    const W = 1080, H = 1350; // vertical card, mobile/SNS friendly
+    const canvas = document.createElement("canvas");
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext("2d");
+
+    // Background (type color gradient)
+    const color = profile.color || "#5C7CA8";
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, color);
+    grad.addColorStop(1, shadeColor(color, -40));
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle top accent
+    ctx.fillStyle = "rgba(255,255,255,0.12)";
+    ctx.fillRect(0, 0, W, 200);
+
+    // Load & draw the brain character image
+    const img = await loadImage(`assets/types/${profile.code}.png`);
+    const imgSize = 520;
+    const imgX = (W - imgSize) / 2;
+    const imgY = 260;
+    // soft white circle behind the character
+    ctx.fillStyle = "rgba(255,255,255,0.9)";
+    ctx.beginPath();
+    ctx.arc(W / 2, imgY + imgSize / 2, imgSize / 2 + 14, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.drawImage(img, imgX, imgY, imgSize, imgSize);
+
+    // Code (top)
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgba(255,255,255,0.95)";
+    ctx.font = "bold 56px system-ui, sans-serif";
+    ctx.fillText(profile.code, W / 2, 120);
+
+    // Name
+    const nameY = imgY + imgSize + 90;
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "bold 92px system-ui, sans-serif";
+    ctx.fillText(profile.name, W / 2, nameY);
+
+    // Catch phrase (wrapped)
+    ctx.font = "42px system-ui, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.92)";
+    const catchLines = wrapText(ctx, profile.catch || "", W - 120);
+    let cy = nameY + 60;
+    for (const line of catchLines) {
+      ctx.fillText(line, W / 2, cy);
+      cy += 58;
+    }
+
+    // Top3 neuro systems
+    const top3 = result.neuroScores.slice(0, 3);
+    cy += 30;
+    ctx.font = "40px system-ui, sans-serif";
+    ctx.fillStyle = "rgba(255,255,255,0.95)";
+    const medals = ["🥇", "🥈", "🥉"];
+    for (let i = 0; i < top3.length; i++) {
+      ctx.fillText(`${medals[i]} ${top3[i].label}`, W / 2, cy);
+      cy += 60;
+    }
+
+    // QR / URL hint (footer)
+    ctx.fillStyle = "rgba(255,255,255,0.75)";
+    ctx.font = "30px system-ui, sans-serif";
+    ctx.fillText(shareUrlFor(profile.code).replace(/^https?:\/\//, ""), W / 2, H - 60);
+    ctx.fillText("※ 脳の測定ではなく、傾向の推定です", W / 2, H - 24);
+
+    // Download
+    const blob = await new Promise((res) => canvas.toBlob(res, "image/png"));
+    if (!blob) throw new Error("canvas toBlob failed");
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `neuro-type-${profile.code}.png`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 2000);
+
+    flashCopy(btn, "保存しました ✓");
+  } catch (err) {
+    console.error(err);
+    btn.textContent = orig;
+    btn.disabled = false;
+    alert("カード画像の生成に失敗しました。");
+  }
+}
+
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error("image load failed: " + src));
+    img.src = src;
+  });
+}
+
+function shadeColor(hex, percent) {
+  const n = parseInt(hex.replace("#", ""), 16);
+  const amt = Math.round(2.55 * percent);
+  const r = Math.max(0, Math.min(255, (n >> 16) + amt));
+  const g = Math.max(0, Math.min(255, ((n >> 8) & 0xff) + amt));
+  const b = Math.max(0, Math.min(255, (n & 0xff) + amt));
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+function wrapText(ctx, text, maxWidth) {
+  const words = text.split("");
+  const lines = [];
+  let line = "";
+  for (const ch of words) {
+    const test = line + ch;
+    if (ctx.measureText(test).width > maxWidth && line) {
+      lines.push(line);
+      line = ch;
+    } else {
+      line = test;
+    }
+  }
+  if (line) lines.push(line);
+  return lines.slice(0, 3); // cap at 3 lines
 }
 
 function buildShareText(profile, result) {
