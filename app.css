@@ -114,6 +114,8 @@ main { padding: 8px 16px 32px; max-width: var(--max); margin: 0 auto; }
 
 .screen { display: block; }
 .screen[hidden] { display: none; }
+/* Ensure the hidden attribute reliably hides any element (some styles set display). */
+[hidden] { display: none !important; }
 
 .card {
   background: var(--surface);
