@@ -113,6 +113,22 @@ function goNext() {
 }
 
 // ----------------- result rendering -----------------
+// Highlights the primary brain region associated with the user's top-matched
+// neuro system, phrased as a reference (not a measurement). Kept visually subtle.
+function renderRegionHighlight(medals, neuroByLabel) {
+  if (!medals || !medals.length) return "";
+  const top = medals[0];
+  const meta = neuroByLabel[top.label];
+  if (!meta || !meta.region) return "";
+  return `
+    <p class="hero-region">
+      <span class="hero-region-dot" aria-hidden="true"></span>
+      関連が研究されている部位：<strong>${escapeHTML(meta.region)}</strong>
+      <span class="hero-region-hint">（傾向推定の参考）</span>
+    </p>
+  `;
+}
+
 function starsFor(score) {
   // 0..19: 1; 20..39: 2; 40..59: 3; 60..79: 4; 80..100: 5
   const filled = Math.min(5, Math.max(1, Math.floor((score / 100) * 5) + (score >= 80 ? 0 : 1)));
@@ -202,6 +218,7 @@ function renderResult(result) {
         <div class="hero-name">${escapeHTML(profile.name)}</div>
         <p class="hero-catch">${escapeHTML(profile.catch)}</p>
         <p class="hero-judgment">${escapeHTML(judgmentSentence)}</p>
+        ${renderRegionHighlight(medals, neuroByLabel)}
       </div>
     </section>
 

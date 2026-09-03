@@ -254,6 +254,31 @@ main { padding: 8px 16px 32px; max-width: var(--max); margin: 0 auto; }
   margin: 6px 0 0;
 }
 
+.hero-region {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  background: rgba(255,255,255,.18);
+  border-left: 3px solid #84E0BE; /* gentle green highlight line */
+  padding: 6px 10px;
+  border-radius: 4px;
+  margin: 6px 0 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-region-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #84E0BE;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 6px #84E0BE; /* pulsing light effect */
+}
+.hero-region-hint {
+  opacity: .75;
+  font-size: 10px;
+}
+
 .section {
   background: var(--surface);
   border-radius: var(--radius);
