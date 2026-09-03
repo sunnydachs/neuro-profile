@@ -196,7 +196,7 @@ function renderResult(result) {
   const html = `
     ${unableNote}
     <section class="hero" aria-label="タイプ名と画像">
-      <img class="hero-img" src="assets/types/${profile.code}.png" alt="${escapeHTML(profile.name)} のアイコン" />
+      <img class="hero-img" src="assets/brain/${profile.code}.png" alt="${escapeHTML(profile.name)} のアイコン" />
       <div class="hero-meta">
         <span class="hero-code">${escapeHTML(profile.code)}</span>
         <div class="hero-name">${escapeHTML(profile.name)}</div>
@@ -291,7 +291,7 @@ function renderResult(result) {
     <section class="section" aria-label="共有カード">
       <h2><span class="icon">📤</span>共有カード</h2>
       <div class="share-card" id="share-card">
-        <img class="share-card-img" src="assets/types/${profile.code}.png" alt="${escapeHTML(profile.name)} のアイコン" />
+        <img class="share-card-img" src="assets/brain/${profile.code}.png" alt="${escapeHTML(profile.name)} のアイコン" />
         <div>
           <p class="share-card-title">${escapeHTML(profile.name)}</p>
           <p class="share-card-code">${escapeHTML(profile.code)}</p>
@@ -362,7 +362,7 @@ function shareUrlFor(code) {
 }
 
 // Generates a shareable PNG card (brain character + type name + catch + top3 neuro).
-// Uses an offscreen canvas; loads the type image from assets/types/{code}.png.
+// Uses an offscreen canvas; loads the type image from assets/brain/{code}.png.
 async function generateShareCard(profile, result) {
   const btn = $("#btn-download-card");
   const orig = btn.textContent;
@@ -387,7 +387,7 @@ async function generateShareCard(profile, result) {
     ctx.fillRect(0, 0, W, 200);
 
     // Load & draw the brain character image
-    const img = await loadImage(`assets/types/${profile.code}.png`);
+    const img = await loadImage(`assets/brain/${profile.code}.png`);
     const imgSize = 520;
     const imgX = (W - imgSize) / 2;
     const imgY = 260;
