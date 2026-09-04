@@ -1,6 +1,6 @@
 [![CI](https://github.com/sunnydachs/neuro-profile/actions/workflows/ci.yml/badge.svg)](https://github.com/sunnydachs/neuro-profile/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/sunnydachs/neuro-profile/actions/workflows/codeql.yml/badge.svg)](https://github.com/sunnydachs/neuro-profile/actions/workflows/codeql.yml)
-[![codecov](https://codecov.io/gh/sunnydachs/neuro-profile/graph/badge.svg?token=3fe76092-c1f4-4d64-a064-93fb40476684)](https://codecov.io/gh/sunnydachs/neuro-profile)
+[![codecov](https://codecov.io/gh/sunnydachs/neuro-profile/graph/badge.svg)](https://codecov.io/gh/sunnydachs/neuro-profile)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=dependabot)](https://github.com/sunnydachs/neuro-profile/security/dependabot)
 
 # 脳・認知タイプ診断（傾向の推定）
