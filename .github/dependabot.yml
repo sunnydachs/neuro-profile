@@ -8,6 +8,7 @@ updates:
     labels:
       - "dependencies"
       - "npm"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -17,10 +18,10 @@ updates:
       - "dependencies"
       - "github-actions"
     groups:
-      actions-minor:
+      github-actions-minor-and-patch:
         applies-to: version-updates
-        patterns:
-          - "*"
         update-types:
           - "minor"
           - "patch"
+        patterns:
+          - "*"
