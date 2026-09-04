@@ -1,0 +1,13 @@
+# CodeQL suppression list — use only for verified false positives.
+# Loaded by codeql-action init step when referenced from workflow.
+---
+- rule: js/xss-through-dom
+  paths:
+    - type.js
+    - types.js
+  reason: |
+    image src swap from data-detail-src attribute. The values are static
+    asset paths (assets/types/...) set by the page itself, not user input.
+    `new Image().src = ...` does not execute javascript: URLs in modern
+    browsers — even if a malicious value reached the attribute, the
+    assignment to img.src is not an XSS sink.
