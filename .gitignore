@@ -4,3 +4,7 @@ __pycache__/
 node_modules/
 .env
 .venv/
+
+# Experimental brain-character assets (not part of the public product)
+assets/brain-sample-*.png
+assets/brain-v2-*.png

@@ -1,5 +1,5 @@
 // app/scoring.js — pure scoring engine (no DOM, no I/O).
-// Implements the math defined in step5-scoring.md.
+// Implements the math defined in docs/step5-scoring.md.
 //
 // Public API (used by app.js and by tests/scoring.test.mjs):
 //   computeScore({ answers, questions, axesMeta }) -> {
