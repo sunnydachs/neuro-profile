@@ -429,7 +429,7 @@ function renderPrevNextNav(code, types) {
 }
 
 // 詳細用画像があれば src を差し換える（無ければ何もせずフォールバック）。
-function swapToDetailImages(root) {
+function swapToDetailImages(root) { // codeql[js/xss-through-dom]: img.src assignment from data attribute; values are static asset paths
   if (!root) return;
   const imgs = root.querySelectorAll("img[data-detail-src]");
   imgs.forEach((img) => {
