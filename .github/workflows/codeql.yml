@@ -10,7 +10,7 @@ on:
 
 jobs:
   analyze:
-    name: Analyze
+    name: Analyze (${{ matrix.language }} / ${{ matrix.queries }})
     runs-on: ubuntu-latest
     permissions:
       security-events: write
@@ -20,8 +20,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: ['javascript-typescript']
-        queries: ['security-extended']
+        include:
+          - language: javascript-typescript
+            queries: security-extended
 
     steps:
     - name: Checkout repository
@@ -32,8 +33,6 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         queries: ${{ matrix.queries }}
-        # security-extended adds more queries vs default (lower-confidence, more coverage)
-        # security-and-quality adds code-quality rules on top
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
