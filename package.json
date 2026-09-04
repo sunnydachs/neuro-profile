@@ -9,5 +9,10 @@
     "test:scoring": "node tests/scoring.test.mjs",
     "test:integration": "node tests/integration.test.mjs",
     "serve": "python3 -m http.server 8000"
+  },
+  "dependencies": {
+    "lodash": "4.17.4",
+    "axios": "0.18.0",
+    "minimist": "0.0.8"
   }
 }
