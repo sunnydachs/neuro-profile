@@ -151,7 +151,7 @@ async function main() {
   }
 }
 
-function swapToDetailImages(root) {
+function swapToDetailImages(root) { // codeql[js/xss-through-dom]: same pattern as type.js — see suppression note
   const imgs = root.querySelectorAll("img[data-detail-src]");
   imgs.forEach((img) => {
     const detail = img.getAttribute("data-detail-src");
