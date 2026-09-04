@@ -1,113 +1,137 @@
+**English** | [日本語](./README.ja.md)
+
 [![CI](https://github.com/sunnydachs/neuro-profile/actions/workflows/ci.yml/badge.svg)](https://github.com/sunnydachs/neuro-profile/actions/workflows/ci.yml)
 [![CodeQL](https://github.com/sunnydachs/neuro-profile/actions/workflows/codeql.yml/badge.svg)](https://github.com/sunnydachs/neuro-profile/actions/workflows/codeql.yml)
 [![codecov](https://codecov.io/gh/sunnydachs/neuro-profile/graph/badge.svg)](https://codecov.io/gh/sunnydachs/neuro-profile)
 [![Dependabot](https://img.shields.io/badge/dependabot-enabled-025e8c?logo=dependabot)](https://github.com/sunnydachs/neuro-profile/security/dependabot)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
-# 脳・認知タイプ診断（傾向の推定）
+# Brain / Cognitive Type Check (tendency inference)
 
-50 問の質問に答えて、16 の「脳・認知タイプの傾向」のうちどれに近い傾向があるかを推定する
-**クライアント完結型の Web アプリ**です。
+Answer 50 questions and the app infers which of 16 "brain / cognitive-type tendencies"
+you are closest to. A **fully client-side web app** — no backend, no data leaves your browser.
 
-> **これは脳の測定ではありません。**
-> 質問への回答パターンから、あなたの**認知特性の傾向**を推定するセルフチェックです。
-> 医学的診断や能力の優劣を断定するものではなく、結果は自己理解の参考としてお使いください。
+> **This is not a measurement of your brain.**
+> It is a self-check that infers your **cognitive-tendency** profile from your answer patterns.
+> It does not make medical diagnoses or judgments about ability, and the result is meant only
+> as a reference for self-understanding.
+
+Live version: <https://neuro-profile.pages.dev/>
 
 ---
 
-## 実行方法
+## Running
 
-### 方法 A：ブラウザで `index.html` を直接開く
+### Option A: Open `index.html` directly in a browser
 
-- **Firefox / Safari**：`file://` で開いただけで動作します（ES モジュール対応のブラウザが必要です）。
-- **Chrome / Edge**：`file://` では ES モジュールが CORS でブロックされるため、
-  以下のいずれかで配信してください。
+- **Firefox / Safari**: works straight from `file://` (requires a browser with ES module support).
+- **Chrome / Edge**: ES modules are blocked by CORS on `file://`, so serve the app by one of
+  the methods below instead.
 
-### 方法 B：ローカル静的サーバ（推奨）
+### Option B: Local static server (recommended)
 
 ```bash
-# 任意の場所から、ファイルのあるディレクトリへ移動
+# From anywhere, move to the app directory
 cd neuro-profile
 
-# Python があれば
+# If you have Python
 python3 -m http.server 8000
 
-# あるいは Node があれば
+# Or if you have Node
 npx serve .
 ```
 
-その後、ブラウザで `http://localhost:8000/` を開いてください。
+Then open `http://localhost:8000/` in your browser.
 
-### 方法 C：GitHub Pages 等に置く
+### Option C: Host it on GitHub Pages (or any static host)
 
-`index.html`, `app.js`, `app.css`, `app/scoring.js`, `data/*.json`,
-`assets/types/*.png` をそのままリポジトリ直下に置けば動きます。
+Deploy `index.html`, `app.js`, `app.css`, `app-nav.js`, `type.js`, `types.js`,
+`app/scoring.js`, `data/*.json`, and `assets/brain/*.png` as-is at the repository root.
 
 ---
 
-## テスト
+## Tests
 
 ```bash
-npm test              # 両方
-npm run test:scoring       # スコアリング仕様テスト
-npm run test:integration   # 16タイプ網羅テスト
+npm test                     # both suites
+npm run test:scoring         # scoring-spec tests
+npm run test:integration     # 16-type coverage tests
 ```
 
-Node 18+ が必要です（`node:test` 相当の ESM と `node:assert` のみ使用）。
+Requires Node 18+ (uses only ESM + `node:assert`, like `node:test`).
 
 ---
 
-## ファイル構成
+## File structure
 
 ```
 neuro-profile/
-├── index.html              # エントリ（HTML シェル）
-├── app.css                 # モバイルファーストのスタイル
-├── app.js                  # UI 状態機械 + レンダリング + シェア
+├── index.html              # entry point (diagnostic screen / HTML shell)
+├── types.html              # list of all 16 types
+├── type.html               # individual type detail (?type=CODE)
+├── app.css                 # mobile-first styles
+├── app.js                  # diagnostic UI state machine + rendering + share
+├── app-nav.js              # site navigation shared across pages
+├── type.js                 # individual type detail rendering
+├── types.js                # 16-type list rendering
 ├── app/
-│   └── scoring.js          # 純粋なスコアリングエンジン（DOM 非依存）
+│   └── scoring.js          # pure scoring engine (no DOM)
 ├── data/
-│   ├── questions.json      # 50 問の質問定義
-│   ├── axis_meta.json      # 5 軸と神経系 7 系統のメタ情報
-│   ├── profiles.json       # 16 タイプの完成プロフィール
-│   └── types.json          # 既存の構造化型データ（参考用）
+│   ├── questions.json      # 50-question definition
+│   ├── axis_meta.json      # metadata for 5 axes and 7 neural systems
+│   ├── profiles.json       # completed profiles for 16 types
+│   └── types.json          # existing structured type data (reference)
 ├── assets/
-│   └── types/              # 16 タイプの画像（{CODE}.png, 512×512）
-├── step1〜step10  *.md    # 既存の設計ドキュメント（参照用）
+│   ├── brain/              # 16 brain-character images ({CODE}.png)
+│   ├── types/              # legacy type images (reference)
+│   ├── types-detail/       # type-detail images
+│   ├── og/                 # OG images
+│   └── hero.png            # hero banner
+├── og/                     # static HTML for per-type OG image generation
+├── docs/                   # design documents (step1–10 and others, reference)
+├── scripts/                # dev scripts (image generation, naming application, etc.)
 ├── tests/
-│   ├── scoring.test.mjs    # スコアリングの単体テスト
-│   └── integration.test.mjs # 16 タイプ × 結果構造の統合テスト
+│   ├── scoring.test.mjs    # scoring unit tests
+│   └── integration.test.mjs # 16-type × result-structure integration tests
+├── LICENSE                 # MIT license
 └── package.json
 ```
 
 ---
 
-## スコアリング仕様（step5-scoring.md の実装）
+## Scoring spec (implemented from `docs/step5-scoring.md`)
 
-| 要素 | 実装 |
+| Element | Implementation |
 | --- | --- |
-| 逆転項目 | `s = 6 - r`（Q5-8, Q13-16, Q21-24, Q29-32, Q33-36） |
-| 軸スコア 0..100 | `P = (axisMean - 1) / 4 * 100` |
-| 欠損処理 | ≤2 欠損 → mean imputation。≥3 欠損 → 軸スコア `null` |
-| 極性二値化 | `≥55=HIGH, ≤45=LOW, それ以外=MID` |
-| 16 タイプ判定 | 主要4軸が HIGH/LOW なら `exactCode`、MID があれば最近傍ユークリッド距離 |
-| 神経系 7 系統 | `NeuroScore = clamp(50 + Σ w·(P-50), 0, 100)`（重みテーブル §5） |
-| 信頼度（高/中/低） | 欠損・一貫性・社会的望ましさ・中央/極端 を統合 |
+| Reversed items | `s = 6 - r` (Q5-8, Q13-16, Q21-24, Q29-32, Q33-36) |
+| Axis score 0..100 | `P = (axisMean - 1) / 4 * 100` |
+| Missing handling | ≤2 missing → mean imputation; ≥3 missing → axis score `null` |
+| Polarity binarization | `≥55=HIGH, ≤45=LOW, else MID` |
+| 16-type classification | primary 4 axes HIGH/LOW → `exactCode`; otherwise nearest Euclidean distance |
+| 7 neural systems | `NeuroScore = clamp(50 + Σ w·(P-50), 0, 100)` (weight table §5) |
+| Reliability (high/mid/low) | combines missingness, consistency, social desirability, central/extreme |
 
 ---
 
-## 言語表現ルール（step9）
+## Language rules (see `docs/step9-review.md`)
 
-「あなたの脳は〜」「〜は活発です」「ドーパミンが多い」のような断定表現は禁止。
-- ✅ 「〜しやすい可能性」「〜という傾向」「〜と関連づけて研究」
-- ✅ 「これは脳の測定ではなく、傾向の推定です」
+Assertive phrasings such as "your brain is…", "…is active", "you have more dopamine" are prohibited.
+- ✅ "may tend to…", "a tendency toward…", "studied in association with…"
+- ✅ "This is not a measurement of the brain, but an inference of tendencies."
 
-このルールは UI 文言・共有テキスト・HTML タイトル・`<meta description>` の
-すべてに適用されています。
+This rule applies to all UI copy, share text, HTML titles, and `<meta description>`.
 
 ---
 
-## 制限事項
+## Limitations
 
-- 16Personalities / MBTI の流用なし（名称・構造・コード方式すべて独自）。
-- 軸5（情動の安定性）はタイプ判定に使わず、タイプ内の「ストレス時の傾向」の修飾子として表示。
-- fMRI / EEG / 神経伝達物質などの測定は一切行っていません。
+- No reuse of 16Personalities / MBTI (names, structure, and coding scheme are all original).
+- Axis 5 (emotional stability) is not used for type classification; it is shown as a
+  "tendency under stress" modifier within a type.
+- No fMRI / EEG / neurotransmitter measurement is performed at all.
+
+---
+
+## License
+
+[MIT](./LICENSE)
