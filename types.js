@@ -1,6 +1,7 @@
 // types.js — Renders the 16-type list, grouped by axis1×axis2.
-// Source of truth: data/types.json (cards) + data/profiles.json (sanity fallback).
+// Source of truth: data/types.json (cards). Language resolution via app/i18n.js.
 // No external deps.
+import { applyLang, currentLang, withLang } from "./app/i18n.js";
 
 const GROUP_DEFS = [
   {
@@ -44,6 +45,10 @@ async function loadJSON(url) {
   return res.json();
 }
 
+function isEn() {
+  return (location.pathname || "").startsWith("/en/");
+}
+
 function renderGroup(def, items, currentCode) {
   const section = document.createElement("section");
   section.className = "types-group";
@@ -65,7 +70,9 @@ function renderGroup(def, items, currentCode) {
   for (const t of items) {
     const a = document.createElement("a");
     a.className = "type-card";
-    a.href = `type.html?type=${encodeURIComponent(t.code)}`;
+    // On /en/ pages, link to the type detail under /en/type.html.
+    const detailHref = isEn() ? `type.html?type=${encodeURIComponent(t.code)}` : `type.html?type=${encodeURIComponent(t.code)}`;
+    a.href = detailHref;
     a.style.setProperty("--type-color", t.color || def.color);
     a.setAttribute("aria-label", `${t.name}（${t.code}）の詳細を見る`);
     if (currentCode && currentCode === t.code) {
@@ -116,11 +123,15 @@ function currentTypeCode() {
 }
 
 async function main() {
+  applyLang();
   const currentCode = currentTypeCode();
   const root = document.getElementById("types-root");
   if (!root) return;
   try {
-    const types = await loadJSON("data/types.json");
+    const rawTypes = await loadJSON("data/types.json");
+    // Resolve i18n-wrapped fields to the active language for the rest of the renderer.
+    const types = {};
+    for (const [code, prof] of Object.entries(rawTypes)) types[code] = withLang(prof);
     const codes = Object.keys(types).sort();
     if (codes.length === 0) throw new Error("types.json is empty");
 

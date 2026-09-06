@@ -22,13 +22,13 @@ Live version: <https://neuro-profile.pages.dev/>
 
 ## Running
 
-### Option A: Open `index.html` directly in a browser
+### Option A: Local static server (recommended)
 
-- **Firefox / Safari**: works straight from `file://` (requires a browser with ES module support).
-- **Chrome / Edge**: ES modules are blocked by CORS on `file://`, so serve the app by one of
-  the methods below instead.
+> ⚠️ Opening `index.html` directly via `file://` is **no longer supported**.
+> Since `app.js` now fetches `data/*.json` (single source of truth), browsers block the
+> requests under `file://` (CORS). Always serve the directory via a static server.
 
-### Option B: Local static server (recommended)
+### Option B: Local static server (alternative commands)
 
 ```bash
 # From anywhere, move to the app directory
@@ -77,10 +77,17 @@ neuro-profile/
 ├── app/
 │   └── scoring.js          # pure scoring engine (no DOM)
 ├── data/
-│   ├── questions.json      # 50-question definition
-│   ├── axis_meta.json      # metadata for 5 axes and 7 neural systems
-│   ├── profiles.json       # completed profiles for 16 types
-│   └── types.json          # existing structured type data (reference)
+│   ├── questions.json      # 50-question definition (plan C: structure + ja/en text)
+│   ├── axis_meta.json      # metadata for 5 axes and 7 neural systems (ja/en)
+│   ├── profiles.json       # completed profiles for 16 types (ja/en)
+│   └── types.json          # structured type data for the list page (ja/en)
+├── en/                     # English pages (mirror of index/types/type)
+│   ├── index.html
+│   ├── types.html
+│   └── type.html
+├── app/
+│   ├── scoring.js          # pure scoring engine (no DOM)
+│   └── i18n.js             # language detection (URL > localStorage > navigator)
 ├── assets/
 │   ├── brain/              # 16 brain-character images ({CODE}.png)
 │   ├── types/              # legacy type images (reference)
