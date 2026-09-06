@@ -9,10 +9,36 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const scoring = await import(path.join(ROOT, "app/scoring.js"));
 const questions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/questions.json"), "utf8"));
-const axesMeta = JSON.parse(fs.readFileSync(path.join(ROOT, "data/axis_meta.json"), "utf8"));
-const profiles = JSON.parse(fs.readFileSync(path.join(ROOT, "data/profiles.json"), "utf8"));
+const rawAxesMeta = JSON.parse(fs.readFileSync(path.join(ROOT, "data/axis_meta.json"), "utf8"));
+const axesMeta = {
+  axes: (rawAxesMeta.axes || []).map((a) => ({
+    id: a.id, name: a.name.ja, positive: a.positive.ja, negative: a.negative.ja,
+    positive_short: a.positive_short.ja, negative_short: a.negative_short.ja,
+    high_code: a.high_code, low_code: a.low_code, type_role: a.type_role,
+  })),
+  neuro_systems: (rawAxesMeta.neuro_systems || []).map((n) => ({
+    key: n.key, label: n.label.ja, region: n.region.ja, description: n.description.ja,
+    weights: n.weights,
+  })),
+};
+const rawProfiles = JSON.parse(fs.readFileSync(path.join(ROOT, "data/profiles.json"), "utf8"));
+// Recursively unwrap { ja, en } wrappers so the rest of the suite (which was written
+// before i18n) sees flat strings/arrays again. Picks 'ja' as the primary locale for tests.
+function flattenL10n(obj) {
+  if (obj == null) return obj;
+  if (typeof obj !== "object") return obj;
+  if (Array.isArray(obj)) return obj.map(flattenL10n);
+  if ("ja" in obj) return flattenL10n(obj.ja);
+  const out = {};
+  for (const [k, v] of Object.entries(obj)) out[k] = flattenL10n(v);
+  return out;
+}
+const profiles = {};
+for (const [code, p] of Object.entries(rawProfiles)) profiles[code] = flattenL10n(p);
 
-const qArr = questions.questions;
+// Plan C data shape: questions live under .structure with text in .text.ja
+const qArr = (questions.structure || questions.questions || []);
+
 let pass=0, fail=0;
 function test(name, fn) {
   try { fn(); pass++; console.log("✓", name); }

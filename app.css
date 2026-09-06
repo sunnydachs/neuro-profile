@@ -416,6 +416,32 @@ main { padding: 8px 16px 32px; max-width: var(--max); margin: 0 auto; }
   color: #fff;
   border-color: var(--accent);
 }
+.site-nav-lang {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: auto;
+  padding-left: 8px;
+  border-left: 1px solid var(--line);
+}
+.site-nav-lang-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.site-nav-lang-btn[aria-pressed="true"] {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  cursor: default;
+}
+.site-nav-lang-btn:hover:not([aria-pressed="true"]) {
+  background: var(--surface-2);
+}
 
 /* ---------- types list page ---------- */
 .types-group { margin: 24px 0 8px; }

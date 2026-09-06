@@ -9,11 +9,24 @@ const ROOT = path.resolve(__dirname, "..");
 
 const scoring = await import(path.join(ROOT, "app/scoring.js"));
 const questions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/questions.json"), "utf8"));
-const axesMeta = JSON.parse(fs.readFileSync(path.join(ROOT, "data/axis_meta.json"), "utf8"));
+const rawAxesMeta = JSON.parse(fs.readFileSync(path.join(ROOT, "data/axis_meta.json"), "utf8"));
+const axesMeta = {
+  axes: (rawAxesMeta.axes || []).map((a) => ({
+    id: a.id, name: a.name.ja, positive: a.positive.ja, negative: a.negative.ja,
+    positive_short: a.positive_short.ja, negative_short: a.negative_short.ja,
+    high_code: a.high_code, low_code: a.low_code, type_role: a.type_role,
+  })),
+  neuro_systems: (rawAxesMeta.neuro_systems || []).map((n) => ({
+    key: n.key, label: n.label.ja, region: n.region.ja, description: n.description.ja,
+    weights: n.weights,
+  })),
+};
 
 const { computeScore, reverseIfNeeded, axisScore100, polarity, TYPE_CODES, PRIMARY_AXES } = scoring;
 
-const qArr = questions.questions;
+// Plan C data shape: questions live under .structure with text in .text.ja
+const qArr = (questions.structure || questions.questions || []);
+
 
 let pass = 0, fail = 0;
 function test(name, fn) {

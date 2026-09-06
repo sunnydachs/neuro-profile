@@ -21,13 +21,13 @@
 
 ## 実行方法
 
-### 方法 A：ブラウザで `index.html` を直接開く
+### 方法 A：ローカル静的サーバ（推奨）
 
-- **Firefox / Safari**：`file://` で開いただけで動作します（ES モジュール対応のブラウザが必要です）。
-- **Chrome / Edge**：`file://` では ES モジュールが CORS でブロックされるため、
-  以下のいずれかで配信してください。
+> ⚠️ `file://` で `index.html` を直接開く方法は**サポート対象外**になりました。
+> `app.js` が `data/*.json` を fetch するようになったため、`file://` 配下では
+> ブラウザが CORS でブロックします。必ず静的サーバ経由で開いてください。
 
-### 方法 B：ローカル静的サーバ（推奨）
+### 方法 B：ローカル静的サーバ（別の起動方法）
 
 ```bash
 # 任意の場所から、ファイルのあるディレクトリへ移動
@@ -76,10 +76,17 @@ neuro-profile/
 ├── app/
 │   └── scoring.js          # 純粋なスコアリングエンジン（DOM 非依存）
 ├── data/
-│   ├── questions.json      # 50 問の質問定義
-│   ├── axis_meta.json      # 5 軸と神経系 7 系統のメタ情報
-│   ├── profiles.json       # 16 タイプの完成プロフィール
-│   └── types.json          # 既存の構造化型データ（参考用）
+│   ├── questions.json      # 50 問の質問定義（案 C：構造 + ja/en 文言）
+│   ├── axis_meta.json      # 5 軸と神経系 7 系統のメタ情報（ja/en）
+│   ├── profiles.json       # 16 タイプの完成プロフィール（ja/en）
+│   └── types.json          # 一覧ページ用の構造化型データ（ja/en）
+├── en/                     # 英語ページ（index/types/type のミラー）
+│   ├── index.html
+│   ├── types.html
+│   └── type.html
+├── app/
+│   ├── scoring.js          # 純粋なスコアリングエンジン（DOM 非依存）
+│   └── i18n.js             # 言語判定（URL > localStorage > navigator）
 ├── assets/
 │   ├── brain/              # 16 タイプの脳キャラ画像（{CODE}.png）
 │   ├── types/              # 旧タイプ画像（参照用）

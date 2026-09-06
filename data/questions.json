@@ -1,19 +1,11 @@
 {
   "version": 1,
-  "scale": {
-    "5": "非常に当てはまる",
-    "4": "やや当てはまる",
-    "3": "どちらともいえない",
-    "2": "あまり当てはまらない",
-    "1": "まったく当てはまらない"
-  },
-  "questions": [
+  "structure": [
     {
       "id": 1,
       "axis": 1,
       "polarity": "E",
       "reversed": false,
-      "text": "新しい場所や未知の状況にワクワクする",
       "kind": "regular"
     },
     {
@@ -21,7 +13,6 @@
       "axis": 1,
       "polarity": "E",
       "reversed": false,
-      "text": "一定の報酬が保証されるなら、多少のリスクのある挑戦を選ぶ",
       "kind": "regular"
     },
     {
@@ -29,7 +20,6 @@
       "axis": 1,
       "polarity": "E",
       "reversed": false,
-      "text": "知らない人ばかりの集まりでも、積極的に話しかけられる",
       "kind": "regular"
     },
     {
@@ -37,7 +27,6 @@
       "axis": 1,
       "polarity": "E",
       "reversed": false,
-      "text": "面白そうなことには、結果が見えなくても手を出してみる",
       "kind": "regular"
     },
     {
@@ -45,7 +34,6 @@
       "axis": 1,
       "polarity": "V",
       "reversed": true,
-      "text": "失敗するかもしれない場面を避けて、確実な方を選ぶ",
       "kind": "regular"
     },
     {
@@ -53,7 +41,6 @@
       "axis": 1,
       "polarity": "V",
       "reversed": true,
-      "text": "新しいことを始める前には、リスクを徹底的に調べる",
       "kind": "regular"
     },
     {
@@ -61,7 +48,6 @@
       "axis": 1,
       "polarity": "V",
       "reversed": true,
-      "text": "初めての状況では、不安や緊張を強く感じる",
       "kind": "regular"
     },
     {
@@ -69,7 +55,6 @@
       "axis": 1,
       "polarity": "V",
       "reversed": true,
-      "text": "結果がどうなるか分からない事態は、できるだけ避けたい",
       "kind": "regular"
     },
     {
@@ -77,7 +62,6 @@
       "axis": 2,
       "polarity": "I",
       "reversed": false,
-      "text": "決断するときは、論理より「しっくりくる感じ」を信じる",
       "kind": "regular"
     },
     {
@@ -85,7 +69,6 @@
       "axis": 2,
       "polarity": "I",
       "reversed": false,
-      "text": "その場のひらめきで、すぐ行動に移すことが多い",
       "kind": "regular"
     },
     {
@@ -93,7 +76,6 @@
       "axis": 2,
       "polarity": "I",
       "reversed": false,
-      "text": "物事は、まず体で感じてから理解する",
       "kind": "regular"
     },
     {
@@ -101,7 +83,6 @@
       "axis": 2,
       "polarity": "I",
       "reversed": false,
-      "text": "順序立てて考えるより、全体をパッと見て判断する",
       "kind": "regular"
     },
     {
@@ -109,7 +90,6 @@
       "axis": 2,
       "polarity": "A",
       "reversed": true,
-      "text": "決断の前に、メリットとデメリットを表にするなど整理して考える",
       "kind": "regular"
     },
     {
@@ -117,7 +97,6 @@
       "axis": 2,
       "polarity": "A",
       "reversed": true,
-      "text": "行動する前に、計画や手順をしっかり立てる",
       "kind": "regular"
     },
     {
@@ -125,7 +104,6 @@
       "axis": 2,
       "polarity": "A",
       "reversed": true,
-      "text": "結論を出すには、できるだけ多くの情報を集めて比較検討する",
       "kind": "regular"
     },
     {
@@ -133,7 +111,6 @@
       "axis": 2,
       "polarity": "A",
       "reversed": true,
-      "text": "急いで決めるより、時間をかけて検証しながら決める",
       "kind": "regular"
     },
     {
@@ -141,7 +118,6 @@
       "axis": 3,
       "polarity": "N",
       "reversed": false,
-      "text": "一人で空想や想像に浸る時間が好きだ",
       "kind": "regular"
     },
     {
@@ -149,7 +125,6 @@
       "axis": 3,
       "polarity": "N",
       "reversed": false,
-      "text": "自分の内面や気持ちをじっくり振り返るのが好きだ",
       "kind": "regular"
     },
     {
@@ -157,7 +132,6 @@
       "axis": 3,
       "polarity": "N",
       "reversed": false,
-      "text": "現実の出来事より、頭の中で考える時間の方が長い",
       "kind": "regular"
     },
     {
@@ -165,7 +139,6 @@
       "axis": 3,
       "polarity": "N",
       "reversed": false,
-      "text": "物語や音楽を、自分の体験と重ねて味わうことが多い",
       "kind": "regular"
     },
     {
@@ -173,7 +146,6 @@
       "axis": 3,
       "polarity": "X",
       "reversed": true,
-      "text": "外に出て、人や活動・刺激のある場所にいる方が元気になる",
       "kind": "regular"
     },
     {
@@ -181,7 +153,6 @@
       "axis": 3,
       "polarity": "X",
       "reversed": true,
-      "text": "人と話したり外の出来事に触れたりして、考えが生まれることが多い",
       "kind": "regular"
     },
     {
@@ -189,7 +160,6 @@
       "axis": 3,
       "polarity": "X",
       "reversed": true,
-      "text": "静かな部屋より、賑やかな場所の方が落ち着く/好きだ",
       "kind": "regular"
     },
     {
@@ -197,7 +167,6 @@
       "axis": 3,
       "polarity": "X",
       "reversed": true,
-      "text": "頭で考えるより、実際に手を動かしたり現場にいる方がしっくりする",
       "kind": "regular"
     },
     {
@@ -205,7 +174,6 @@
       "axis": 4,
       "polarity": "S",
       "reversed": false,
-      "text": "人がつらい思いをしていると、自分も胸が痛む",
       "kind": "regular"
     },
     {
@@ -213,7 +181,6 @@
       "axis": 4,
       "polarity": "S",
       "reversed": false,
-      "text": "相手の立場に立って物事を考えるのが得意だ",
       "kind": "regular"
     },
     {
@@ -221,7 +188,6 @@
       "axis": 4,
       "polarity": "S",
       "reversed": false,
-      "text": "人の顔や表情から、その人の気持ちを感じ取りやすい",
       "kind": "regular"
     },
     {
@@ -229,7 +195,6 @@
       "axis": 4,
       "polarity": "S",
       "reversed": false,
-      "text": "他人の気持ちを考えるのは、自然とやってしまう",
       "kind": "regular"
     },
     {
@@ -237,7 +202,6 @@
       "axis": 4,
       "polarity": "D",
       "reversed": true,
-      "text": "人の感情に流されず、客観的に判断する方だ",
       "kind": "regular"
     },
     {
@@ -245,7 +209,6 @@
       "axis": 4,
       "polarity": "D",
       "reversed": true,
-      "text": "問題を解決するとき、感情よりも事実と理屈を優先する",
       "kind": "regular"
     },
     {
@@ -253,7 +216,6 @@
       "axis": 4,
       "polarity": "D",
       "reversed": true,
-      "text": "人間関係では、必要以上に距離を詰めない",
       "kind": "regular"
     },
     {
@@ -261,7 +223,6 @@
       "axis": 4,
       "polarity": "D",
       "reversed": true,
-      "text": "集団での共感より、個人の論理的一貫性を重んじる",
       "kind": "regular"
     },
     {
@@ -269,7 +230,6 @@
       "axis": 5,
       "polarity": "L",
       "reversed": true,
-      "text": "気分の浮き沈みが大きい方だ",
       "kind": "regular"
     },
     {
@@ -277,7 +237,6 @@
       "axis": 5,
       "polarity": "L",
       "reversed": true,
-      "text": "ちょっとしたことで、不安や心配になりやすい",
       "kind": "regular"
     },
     {
@@ -285,7 +244,6 @@
       "axis": 5,
       "polarity": "L",
       "reversed": true,
-      "text": "嫌なことがあると、長い間そのことを考え続けてしまう",
       "kind": "regular"
     },
     {
@@ -293,7 +251,6 @@
       "axis": 5,
       "polarity": "L",
       "reversed": true,
-      "text": "批判や失敗を、他の人より長く引きずる",
       "kind": "regular"
     },
     {
@@ -301,7 +258,6 @@
       "axis": 5,
       "polarity": "T",
       "reversed": false,
-      "text": "ストレスがあっても、比較的すぐ気持ちを落ち着けられる",
       "kind": "regular"
     },
     {
@@ -309,7 +265,6 @@
       "axis": 5,
       "polarity": "T",
       "reversed": false,
-      "text": "感情が安定していて、滅多に激しく動揺しない",
       "kind": "regular"
     },
     {
@@ -317,7 +272,6 @@
       "axis": 5,
       "polarity": "T",
       "reversed": false,
-      "text": "困った状況でも、慌てず対処できる方だ",
       "kind": "regular"
     },
     {
@@ -325,7 +279,6 @@
       "axis": 5,
       "polarity": "T",
       "reversed": false,
-      "text": "物事をあまり個人的に受け止めず、切り替えが早い",
       "kind": "regular"
     },
     {
@@ -333,80 +286,192 @@
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "attention",
-      "text": "私はこれまで一度も嘘をついたことがない"
+      "kind": "attention"
     },
     {
       "id": 42,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "social",
-      "text": "私は誰に対しても、常に完全に誠実だ"
+      "kind": "social"
     },
     {
       "id": 43,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "attention",
-      "text": "私は一度も後悔したことがない"
+      "kind": "attention"
     },
     {
       "id": 44,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "social",
-      "text": "体調が良くない日でも、いつも通りのパフォーマンスを確実に出せる"
+      "kind": "social"
     },
     {
       "id": 45,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "social",
-      "text": "私は他人を一度も批判したことがない"
+      "kind": "social"
     },
     {
       "id": 46,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "consistency",
-      "text": "「考えるより先に動く」と答えた人は、逆の設問にも一貫して答えたか"
+      "kind": "consistency"
     },
     {
       "id": 47,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "consistency",
-      "text": "「じっくり計画を立てる」と答えた人は、別設問と矛盾していないか"
+      "kind": "consistency"
     },
     {
       "id": 48,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "central",
-      "text": "どんな場面でも、私は常に完璧に落ち着いていられる"
+      "kind": "central"
     },
     {
       "id": 49,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "central",
-      "text": "私は何事にも、まったく動揺したり焦ったりしない"
+      "kind": "central"
     },
     {
       "id": 50,
       "axis": null,
       "polarity": null,
       "reversed": false,
-      "kind": "meta",
-      "text": "どの選択肢でもない「どちらでもない」を多く選びすぎていないか"
+      "kind": "meta"
     }
-  ]
+  ],
+  "text": {
+    "ja": {
+      "1": "新しい場所や未知の状況にワクワクする",
+      "2": "一定の報酬が保証されるなら、多少のリスクのある挑戦を選ぶ",
+      "3": "知らない人ばかりの集まりでも、積極的に話しかけられる",
+      "4": "面白そうなことには、結果が見えなくても手を出してみる",
+      "5": "失敗するかもしれない場面を避けて、確実な方を選ぶ",
+      "6": "新しいことを始める前には、リスクを徹底的に調べる",
+      "7": "初めての状況では、不安や緊張を強く感じる",
+      "8": "結果がどうなるか分からない事態は、できるだけ避けたい",
+      "9": "決断するときは、論理より「しっくりくる感じ」を信じる",
+      "10": "その場のひらめきで、すぐ行動に移すことが多い",
+      "11": "物事は、まず体で感じてから理解する",
+      "12": "順序立てて考えるより、全体をパッと見て判断する",
+      "13": "決断の前に、メリットとデメリットを表にするなど整理して考える",
+      "14": "行動する前に、計画や手順をしっかり立てる",
+      "15": "結論を出すには、できるだけ多くの情報を集めて比較検討する",
+      "16": "急いで決めるより、時間をかけて検証しながら決める",
+      "17": "一人で空想や想像に浸る時間が好きだ",
+      "18": "自分の内面や気持ちをじっくり振り返るのが好きだ",
+      "19": "現実の出来事より、頭の中で考える時間の方が長い",
+      "20": "物語や音楽を、自分の体験と重ねて味わうことが多い",
+      "21": "外に出て、人や活動・刺激のある場所にいる方が元気になる",
+      "22": "人と話したり外の出来事に触れたりして、考えが生まれることが多い",
+      "23": "静かな部屋より、賑やかな場所の方が落ち着く/好きだ",
+      "24": "頭で考えるより、実際に手を動かしたり現場にいる方がしっくりする",
+      "25": "人がつらい思いをしていると、自分も胸が痛む",
+      "26": "相手の立場に立って物事を考えるのが得意だ",
+      "27": "人の顔や表情から、その人の気持ちを感じ取りやすい",
+      "28": "他人の気持ちを考えるのは、自然とやってしまう",
+      "29": "人の感情に流されず、客観的に判断する方だ",
+      "30": "問題を解決するとき、感情よりも事実と理屈を優先する",
+      "31": "人間関係では、必要以上に距離を詰めない",
+      "32": "集団での共感より、個人の論理的一貫性を重んじる",
+      "33": "気分の浮き沈みが大きい方だ",
+      "34": "ちょっとしたことで、不安や心配になりやすい",
+      "35": "嫌なことがあると、長い間そのことを考え続けてしまう",
+      "36": "批判や失敗を、他の人より長く引きずる",
+      "37": "ストレスがあっても、比較的すぐ気持ちを落ち着けられる",
+      "38": "感情が安定していて、滅多に激しく動揺しない",
+      "39": "困った状況でも、慌てず対処できる方だ",
+      "40": "物事をあまり個人的に受け止めず、切り替えが早い",
+      "41": "私はこれまで一度も嘘をついたことがない",
+      "42": "私は誰に対しても、常に完全に誠実だ",
+      "43": "私は一度も後悔したことがない",
+      "44": "体調が良くない日でも、いつも通りのパフォーマンスを確実に出せる",
+      "45": "私は他人を一度も批判したことがない",
+      "46": "「考えるより先に動く」と答えた人は、逆の設問にも一貫して答えたか",
+      "47": "「じっくり計画を立てる」と答えた人は、別設問と矛盾していないか",
+      "48": "どんな場面でも、私は常に完璧に落ち着いていられる",
+      "49": "私は何事にも、まったく動揺したり焦ったりしない",
+      "50": "どの選択肢でもない「どちらでもない」を多く選びすぎていないか"
+    },
+    "en": {
+      "1": "EN: Q1 (translation pending)",
+      "2": "EN: Q2 (translation pending)",
+      "3": "EN: Q3 (translation pending)",
+      "4": "EN: Q4 (translation pending)",
+      "5": "EN: Q5 (translation pending)",
+      "6": "EN: Q6 (translation pending)",
+      "7": "EN: Q7 (translation pending)",
+      "8": "EN: Q8 (translation pending)",
+      "9": "EN: Q9 (translation pending)",
+      "10": "EN: Q10 (translation pending)",
+      "11": "EN: Q11 (translation pending)",
+      "12": "EN: Q12 (translation pending)",
+      "13": "EN: Q13 (translation pending)",
+      "14": "EN: Q14 (translation pending)",
+      "15": "EN: Q15 (translation pending)",
+      "16": "EN: Q16 (translation pending)",
+      "17": "EN: Q17 (translation pending)",
+      "18": "EN: Q18 (translation pending)",
+      "19": "EN: Q19 (translation pending)",
+      "20": "EN: Q20 (translation pending)",
+      "21": "EN: Q21 (translation pending)",
+      "22": "EN: Q22 (translation pending)",
+      "23": "EN: Q23 (translation pending)",
+      "24": "EN: Q24 (translation pending)",
+      "25": "EN: Q25 (translation pending)",
+      "26": "EN: Q26 (translation pending)",
+      "27": "EN: Q27 (translation pending)",
+      "28": "EN: Q28 (translation pending)",
+      "29": "EN: Q29 (translation pending)",
+      "30": "EN: Q30 (translation pending)",
+      "31": "EN: Q31 (translation pending)",
+      "32": "EN: Q32 (translation pending)",
+      "33": "EN: Q33 (translation pending)",
+      "34": "EN: Q34 (translation pending)",
+      "35": "EN: Q35 (translation pending)",
+      "36": "EN: Q36 (translation pending)",
+      "37": "EN: Q37 (translation pending)",
+      "38": "EN: Q38 (translation pending)",
+      "39": "EN: Q39 (translation pending)",
+      "40": "EN: Q40 (translation pending)",
+      "41": "EN: Q41 (translation pending)",
+      "42": "EN: Q42 (translation pending)",
+      "43": "EN: Q43 (translation pending)",
+      "44": "EN: Q44 (translation pending)",
+      "45": "EN: Q45 (translation pending)",
+      "46": "EN: Q46 (translation pending)",
+      "47": "EN: Q47 (translation pending)",
+      "48": "EN: Q48 (translation pending)",
+      "49": "EN: Q49 (translation pending)",
+      "50": "EN: Q50 (translation pending)"
+    }
+  },
+  "scale": {
+    "ja": {
+      "5": "非常に当てはまる",
+      "4": "やや当てはまる",
+      "3": "どちらともいえない",
+      "2": "あまり当てはまらない",
+      "1": "まったく当てはまらない"
+    },
+    "en": {
+      "5": "EN: Strongly agree",
+      "4": "EN: Somewhat agree",
+      "3": "EN: Neutral",
+      "2": "EN: Somewhat disagree",
+      "1": "EN: Strongly disagree"
+    }
+  }
 }

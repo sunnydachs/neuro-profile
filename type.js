@@ -1,8 +1,11 @@
 // type.js — Renders a single type's detail profile.
 // Reads ?type=CODE from the URL, loads profiles.json + types.json, and renders
 // the 14 spec sections. Falls back to types.html for missing/invalid codes.
+// Language resolution via app/i18n.js.
+import { applyLang, withLang } from "./app/i18n.js";
 
 const FALLBACK_URL = "types.html";
+function isEn() { return (location.pathname || "").startsWith("/en/"); }
 
 const MEDALS = ["🥇", "🥈", "🥉"];
 
@@ -313,7 +316,7 @@ function renderRelated(profile, types) {
     <section class="section" aria-label="同じグループの他のタイプ">
       <h2><span class="icon">🔗</span>同じグループの他のタイプ</h2>
       <div class="type-related">
-        ${same.map(t => `<a href="og/type-${encodeURIComponent(t.code)}">${esc(t.code)} ${esc(t.name)}</a>`).join("")}
+        ${same.map(t => `<a href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(t.code)}">${esc(t.code)} ${esc(t.name)}</a>`).join("")}
       </div>
     </section>
   `;
@@ -333,20 +336,37 @@ function renderError(msg) {
 }
 
 async function main() {
+  applyLang();
   const code = getTypeCode();
   if (!code) {
-    location.replace(FALLBACK_URL);
+    location.replace(isEn() ? "../types.html" : FALLBACK_URL);
     return;
   }
   try {
-    const [profiles, types, axisMeta] = await Promise.all([
+    const [rawProfiles, rawTypes, rawAxisMeta] = await Promise.all([
       loadJSON("data/profiles.json"),
       loadJSON("data/types.json"),
       loadJSON("data/axis_meta.json"),
     ]);
+    // Resolve i18n-wrapped fields for the active language.
+    const profiles = {};
+    for (const [c, p] of Object.entries(rawProfiles)) profiles[c] = withLang(p);
+    const types = {};
+    for (const [c, p] of Object.entries(rawTypes)) types[c] = withLang(p);
+    const axisMeta = {
+      axes: (rawAxisMeta.axes || []).map((a) => ({
+        id: a.id, high_code: a.high_code, low_code: a.low_code, type_role: a.type_role,
+        name: a.name && a.name.ja != null ? a.name.ja : a.name,
+      })),
+      neuro_systems: (rawAxisMeta.neuro_systems || []).map((n) => ({
+        key: n.key, weights: n.weights,
+        label: n.label && n.label.ja != null ? n.label.ja : n.label,
+        region: n.region && n.region.ja != null ? n.region.ja : n.region,
+      })),
+    };
     const profile = profiles[code];
     if (!profile) {
-      location.replace(FALLBACK_URL);
+      location.replace(isEn() ? "../types.html" : FALLBACK_URL);
       return;
     }
     const neuroByLabel = Object.fromEntries((axisMeta.neuro_systems || []).map(n => [n.label, n]));
@@ -403,7 +423,7 @@ function renderPrevNextNav(code, types) {
   return `
     <nav class="type-prevnext" aria-label="前後のタイプへ">
       <a class="type-prevnext-link type-prevnext-prev"
-         href="og/type-${encodeURIComponent(prev)}"
+         href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(prev)}"
          data-type-color="${esc(prevMeta.color || "")}"
          aria-label="${esc(prevLabel)}: ${esc(prevMeta.name || prev)}（${esc(prev)}）へ">
         <span class="type-prevnext-arrow" aria-hidden="true">←</span>
@@ -414,7 +434,7 @@ function renderPrevNextNav(code, types) {
         </span>
       </a>
       <a class="type-prevnext-link type-prevnext-next"
-         href="og/type-${encodeURIComponent(next)}"
+         href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(next)}"
          data-type-color="${esc(nextMeta.color || "")}"
          aria-label="${esc(nextLabel)}: ${esc(nextMeta.name || next)}（${esc(next)}）へ">
         <span class="type-prevnext-text">
