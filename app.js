@@ -442,12 +442,23 @@ function renderResult(result) {
   $("#btn-copy-share-url").addEventListener("click", async () => {
     // Funnel: share-related action (url copy)
     trackShareClick("url", profile.code);
+    let copied = false;
     try {
       await navigator.clipboard.writeText(_shareUrlCopy);
-      flashCopy($("#btn-copy-share-url"), t("share.copied"));
-    } catch {
-      /* non-fatal */
+      copied = true;
+    } catch { /* fall through to execCommand below */ }
+    if (!copied) {
+      // Fallback for older browsers / non-secure contexts (same as text copy)
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = _shareUrlCopy; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        copied = document.execCommand("copy");
+        document.body.removeChild(ta);
+      } catch { copied = false; }
     }
+    if (copied) flashCopy($("#btn-copy-share-url"), t("share.copied"));
+    else alert(fmt(t("share.copyFailed"), { text: _shareUrlCopy }));
   });
   // Social share buttons — point to the type detail page (server-renderable, crawler-friendly).
   const shareUrl = shareUrlFor(profile.code);

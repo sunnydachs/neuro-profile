@@ -17,13 +17,12 @@ function send(events) {
   try {
     const body = JSON.stringify({ events });
     // sendBeacon keeps delivery reliable on mobile even if the tab closes;
-    // fall back to fetch keepalive when unavailable.
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon(ENDPOINT, new Blob([body], { type: "application/json" }));
-    } else {
-      fetch(ENDPOINT, { method: "POST", body, keepalive: true, headers: { "content-type": "application/json" } })
-        .catch(() => {});
+    // it returns false when the payload was NOT queued — fall back to fetch.
+    if (navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([body], { type: "application/json" }))) {
+      return;
     }
+    fetch(ENDPOINT, { method: "POST", body, keepalive: true, headers: { "content-type": "application/json" } })
+      .catch(() => {});
   } catch { /* never break the page for analytics */ }
 }
 
