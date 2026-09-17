@@ -3,10 +3,12 @@
     "code": "EINS",
     "color": "#FFB454",
     "name": {
-      "ja": "直感探査型"
+      "ja": "直感探査型",
+      "en": "Intuitive Explorer"
     },
     "catch": {
-      "ja": "内なるビジョンと共感を抱えて、新世界へ飛び込む"
+      "ja": "内なるビジョンと共感を抱えて、新世界へ飛び込む",
+      "en": "Jumping into a new world carrying inner vision and empathy"
     },
     "neural_name": {
       "ja": "SALIENCE SCOUT"
@@ -17,6 +19,12 @@
         "直感とその場の感覚で判断する",
         "内側の世界にエネルギーを向ける",
         "共感力が高く、人の気持ちを感じ取る"
+      ],
+      "en": [
+        "strong interest in, and approach tendency toward, the new",
+        "judges through intuition and in-the-moment feeling",
+        "directs energy toward an inner world",
+        "highly empathetic and in tune with others' feelings"
       ]
     },
     "axis_focus": {
@@ -25,6 +33,12 @@
         "論理よりもしっくりくる感じを信じる",
         "自分の内面・想像・思索を大切にする",
         "他者と情緒的につながることを好む"
+      ],
+      "en": [
+        "easily moved by the unfamiliar and by challenges",
+        "trusts gut feel more than logic",
+        "values inner life, imagination and reflection",
+        "likes emotional connection with others"
       ]
     },
     "strengths": {
@@ -37,6 +51,16 @@
         "自分を俯瞰し、内省から洞察を得られる",
         "相手の気持ちを汲み、温かい人間関係を築ける",
         "チームの空気を和ませ、力を引き出せる"
+      ],
+      "en": [
+        "sharp instincts for novelty and a positive take on change",
+        "learns from challenges and seizes many growth opportunities",
+        "intuition and flashes of insight unlock ideas beyond the usual frame",
+        "reacts and adapts swiftly to the situation at hand",
+        "deep thought and imagination let them build a world of their own",
+        "a clear view of themselves and insight from reflection",
+        "picks up on others' feelings and builds warm relationships",
+        "eases the mood of a team and draws out its strengths"
       ]
     },
     "warnings": {
@@ -49,6 +73,16 @@
         "空想に浸って実行が後回しになることがある",
         "人の感情を受け止めすぎて、疲れやすい",
         "自分の気持ちや境界を見失いがち"
+      ],
+      "en": [
+        "can jump at whatever is new and struggle to stay focused",
+        "tends to under-estimate risk",
+        "can skip checking the facts after a gut call",
+        "can struggle with detail and consistency checks",
+        "can retreat inward and lose touch with reality",
+        "can lose time to daydreams and put action off",
+        "can absorb too much of others' emotion and tire easily",
+        "can lose sight of their own feelings and boundaries"
       ]
     },
     "neuro_top3": {
@@ -56,6 +90,11 @@
         "報酬・動機づけ系",
         "デフォルトモード",
         "サリエンス／内受容系"
+      ],
+      "en": [
+        "Reward & Motivation System",
+        "Default Mode Network",
+        "Salience / Interoceptive System"
       ]
     }
   },
@@ -63,10 +102,12 @@
     "code": "EIND",
     "color": "#FFB454",
     "name": {
-      "ja": "内観直感型"
+      "ja": "内観直感型",
+      "en": "Visionary Dreamer"
     },
     "catch": {
-      "ja": "内なる着想を、独自の道で形にする"
+      "ja": "内なる着想を、独自の道で形にする",
+      "en": "Shaping inner ideas in a way that is fully your own"
     },
     "neural_name": {
       "ja": "INNER DREAMER"
@@ -77,6 +118,12 @@
         "直感とその場の感覚で判断する",
         "内側の世界にエネルギーを向ける",
         "独立心が強く、距離を置いた冷静な判断をする"
+      ],
+      "en": [
+        "strong interest in, and approach tendency toward, the new",
+        "judges through intuition and in-the-moment feeling",
+        "directs energy toward an inner world",
+        "strongly independent and calmly keeps a cool distance when deciding"
       ]
     },
     "axis_focus": {
@@ -85,6 +132,12 @@
         "論理よりもしっくりくる感じを信じる",
         "自分の内面・想像・思索を大切にする",
         "自分の価値観で物事を進める"
+      ],
+      "en": [
+        "easily moved by the unfamiliar and by challenges",
+        "trusts gut feel more than logic",
+        "values inner life, imagination and reflection",
+        "moves forward guided by their own values"
       ]
     },
     "strengths": {
@@ -97,6 +150,16 @@
         "自分を俯瞰し、内省から洞察を得られる",
         "自分の軸を持ち、流されずに判断できる",
         "独立して成果を出せる自立心がある"
+      ],
+      "en": [
+        "sharp instincts for novelty and a positive take on change",
+        "learns from challenges and seizes many growth opportunities",
+        "intuition and flashes of insight unlock ideas beyond the usual frame",
+        "reacts and adapts swiftly to the situation at hand",
+        "deep thought and imagination let them build a world of their own",
+        "a clear view of themselves and insight from reflection",
+        "keeps a clear axis of their own and decides without being swayed",
+        "self-reliant and able to deliver on their own"
       ]
     },
     "warnings": {
@@ -109,6 +172,16 @@
         "空想に浸って実行が後回しになることがある",
         "距離を置きすぎて、孤立しがち",
         "共感や協調を求められる場で摩擦を生みやすい"
+      ],
+      "en": [
+        "can jump at whatever is new and struggle to stay focused",
+        "tends to under-estimate risk",
+        "can skip checking the facts after a gut call",
+        "can struggle with detail and consistency checks",
+        "can retreat inward and lose touch with reality",
+        "can lose time to daydreams and put action off",
+        "can keep too much distance and drift toward isolation",
+        "can create friction where empathy and cooperation are expected"
       ]
     },
     "neuro_top3": {
@@ -116,6 +189,11 @@
         "報酬・動機づけ系",
         "デフォルトモード",
         "サリエンス／内受容系"
+      ],
+      "en": [
+        "Reward & Motivation System",
+        "Default Mode Network",
+        "Salience / Interoceptive System"
       ]
     }
   },
@@ -123,10 +201,12 @@
     "code": "EIXS",
     "color": "#FFB454",
     "name": {
-      "ja": "感覚探査型"
+      "ja": "感覚探査型",
+      "en": "Sensory Explorer"
     },
     "catch": {
-      "ja": "感覚のまま、人とともに未知へ踏み出す"
+      "ja": "感覚のまま、人とともに未知へ踏み出す",
+      "en": "Stepping into the unknown with others, led by your senses"
     },
     "neural_name": {
       "ja": "MIRROR SCOUT"
@@ -137,6 +217,12 @@
         "直感とその場の感覚で判断する",
         "外の世界と交わってエネルギーを得る",
         "共感力が高く、人の気持ちを感じ取る"
+      ],
+      "en": [
+        "strong interest in, and approach tendency toward, the new",
+        "judges through intuition and in-the-moment feeling",
+        "draws energy from engaging with the outer world",
+        "highly empathetic and in tune with others' feelings"
       ]
     },
     "axis_focus": {
@@ -145,6 +231,12 @@
         "論理よりもしっくりくる感じを信じる",
         "現場・人・刺激から着想を得る",
         "他者と情緒的につながることを好む"
+      ],
+      "en": [
+        "easily moved by the unfamiliar and by challenges",
+        "trusts gut feel more than logic",
+        "draws inspiration from settings, people and stimulation",
+        "likes emotional connection with others"
       ]
     },
     "strengths": {
@@ -157,6 +249,16 @@
         "多くの刺激から素早く学び取れる",
         "相手の気持ちを汲み、温かい人間関係を築ける",
         "チームの空気を和ませ、力を引き出せる"
+      ],
+      "en": [
+        "sharp instincts for novelty and a positive take on change",
+        "learns from challenges and seizes many growth opportunities",
+        "intuition and flashes of insight unlock ideas beyond the usual frame",
+        "reacts and adapts swiftly to the situation at hand",
+        "action-oriented and skilled at producing results by actually doing",
+        "absorbs quickly from a high volume of stimulation",
+        "picks up on others' feelings and builds warm relationships",
+        "eases the mood of a team and draws out its strengths"
       ]
     },
     "warnings": {
@@ -169,6 +271,16 @@
         "落ち着いて内省する時間を持ちにくい",
         "人の感情を受け止めすぎて、疲れやすい",
         "自分の気持ちや境界を見失いがち"
+      ],
+      "en": [
+        "can jump at whatever is new and struggle to stay focused",
+        "tends to under-estimate risk",
+        "can skip checking the facts after a gut call",
+        "can struggle with detail and consistency checks",
+        "can be swept along by outside stimulation and ignore their inner life",
+        "can struggle to carve out calm time for reflection",
+        "can absorb too much of others' emotion and tire easily",
+        "can lose sight of their own feelings and boundaries"
       ]
     },
     "neuro_top3": {
@@ -176,6 +288,11 @@
         "報酬・動機づけ系",
         "サリエンス／内受容系",
         "社会認知ネットワーク"
+      ],
+      "en": [
+        "Reward & Motivation System",
+        "Salience / Interoceptive System",
+        "Social Cognition Network"
       ]
     }
   },
@@ -183,10 +300,12 @@
     "code": "EIXD",
     "color": "#FFB454",
     "name": {
-      "ja": "直感開拓型"
+      "ja": "直感開拓型",
+      "en": "Intuitive Pioneer"
     },
     "catch": {
-      "ja": "自力で、未踏の地を素早く切り拓く"
+      "ja": "自力で、未踏の地を素早く切り拓く",
+      "en": "Blazing quickly through uncharted ground on your own"
     },
     "neural_name": {
       "ja": "SALIENCE PIONEER"
@@ -197,6 +316,12 @@
         "直感とその場の感覚で判断する",
         "外の世界と交わってエネルギーを得る",
         "独立心が強く、距離を置いた冷静な判断をする"
+      ],
+      "en": [
+        "strong interest in, and approach tendency toward, the new",
+        "judges through intuition and in-the-moment feeling",
+        "draws energy from engaging with the outer world",
+        "strongly independent and calmly keeps a cool distance when deciding"
       ]
     },
     "axis_focus": {
@@ -205,6 +330,12 @@
         "論理よりもしっくりくる感じを信じる",
         "現場・人・刺激から着想を得る",
         "自分の価値観で物事を進める"
+      ],
+      "en": [
+        "easily moved by the unfamiliar and by challenges",
+        "trusts gut feel more than logic",
+        "draws inspiration from settings, people and stimulation",
+        "moves forward guided by their own values"
       ]
     },
     "strengths": {
@@ -217,6 +348,16 @@
         "多くの刺激から素早く学び取れる",
         "自分の軸を持ち、流されずに判断できる",
         "独立して成果を出せる自立心がある"
+      ],
+      "en": [
+        "sharp instincts for novelty and a positive take on change",
+        "learns from challenges and seizes many growth opportunities",
+        "intuition and flashes of insight unlock ideas beyond the usual frame",
+        "reacts and adapts swiftly to the situation at hand",
+        "action-oriented and skilled at producing results by actually doing",
+        "absorbs quickly from a high volume of stimulation",
+        "keeps a clear axis of their own and decides without being swayed",
+        "self-reliant and able to deliver on their own"
       ]
     },
     "warnings": {
@@ -229,6 +370,16 @@
         "落ち着いて内省する時間を持ちにくい",
         "距離を置きすぎて、孤立しがち",
         "共感や協調を求められる場で摩擦を生みやすい"
+      ],
+      "en": [
+        "can jump at whatever is new and struggle to stay focused",
+        "tends to under-estimate risk",
+        "can skip checking the facts after a gut call",
+        "can struggle with detail and consistency checks",
+        "can be swept along by outside stimulation and ignore their inner life",
+        "can struggle to carve out calm time for reflection",
+        "can keep too much distance and drift toward isolation",
+        "can create friction where empathy and cooperation are expected"
       ]
     },
     "neuro_top3": {
@@ -236,6 +387,11 @@
         "報酬・動機づけ系",
         "サリエンス／内受容系",
         "実行制御ネットワーク"
+      ],
+      "en": [
+        "Reward & Motivation System",
+        "Salience / Interoceptive System",
+        "Executive Control Network"
       ]
     }
   },
@@ -243,10 +399,12 @@
     "code": "EANS",
     "color": "#E8843C",
     "name": {
-      "ja": "構想制御型"
+      "ja": "構想制御型",
+      "en": "Idealist Planner"
     },
     "catch": {
-      "ja": "理想を描き、共感と計画で現実にする"
+      "ja": "理想を描き、共感と計画で現実にする",
+      "en": "Picturing an ideal and making it real through empathy and planning"
     },
     "neural_name": {
       "ja": "PREFRONTAL DREAMER"
@@ -257,6 +415,12 @@
         "分析と計画で物事を進める",
         "内側の世界にエネルギーを向ける",
         "共感力が高く、人の気持ちを感じ取る"
+      ],
+      "en": [
+        "strong interest in, and approach tendency toward, the new",
+        "moves things forward with analysis and planning",
+        "directs energy toward an inner world",
+        "highly empathetic and in tune with others' feelings"
       ]
     },
     "axis_focus": {
@@ -265,6 +429,12 @@
         "情報を整理し、段取りを立ててから動く",
         "自分の内面・想像・思索を大切にする",
         "他者と情緒的につながることを好む"
+      ],
+      "en": [
+        "easily moved by the unfamiliar and by challenges",
+        "organises information and prepares a plan before acting",
+        "values inner life, imagination and reflection",
+        "likes emotional connection with others"
       ]
     },
     "strengths": {
@@ -277,6 +447,16 @@
         "自分を俯瞰し、内省から洞察を得られる",
         "相手の気持ちを汲み、温かい人間関係を築ける",
         "チームの空気を和ませ、力を引き出せる"
+      ],
+      "en": [
+        "sharp instincts for novelty and a positive take on change",
+        "learns from challenges and seizes many growth opportunities",
+        "skilled at organising information and thinking in a structured way",
+        "delivers steady results through planning and reliability",
+        "deep thought and imagination let them build a world of their own",
+        "a clear view of themselves and insight from reflection",
+        "picks up on others' feelings and builds warm relationships",
+        "eases the mood of a team and draws out its strengths"
       ]
     },
     "warnings": {
@@ -289,6 +469,16 @@
         "空想に浸って実行が後回しになることがある",
         "人の感情を受け止めすぎて、疲れやすい",
         "自分の気持ちや境界を見失いがち"
+      ],
+      "en": [
+        "can jump at whatever is new and struggle to stay focused",
+        "tends to under-estimate risk",
+        "can overthink and delay decisions or action",
+        "can find it hard to handle changes or surprises in a plan",
+        "can retreat inward and lose touch with reality",
+        "can lose time to daydreams and put action off",
+        "can absorb too much of others' emotion and tire easily",
+        "can lose sight of their own feelings and boundaries"
       ]
     },
     "neuro_top3": {
@@ -296,6 +486,11 @@
         "報酬・動機づけ系",
         "実行制御ネットワーク",
         "デフォルトモード"
+      ],
+      "en": [
+        "Reward & Motivation System",
+        "Executive Control Network",
+        "Default Mode Network"
       ]
     }
   },
@@ -303,10 +498,12 @@
     "code": "EAND",
     "color": "#E8843C",
     "name": {
-      "ja": "前頭構想型"
+      "ja": "前頭構想型",
+      "en": "Visionary Architect"
     },
     "catch": {
-      "ja": "新領域を、構想と分析で独自に切り拓く"
+      "ja": "新領域を、構想と分析で独自に切り拓く",
+      "en": "Carving out new territory on your own through vision and analysis"
     },
     "neural_name": {
       "ja": "CORTEX ARCHITECT"
@@ -317,6 +514,12 @@
         "分析と計画で物事を進める",
         "内側の世界にエネルギーを向ける",
         "独立心が強く、距離を置いた冷静な判断をする"
+      ],
+      "en": [
+        "strong interest in, and approach tendency toward, the new",
+        "moves things forward with analysis and planning",
+        "directs energy toward an inner world",
+        "strongly independent and calmly keeps a cool distance when deciding"
       ]
     },
     "axis_focus": {
@@ -325,6 +528,12 @@
         "情報を整理し、段取りを立ててから動く",
         "自分の内面・想像・思索を大切にする",
         "自分の価値観で物事を進める"
+      ],
+      "en": [
+        "easily moved by the unfamiliar and by challenges",
+        "organises information and prepares a plan before acting",
+        "values inner life, imagination and reflection",
+        "moves forward guided by their own values"
       ]
     },
     "strengths": {
@@ -337,6 +546,16 @@
         "自分を俯瞰し、内省から洞察を得られる",
         "自分の軸を持ち、流されずに判断できる",
         "独立して成果を出せる自立心がある"
+      ],
+      "en": [
+        "sharp instincts for novelty and a positive take on change",
+        "learns from challenges and seizes many growth opportunities",
+        "skilled at organising information and thinking in a structured way",
+        "delivers steady results through planning and reliability",
+        "deep thought and imagination let them build a world of their own",
+        "a clear view of themselves and insight from reflection",
+        "keeps a clear axis of their own and decides without being swayed",
+        "self-reliant and able to deliver on their own"
       ]
     },
     "warnings": {
@@ -349,6 +568,16 @@
         "空想に浸って実行が後回しになることがある",
         "距離を置きすぎて、孤立しがち",
         "共感や協調を求められる場で摩擦を生みやすい"
+      ],
+      "en": [
+        "can jump at whatever is new and struggle to stay focused",
+        "tends to under-estimate risk",
+        "can overthink and delay decisions or action",
+        "can find it hard to handle changes or surprises in a plan",
+        "can retreat inward and lose touch with reality",
+        "can lose time to daydreams and put action off",
+        "can keep too much distance and drift toward isolation",
+        "can create friction where empathy and cooperation are expected"
       ]
     },
     "neuro_top3": {
@@ -356,6 +585,11 @@
         "実行制御ネットワーク",
         "報酬・動機づけ系",
         "デフォルトモード"
+      ],
+      "en": [
+        "Executive Control Network",
+        "Reward & Motivation System",
+        "Default Mode Network"
       ]
     }
   },
@@ -363,10 +597,12 @@
     "code": "EAXS",
     "color": "#E8843C",
     "name": {
-      "ja": "計画統括型"
+      "ja": "計画統括型",
+      "en": "Orchestrating Planner"
     },
     "catch": {
-      "ja": "目標へ向け、計画とチームで成果を掴む"
+      "ja": "目標へ向け、計画とチームで成果を掴む",
+      "en": "Heading toward a goal and achieving it by planning with a team"
     },
     "neural_name": {
       "ja": "EXECUTIVE ORCHESTRA"
@@ -377,6 +613,12 @@
         "分析と計画で物事を進める",
         "外の世界と交わってエネルギーを得る",
         "共感力が高く、人の気持ちを感じ取る"
+      ],
+      "en": [
+        "strong interest in, and approach tendency toward, the new",
+        "moves things forward with analysis and planning",
+        "draws energy from engaging with the outer world",
+        "highly empathetic and in tune with others' feelings"
       ]
     },
     "axis_focus": {
@@ -385,6 +627,12 @@
         "情報を整理し、段取りを立ててから動く",
         "現場・人・刺激から着想を得る",
         "他者と情緒的につながることを好む"
+      ],
+      "en": [
+        "easily moved by the unfamiliar and by challenges",
+        "organises information and prepares a plan before acting",
+        "draws inspiration from settings, people and stimulation",
+        "likes emotional connection with others"
       ]
     },
     "strengths": {
@@ -397,6 +645,16 @@
         "多くの刺激から素早く学び取れる",
         "相手の気持ちを汲み、温かい人間関係を築ける",
         "チームの空気を和ませ、力を引き出せる"
+      ],
+      "en": [
+        "sharp instincts for novelty and a positive take on change",
+        "learns from challenges and seizes many growth opportunities",
+        "skilled at organising information and thinking in a structured way",
+        "delivers steady results through planning and reliability",
+        "action-oriented and skilled at producing results by actually doing",
+        "absorbs quickly from a high volume of stimulation",
+        "picks up on others' feelings and builds warm relationships",
+        "eases the mood of a team and draws out its strengths"
       ]
     },
     "warnings": {
@@ -409,6 +667,16 @@
         "落ち着いて内省する時間を持ちにくい",
         "人の感情を受け止めすぎて、疲れやすい",
         "自分の気持ちや境界を見失いがち"
+      ],
+      "en": [
+        "can jump at whatever is new and struggle to stay focused",
+        "tends to under-estimate risk",
+        "can overthink and delay decisions or action",
+        "can find it hard to handle changes or surprises in a plan",
+        "can be swept along by outside stimulation and ignore their inner life",
+        "can struggle to carve out calm time for reflection",
+        "can absorb too much of others' emotion and tire easily",
+        "can lose sight of their own feelings and boundaries"
       ]
     },
     "neuro_top3": {
@@ -416,6 +684,11 @@
         "報酬・動機づけ系",
         "実行制御ネットワーク",
         "社会認知ネットワーク"
+      ],
+      "en": [
+        "Reward & Motivation System",
+        "Executive Control Network",
+        "Social Cognition Network"
       ]
     }
   },
@@ -423,10 +696,12 @@
     "code": "EAXD",
     "color": "#E8843C",
     "name": {
-      "ja": "実行制御型"
+      "ja": "実行制御型",
+      "en": "Strategic Executor"
     },
     "catch": {
-      "ja": "計画を実行し、自力で確実に成果を掴む"
+      "ja": "計画を実行し、自力で確実に成果を掴む",
+      "en": "Executing plans with your own hands to secure solid results"
     },
     "neural_name": {
       "ja": "EXECUTIVE ENGINE"
@@ -437,6 +712,12 @@
         "分析と計画で物事を進める",
         "外の世界と交わってエネルギーを得る",
         "独立心が強く、距離を置いた冷静な判断をする"
+      ],
+      "en": [
+        "strong interest in, and approach tendency toward, the new",
+        "moves things forward with analysis and planning",
+        "draws energy from engaging with the outer world",
+        "strongly independent and calmly keeps a cool distance when deciding"
       ]
     },
     "axis_focus": {
@@ -445,6 +726,12 @@
         "情報を整理し、段取りを立ててから動く",
         "現場・人・刺激から着想を得る",
         "自分の価値観で物事を進める"
+      ],
+      "en": [
+        "easily moved by the unfamiliar and by challenges",
+        "organises information and prepares a plan before acting",
+        "draws inspiration from settings, people and stimulation",
+        "moves forward guided by their own values"
       ]
     },
     "strengths": {
@@ -457,6 +744,16 @@
         "多くの刺激から素早く学び取れる",
         "自分の軸を持ち、流されずに判断できる",
         "独立して成果を出せる自立心がある"
+      ],
+      "en": [
+        "sharp instincts for novelty and a positive take on change",
+        "learns from challenges and seizes many growth opportunities",
+        "skilled at organising information and thinking in a structured way",
+        "delivers steady results through planning and reliability",
+        "action-oriented and skilled at producing results by actually doing",
+        "absorbs quickly from a high volume of stimulation",
+        "keeps a clear axis of their own and decides without being swayed",
+        "self-reliant and able to deliver on their own"
       ]
     },
     "warnings": {
@@ -469,6 +766,16 @@
         "落ち着いて内省する時間を持ちにくい",
         "距離を置きすぎて、孤立しがち",
         "共感や協調を求められる場で摩擦を生みやすい"
+      ],
+      "en": [
+        "can jump at whatever is new and struggle to stay focused",
+        "tends to under-estimate risk",
+        "can overthink and delay decisions or action",
+        "can find it hard to handle changes or surprises in a plan",
+        "can be swept along by outside stimulation and ignore their inner life",
+        "can struggle to carve out calm time for reflection",
+        "can keep too much distance and drift toward isolation",
+        "can create friction where empathy and cooperation are expected"
       ]
     },
     "neuro_top3": {
@@ -476,6 +783,11 @@
         "実行制御ネットワーク",
         "報酬・動機づけ系",
         "警戒・脅威処理系"
+      ],
+      "en": [
+        "Executive Control Network",
+        "Reward & Motivation System",
+        "Vigilance & Threat-Processing System"
       ]
     }
   },
@@ -483,10 +795,12 @@
     "code": "VINS",
     "color": "#8FB6E0",
     "name": {
-      "ja": "警戒内省型"
+      "ja": "警戒内省型",
+      "en": "Guarded Reflector"
     },
     "catch": {
-      "ja": "内なる世界を、丁寧に観察し育む"
+      "ja": "内なる世界を、丁寧に観察し育む",
+      "en": "Observing and nurturing your inner world with care"
     },
     "neural_name": {
       "ja": "NEURO SENTINEL"
@@ -497,6 +811,12 @@
         "直感とその場の感覚で判断する",
         "内側の世界にエネルギーを向ける",
         "共感力が高く、人の気持ちを感じ取る"
+      ],
+      "en": [
+        "strongly cautious and vigilant",
+        "judges through intuition and in-the-moment feeling",
+        "directs energy toward an inner world",
+        "highly empathetic and in tune with others' feelings"
       ]
     },
     "axis_focus": {
@@ -505,6 +825,12 @@
         "論理よりもしっくりくる感じを信じる",
         "自分の内面・想像・思索を大切にする",
         "他者と情緒的につながることを好む"
+      ],
+      "en": [
+        "easily senses and prepares for risk and uncertainty",
+        "trusts gut feel more than logic",
+        "values inner life, imagination and reflection",
+        "likes emotional connection with others"
       ]
     },
     "strengths": {
@@ -517,6 +843,16 @@
         "自分を俯瞰し、内省から洞察を得られる",
         "相手の気持ちを汲み、温かい人間関係を築ける",
         "チームの空気を和ませ、力を引き出せる"
+      ],
+      "en": [
+        "can sense risk and choose the safe path",
+        "heads off major failures through caution",
+        "intuition and flashes of insight unlock ideas beyond the usual frame",
+        "reacts and adapts swiftly to the situation at hand",
+        "deep thought and imagination let them build a world of their own",
+        "a clear view of themselves and insight from reflection",
+        "picks up on others' feelings and builds warm relationships",
+        "eases the mood of a team and draws out its strengths"
       ]
     },
     "warnings": {
@@ -529,6 +865,16 @@
         "空想に浸って実行が後回しになることがある",
         "人の感情を受け止めすぎて、疲れやすい",
         "自分の気持ちや境界を見失いがち"
+      ],
+      "en": [
+        "can be so cautious that they miss good opportunities",
+        "can take time to make a first step",
+        "can skip checking the facts after a gut call",
+        "can struggle with detail and consistency checks",
+        "can retreat inward and lose touch with reality",
+        "can lose time to daydreams and put action off",
+        "can absorb too much of others' emotion and tire easily",
+        "can lose sight of their own feelings and boundaries"
       ]
     },
     "neuro_top3": {
@@ -536,6 +882,11 @@
         "警戒・脅威処理系",
         "デフォルトモード",
         "サリエンス／内受容系"
+      ],
+      "en": [
+        "Vigilance & Threat-Processing System",
+        "Default Mode Network",
+        "Salience / Interoceptive System"
       ]
     }
   },
@@ -543,10 +894,12 @@
     "code": "VIND",
     "color": "#8FB6E0",
     "name": {
-      "ja": "深慮直感型"
+      "ja": "深慮直感型",
+      "en": "Reflective Navigator"
     },
     "catch": {
-      "ja": "安全な内側で、独自の思索を深める"
+      "ja": "安全な内側で、独自の思索を深める",
+      "en": "Deepening your own thinking in a safe inner space"
     },
     "neural_name": {
       "ja": "DEFAULT NAVIGATOR"
@@ -557,6 +910,12 @@
         "直感とその場の感覚で判断する",
         "内側の世界にエネルギーを向ける",
         "独立心が強く、距離を置いた冷静な判断をする"
+      ],
+      "en": [
+        "strongly cautious and vigilant",
+        "judges through intuition and in-the-moment feeling",
+        "directs energy toward an inner world",
+        "strongly independent and calmly keeps a cool distance when deciding"
       ]
     },
     "axis_focus": {
@@ -565,6 +924,12 @@
         "論理よりもしっくりくる感じを信じる",
         "自分の内面・想像・思索を大切にする",
         "自分の価値観で物事を進める"
+      ],
+      "en": [
+        "easily senses and prepares for risk and uncertainty",
+        "trusts gut feel more than logic",
+        "values inner life, imagination and reflection",
+        "moves forward guided by their own values"
       ]
     },
     "strengths": {
@@ -577,6 +942,16 @@
         "自分を俯瞰し、内省から洞察を得られる",
         "自分の軸を持ち、流されずに判断できる",
         "独立して成果を出せる自立心がある"
+      ],
+      "en": [
+        "can sense risk and choose the safe path",
+        "heads off major failures through caution",
+        "intuition and flashes of insight unlock ideas beyond the usual frame",
+        "reacts and adapts swiftly to the situation at hand",
+        "deep thought and imagination let them build a world of their own",
+        "a clear view of themselves and insight from reflection",
+        "keeps a clear axis of their own and decides without being swayed",
+        "self-reliant and able to deliver on their own"
       ]
     },
     "warnings": {
@@ -589,6 +964,16 @@
         "空想に浸って実行が後回しになることがある",
         "距離を置きすぎて、孤立しがち",
         "共感や協調を求められる場で摩擦を生みやすい"
+      ],
+      "en": [
+        "can be so cautious that they miss good opportunities",
+        "can take time to make a first step",
+        "can skip checking the facts after a gut call",
+        "can struggle with detail and consistency checks",
+        "can retreat inward and lose touch with reality",
+        "can lose time to daydreams and put action off",
+        "can keep too much distance and drift toward isolation",
+        "can create friction where empathy and cooperation are expected"
       ]
     },
     "neuro_top3": {
@@ -596,6 +981,11 @@
         "警戒・脅威処理系",
         "デフォルトモード",
         "サリエンス／内受容系"
+      ],
+      "en": [
+        "Vigilance & Threat-Processing System",
+        "Default Mode Network",
+        "Salience / Interoceptive System"
       ]
     }
   },
@@ -603,10 +993,12 @@
     "code": "VIXS",
     "color": "#8FB6E0",
     "name": {
-      "ja": "感覚警戒型"
+      "ja": "感覚警戒型",
+      "en": "Sensitive Guardian"
     },
     "catch": {
-      "ja": "身の回りを、注意深い感性と共感で感じ取る"
+      "ja": "身の回りを、注意深い感性と共感で感じ取る",
+      "en": "Reading your surroundings through attentive senses and empathy"
     },
     "neural_name": {
       "ja": "INSULA WATCHER"
@@ -617,6 +1009,12 @@
         "直感とその場の感覚で判断する",
         "外の世界と交わってエネルギーを得る",
         "共感力が高く、人の気持ちを感じ取る"
+      ],
+      "en": [
+        "strongly cautious and vigilant",
+        "judges through intuition and in-the-moment feeling",
+        "draws energy from engaging with the outer world",
+        "highly empathetic and in tune with others' feelings"
       ]
     },
     "axis_focus": {
@@ -625,6 +1023,12 @@
         "論理よりもしっくりくる感じを信じる",
         "現場・人・刺激から着想を得る",
         "他者と情緒的につながることを好む"
+      ],
+      "en": [
+        "easily senses and prepares for risk and uncertainty",
+        "trusts gut feel more than logic",
+        "draws inspiration from settings, people and stimulation",
+        "likes emotional connection with others"
       ]
     },
     "strengths": {
@@ -637,6 +1041,16 @@
         "多くの刺激から素早く学び取れる",
         "相手の気持ちを汲み、温かい人間関係を築ける",
         "チームの空気を和ませ、力を引き出せる"
+      ],
+      "en": [
+        "can sense risk and choose the safe path",
+        "heads off major failures through caution",
+        "intuition and flashes of insight unlock ideas beyond the usual frame",
+        "reacts and adapts swiftly to the situation at hand",
+        "action-oriented and skilled at producing results by actually doing",
+        "absorbs quickly from a high volume of stimulation",
+        "picks up on others' feelings and builds warm relationships",
+        "eases the mood of a team and draws out its strengths"
       ]
     },
     "warnings": {
@@ -649,6 +1063,16 @@
         "落ち着いて内省する時間を持ちにくい",
         "人の感情を受け止めすぎて、疲れやすい",
         "自分の気持ちや境界を見失いがち"
+      ],
+      "en": [
+        "can be so cautious that they miss good opportunities",
+        "can take time to make a first step",
+        "can skip checking the facts after a gut call",
+        "can struggle with detail and consistency checks",
+        "can be swept along by outside stimulation and ignore their inner life",
+        "can struggle to carve out calm time for reflection",
+        "can absorb too much of others' emotion and tire easily",
+        "can lose sight of their own feelings and boundaries"
       ]
     },
     "neuro_top3": {
@@ -656,6 +1080,11 @@
         "警戒・脅威処理系",
         "サリエンス／内受容系",
         "社会認知ネットワーク"
+      ],
+      "en": [
+        "Vigilance & Threat-Processing System",
+        "Salience / Interoceptive System",
+        "Social Cognition Network"
       ]
     }
   },
@@ -663,10 +1092,12 @@
     "code": "VIXD",
     "color": "#8FB6E0",
     "name": {
-      "ja": "警戒反応型"
+      "ja": "警戒反応型",
+      "en": "Cautious Responder"
     },
     "catch": {
-      "ja": "変化を嗅ぎ分け、独自の判断で守る"
+      "ja": "変化を嗅ぎ分け、独自の判断で守る",
+      "en": "Sniffing out change and protecting what matters by your own judgement"
     },
     "neural_name": {
       "ja": "AMYGDALA GUARD"
@@ -677,6 +1108,12 @@
         "直感とその場の感覚で判断する",
         "外の世界と交わってエネルギーを得る",
         "独立心が強く、距離を置いた冷静な判断をする"
+      ],
+      "en": [
+        "strongly cautious and vigilant",
+        "judges through intuition and in-the-moment feeling",
+        "draws energy from engaging with the outer world",
+        "strongly independent and calmly keeps a cool distance when deciding"
       ]
     },
     "axis_focus": {
@@ -685,6 +1122,12 @@
         "論理よりもしっくりくる感じを信じる",
         "現場・人・刺激から着想を得る",
         "自分の価値観で物事を進める"
+      ],
+      "en": [
+        "easily senses and prepares for risk and uncertainty",
+        "trusts gut feel more than logic",
+        "draws inspiration from settings, people and stimulation",
+        "moves forward guided by their own values"
       ]
     },
     "strengths": {
@@ -697,6 +1140,16 @@
         "多くの刺激から素早く学び取れる",
         "自分の軸を持ち、流されずに判断できる",
         "独立して成果を出せる自立心がある"
+      ],
+      "en": [
+        "can sense risk and choose the safe path",
+        "heads off major failures through caution",
+        "intuition and flashes of insight unlock ideas beyond the usual frame",
+        "reacts and adapts swiftly to the situation at hand",
+        "action-oriented and skilled at producing results by actually doing",
+        "absorbs quickly from a high volume of stimulation",
+        "keeps a clear axis of their own and decides without being swayed",
+        "self-reliant and able to deliver on their own"
       ]
     },
     "warnings": {
@@ -709,6 +1162,16 @@
         "落ち着いて内省する時間を持ちにくい",
         "距離を置きすぎて、孤立しがち",
         "共感や協調を求められる場で摩擦を生みやすい"
+      ],
+      "en": [
+        "can be so cautious that they miss good opportunities",
+        "can take time to make a first step",
+        "can skip checking the facts after a gut call",
+        "can struggle with detail and consistency checks",
+        "can be swept along by outside stimulation and ignore their inner life",
+        "can struggle to carve out calm time for reflection",
+        "can keep too much distance and drift toward isolation",
+        "can create friction where empathy and cooperation are expected"
       ]
     },
     "neuro_top3": {
@@ -716,6 +1179,11 @@
         "警戒・脅威処理系",
         "サリエンス／内受容系",
         "実行制御ネットワーク"
+      ],
+      "en": [
+        "Vigilance & Threat-Processing System",
+        "Salience / Interoceptive System",
+        "Executive Control Network"
       ]
     }
   },
@@ -723,10 +1191,12 @@
     "code": "VANS",
     "color": "#5C7CA8",
     "name": {
-      "ja": "共感設計型"
+      "ja": "共感設計型",
+      "en": "Empathetic Designer"
     },
     "catch": {
-      "ja": "着実に、共感と計画で安心の土台を築く"
+      "ja": "着実に、共感と計画で安心の土台を築く",
+      "en": "Steadily building a foundation of safety through empathy and planning"
     },
     "neural_name": {
       "ja": "MIRROR BUILDER"
@@ -737,6 +1207,12 @@
         "分析と計画で物事を進める",
         "内側の世界にエネルギーを向ける",
         "共感力が高く、人の気持ちを感じ取る"
+      ],
+      "en": [
+        "strongly cautious and vigilant",
+        "moves things forward with analysis and planning",
+        "directs energy toward an inner world",
+        "highly empathetic and in tune with others' feelings"
       ]
     },
     "axis_focus": {
@@ -745,6 +1221,12 @@
         "情報を整理し、段取りを立ててから動く",
         "自分の内面・想像・思索を大切にする",
         "他者と情緒的につながることを好む"
+      ],
+      "en": [
+        "easily senses and prepares for risk and uncertainty",
+        "organises information and prepares a plan before acting",
+        "values inner life, imagination and reflection",
+        "likes emotional connection with others"
       ]
     },
     "strengths": {
@@ -757,6 +1239,16 @@
         "自分を俯瞰し、内省から洞察を得られる",
         "相手の気持ちを汲み、温かい人間関係を築ける",
         "チームの空気を和ませ、力を引き出せる"
+      ],
+      "en": [
+        "can sense risk and choose the safe path",
+        "heads off major failures through caution",
+        "skilled at organising information and thinking in a structured way",
+        "delivers steady results through planning and reliability",
+        "deep thought and imagination let them build a world of their own",
+        "a clear view of themselves and insight from reflection",
+        "picks up on others' feelings and builds warm relationships",
+        "eases the mood of a team and draws out its strengths"
       ]
     },
     "warnings": {
@@ -769,6 +1261,16 @@
         "空想に浸って実行が後回しになることがある",
         "人の感情を受け止めすぎて、疲れやすい",
         "自分の気持ちや境界を見失いがち"
+      ],
+      "en": [
+        "can be so cautious that they miss good opportunities",
+        "can take time to make a first step",
+        "can overthink and delay decisions or action",
+        "can find it hard to handle changes or surprises in a plan",
+        "can retreat inward and lose touch with reality",
+        "can lose time to daydreams and put action off",
+        "can absorb too much of others' emotion and tire easily",
+        "can lose sight of their own feelings and boundaries"
       ]
     },
     "neuro_top3": {
@@ -776,6 +1278,11 @@
         "警戒・脅威処理系",
         "実行制御ネットワーク",
         "デフォルトモード"
+      ],
+      "en": [
+        "Vigilance & Threat-Processing System",
+        "Executive Control Network",
+        "Default Mode Network"
       ]
     }
   },
@@ -783,10 +1290,12 @@
     "code": "VAND",
     "color": "#5C7CA8",
     "name": {
-      "ja": "前頭制御型"
+      "ja": "前頭制御型",
+      "en": "Cautious Architect"
     },
     "catch": {
-      "ja": "綿密に準備し、自力で確実に積み上げる"
+      "ja": "綿密に準備し、自力で確実に積み上げる",
+      "en": "Preparing thoroughly and building things up steadily on your own"
     },
     "neural_name": {
       "ja": "CORTEX ARCHITECT"
@@ -797,6 +1306,12 @@
         "分析と計画で物事を進める",
         "内側の世界にエネルギーを向ける",
         "独立心が強く、距離を置いた冷静な判断をする"
+      ],
+      "en": [
+        "strongly cautious and vigilant",
+        "moves things forward with analysis and planning",
+        "directs energy toward an inner world",
+        "strongly independent and calmly keeps a cool distance when deciding"
       ]
     },
     "axis_focus": {
@@ -805,6 +1320,12 @@
         "情報を整理し、段取りを立ててから動く",
         "自分の内面・想像・思索を大切にする",
         "自分の価値観で物事を進める"
+      ],
+      "en": [
+        "easily senses and prepares for risk and uncertainty",
+        "organises information and prepares a plan before acting",
+        "values inner life, imagination and reflection",
+        "moves forward guided by their own values"
       ]
     },
     "strengths": {
@@ -817,6 +1338,16 @@
         "自分を俯瞰し、内省から洞察を得られる",
         "自分の軸を持ち、流されずに判断できる",
         "独立して成果を出せる自立心がある"
+      ],
+      "en": [
+        "can sense risk and choose the safe path",
+        "heads off major failures through caution",
+        "skilled at organising information and thinking in a structured way",
+        "delivers steady results through planning and reliability",
+        "deep thought and imagination let them build a world of their own",
+        "a clear view of themselves and insight from reflection",
+        "keeps a clear axis of their own and decides without being swayed",
+        "self-reliant and able to deliver on their own"
       ]
     },
     "warnings": {
@@ -829,6 +1360,16 @@
         "空想に浸って実行が後回しになることがある",
         "距離を置きすぎて、孤立しがち",
         "共感や協調を求められる場で摩擦を生みやすい"
+      ],
+      "en": [
+        "can be so cautious that they miss good opportunities",
+        "can take time to make a first step",
+        "can overthink and delay decisions or action",
+        "can find it hard to handle changes or surprises in a plan",
+        "can retreat inward and lose touch with reality",
+        "can lose time to daydreams and put action off",
+        "can keep too much distance and drift toward isolation",
+        "can create friction where empathy and cooperation are expected"
       ]
     },
     "neuro_top3": {
@@ -836,6 +1377,11 @@
         "実行制御ネットワーク",
         "警戒・脅威処理系",
         "デフォルトモード"
+      ],
+      "en": [
+        "Executive Control Network",
+        "Vigilance & Threat-Processing System",
+        "Default Mode Network"
       ]
     }
   },
@@ -843,10 +1389,12 @@
     "code": "VAXS",
     "color": "#5C7CA8",
     "name": {
-      "ja": "社会認知型"
+      "ja": "社会認知型",
+      "en": "Social Cogniser"
     },
     "catch": {
-      "ja": "チームとともに、リスクを見据えて備える"
+      "ja": "チームとともに、リスクを見据えて備える",
+      "en": "Standing ready with the team to watch for risk and prepare"
     },
     "neural_name": {
       "ja": "EMPATHY NODE"
@@ -857,6 +1405,12 @@
         "分析と計画で物事を進める",
         "外の世界と交わってエネルギーを得る",
         "共感力が高く、人の気持ちを感じ取る"
+      ],
+      "en": [
+        "strongly cautious and vigilant",
+        "moves things forward with analysis and planning",
+        "draws energy from engaging with the outer world",
+        "highly empathetic and in tune with others' feelings"
       ]
     },
     "axis_focus": {
@@ -865,6 +1419,12 @@
         "情報を整理し、段取りを立ててから動く",
         "現場・人・刺激から着想を得る",
         "他者と情緒的につながることを好む"
+      ],
+      "en": [
+        "easily senses and prepares for risk and uncertainty",
+        "organises information and prepares a plan before acting",
+        "draws inspiration from settings, people and stimulation",
+        "likes emotional connection with others"
       ]
     },
     "strengths": {
@@ -877,6 +1437,16 @@
         "多くの刺激から素早く学び取れる",
         "相手の気持ちを汲み、温かい人間関係を築ける",
         "チームの空気を和ませ、力を引き出せる"
+      ],
+      "en": [
+        "can sense risk and choose the safe path",
+        "heads off major failures through caution",
+        "skilled at organising information and thinking in a structured way",
+        "delivers steady results through planning and reliability",
+        "action-oriented and skilled at producing results by actually doing",
+        "absorbs quickly from a high volume of stimulation",
+        "picks up on others' feelings and builds warm relationships",
+        "eases the mood of a team and draws out its strengths"
       ]
     },
     "warnings": {
@@ -889,6 +1459,16 @@
         "落ち着いて内省する時間を持ちにくい",
         "人の感情を受け止めすぎて、疲れやすい",
         "自分の気持ちや境界を見失いがち"
+      ],
+      "en": [
+        "can be so cautious that they miss good opportunities",
+        "can take time to make a first step",
+        "can overthink and delay decisions or action",
+        "can find it hard to handle changes or surprises in a plan",
+        "can be swept along by outside stimulation and ignore their inner life",
+        "can struggle to carve out calm time for reflection",
+        "can absorb too much of others' emotion and tire easily",
+        "can lose sight of their own feelings and boundaries"
       ]
     },
     "neuro_top3": {
@@ -896,6 +1476,11 @@
         "警戒・脅威処理系",
         "実行制御ネットワーク",
         "社会認知ネットワーク"
+      ],
+      "en": [
+        "Vigilance & Threat-Processing System",
+        "Executive Control Network",
+        "Social Cognition Network"
       ]
     }
   },
@@ -903,10 +1488,12 @@
     "code": "VAXD",
     "color": "#5C7CA8",
     "name": {
-      "ja": "統括制御型"
+      "ja": "統括制御型",
+      "en": "Steady Overseer"
     },
     "catch": {
-      "ja": "冷静な分析で、秩序と成果を保つ"
+      "ja": "冷静な分析で、秩序と成果を保つ",
+      "en": "Keeping order and results through calm, cool analysis"
     },
     "neural_name": {
       "ja": "EXECUTIVE CORE"
@@ -917,6 +1504,12 @@
         "分析と計画で物事を進める",
         "外の世界と交わってエネルギーを得る",
         "独立心が強く、距離を置いた冷静な判断をする"
+      ],
+      "en": [
+        "strongly cautious and vigilant",
+        "moves things forward with analysis and planning",
+        "draws energy from engaging with the outer world",
+        "strongly independent and calmly keeps a cool distance when deciding"
       ]
     },
     "axis_focus": {
@@ -925,6 +1518,12 @@
         "情報を整理し、段取りを立ててから動く",
         "現場・人・刺激から着想を得る",
         "自分の価値観で物事を進める"
+      ],
+      "en": [
+        "easily senses and prepares for risk and uncertainty",
+        "organises information and prepares a plan before acting",
+        "draws inspiration from settings, people and stimulation",
+        "moves forward guided by their own values"
       ]
     },
     "strengths": {
@@ -937,6 +1536,16 @@
         "多くの刺激から素早く学び取れる",
         "自分の軸を持ち、流されずに判断できる",
         "独立して成果を出せる自立心がある"
+      ],
+      "en": [
+        "can sense risk and choose the safe path",
+        "heads off major failures through caution",
+        "skilled at organising information and thinking in a structured way",
+        "delivers steady results through planning and reliability",
+        "action-oriented and skilled at producing results by actually doing",
+        "absorbs quickly from a high volume of stimulation",
+        "keeps a clear axis of their own and decides without being swayed",
+        "self-reliant and able to deliver on their own"
       ]
     },
     "warnings": {
@@ -949,6 +1558,16 @@
         "落ち着いて内省する時間を持ちにくい",
         "距離を置きすぎて、孤立しがち",
         "共感や協調を求められる場で摩擦を生みやすい"
+      ],
+      "en": [
+        "can be so cautious that they miss good opportunities",
+        "can take time to make a first step",
+        "can overthink and delay decisions or action",
+        "can find it hard to handle changes or surprises in a plan",
+        "can be swept along by outside stimulation and ignore their inner life",
+        "can struggle to carve out calm time for reflection",
+        "can keep too much distance and drift toward isolation",
+        "can create friction where empathy and cooperation are expected"
       ]
     },
     "neuro_top3": {
@@ -956,6 +1575,11 @@
         "実行制御ネットワーク",
         "警戒・脅威処理系",
         "報酬・動機づけ系"
+      ],
+      "en": [
+        "Executive Control Network",
+        "Vigilance & Threat-Processing System",
+        "Reward & Motivation System"
       ]
     }
   }

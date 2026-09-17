@@ -2,7 +2,7 @@
 // Reads ?type=CODE from the URL, loads profiles.json + types.json, and renders
 // the 14 spec sections. Falls back to types.html for missing/invalid codes.
 // Language resolution via app/i18n.js.
-import { applyLang, withLang } from "./app/i18n.js";
+import { applyLang, fmt, t, withLang } from "./app/i18n.js";
 
 const FALLBACK_URL = "types.html";
 function isEn() { return (location.pathname || "").startsWith("/en/"); }
@@ -16,10 +16,10 @@ function escAttr(s) { return esc(s); }
 
 // types.js と同じ並び・同じ色定義（ナビ/グループ表示用）。types.html と順序を一致させる。
 const GROUP_DEFS = [
-  { id: "EI", title: "探索 × 直感", color: "#FFB454", short: "ひらめきで新しい世界へ" },
-  { id: "EA", title: "探索 × 分析", color: "#E8843C", short: "構想を段取りで形にする" },
-  { id: "VI", title: "警戒 × 直感", color: "#8FB6E0", short: "感性と慎重さで周囲を感じる" },
-  { id: "VA", title: "警戒 × 分析", color: "#5C7CA8", short: "慎重さと計画で確実を積む" },
+  { id: "EI", titleKey: "group.EI.title", color: "#FFB454", shortKey: "group.EI.short" },
+  { id: "EA", titleKey: "group.EA.title", color: "#E8843C", shortKey: "group.EA.short" },
+  { id: "VI", titleKey: "group.VI.title", color: "#8FB6E0", shortKey: "group.VI.short" },
+  { id: "VA", titleKey: "group.VA.title", color: "#5C7CA8", shortKey: "group.VA.short" },
 ];
 
 function nl2br(s) {
@@ -47,16 +47,16 @@ function getTypeCode() {
 }
 
 function setTitle(profile) {
-  document.title = `${profile.code} — ${profile.name} | 脳・認知タイプ`;
+  document.title = `${profile.code} — ${profile.name} | ${t("site.name.ja")}`;
   const h1 = document.getElementById("page-title");
   if (h1) h1.textContent = `${profile.name}（${profile.code}）`;
-  const descText = `${profile.name}（${profile.code}）— ${profile.catch}。脳・認知タイプの傾向プロフィール。`;
+  const descText = fmt(t("page.descTemplate"), { name: profile.name, code: profile.code, catch: profile.catch, site: t("site.name.ja") });
   const desc = document.querySelector('meta[name="description"]');
   if (desc) desc.setAttribute("content", escAttr(descText));
 
   // Dynamic OGP / Twitter — set for each type (crawlers that run JS will pick these up;
   // the static defaults in type.html cover non-JS crawlers with a generic preview).
-  const ogTitle = `${profile.name}（${profile.code}）| 脳・認知タイプ`;
+  const ogTitle = `${profile.name}（${profile.code}）| ${t("site.name.ja")}`;
   // OGP image: dedicated 1200×624 social card per type (assets/og/), fallback not needed (all 16 present).
   const ogImage = `assets/og/${profile.code}.png`;
   const absOgImage = new URL(ogImage, location.href).href;
@@ -79,7 +79,7 @@ function axisRowsHTML(axisLabels) {
   // axis_meta の axes[0..3] の positive_short/negative_short を使わず、
   // profiles.json の axis_labels 4 つをそのまま「キー：ラベル」として可視化する。
   // key ラベルは決定的に固定（タイプ判定軸 1〜4）。
-  const keys = ["動機の方向", "処理様式", "処理対象", "対人志向"];
+  const keys = t("type.axisKeys");
   const safe = Array.isArray(axisLabels) ? axisLabels.slice(0, 4) : [];
   const rows = [];
   for (let i = 0; i < keys.length; i++) {
@@ -111,7 +111,7 @@ function medalHTML(neuroByLabel, top3) {
         <div class="medal-emoji">${MEDALS[i]}</div>
         <div>
           <div class="medal-label">${esc(label)}${meta ? `（${esc(meta.region)}）` : ""}</div>
-          <div class="medal-stars">${starsForTop(top3, i)} <span style="color:var(--ink-muted);font-size:12px;">関連可能性</span></div>
+          <div class="medal-stars">${starsForTop(top3, i)} <span style="color:var(--ink-muted);font-size:12px;">${esc(t("type.neuroRelated"))}</span></div>
           <div class="medal-desc">${meta ? esc(meta.description) : ""}</div>
         </div>
       </div>
@@ -168,7 +168,7 @@ function flashCopy(btn, msg) {
 async function copyText(text, btn) {
   try {
     await navigator.clipboard.writeText(text);
-    flashCopy(btn, "コピーしました ✓");
+    flashCopy(btn, t("share.copied"));
     return;
   } catch {
     // Fallback for older browsers / non-secure contexts
@@ -181,8 +181,8 @@ async function copyText(text, btn) {
     let ok = false;
     try { ok = document.execCommand("copy"); } catch { ok = false; }
     document.body.removeChild(ta);
-    if (ok) flashCopy(btn, "コピーしました ✓");
-    else alert("コピーできませんでした。テキストを長押しで選択してください。\n\n" + text);
+    if (ok) flashCopy(btn, t("share.copied"));
+    else alert(fmt(t("share.copyFailed"), { text }));
   }
 }
 
@@ -198,11 +198,11 @@ function renderProfile(profile, types, neuroByLabel) {
 
   const groupMeta = resolveGroupMeta(profile.code, types);
   const heroHTML = `
-    <section class="type-hero" aria-label="タイプ名と画像">
+    <section class="type-hero" aria-label="${esc(t("result.heroLabel"))}">
       <img class="type-hero-img"
            src="assets/brain/${esc(profile.code)}.png"
            data-detail-src="assets/brain/${esc(profile.code)}.png"
-           alt="${esc(profile.name)} のアイコン"
+           alt="${esc(fmt(t("img.typeAlt"), { name: profile.name }))}"
            loading="lazy"
            decoding="async"
            width="160" height="160" />
@@ -211,53 +211,52 @@ function renderProfile(profile, types, neuroByLabel) {
         <div class="type-hero-neural">${esc(profile.neural_name || "")}</div>
         <div class="type-hero-name">${esc(profile.name)}</div>
         <p class="type-hero-catch">${esc(profile.catch || "")}</p>
-        ${groupMeta ? `<p class="type-hero-group" data-group-color="${esc(groupMeta.color)}"><span class="type-hero-group-dot" aria-hidden="true"></span>${esc(groupMeta.title)}</p>` : ""}
+        ${groupMeta ? `<p class="type-hero-group" data-group-color="${esc(groupMeta.color)}"><span class="type-hero-group-dot" aria-hidden="true"></span>${esc(t(groupMeta.titleKey))}</p>` : ""}
       </div>
     </section>
     ${renderPrevNextNav(profile.code, types)}
   `;
 
-  const featuresHTML = section("あなたの特徴", "🧠", `
+  const featuresHTML = section(t("type.section.features"), "🧠", `
     <p>${esc(profile.features_short || "")}</p>
     <p>${esc(profile.features_long || "")}</p>
-    <p class="disclaimer">※ 以下の結果は、回答パターンから推定された<strong>傾向</strong>であり、脳の測定ではありません。</p>
+    <p class="disclaimer">${t("disclaimer.tendency")}</p>
   `);
 
-  const neuroHTML = section("神経システム TOP3", "🔥", `
+  const neuroHTML = section(t("type.section.neuroTop3"), "🔥", `
     <div class="medal-list">
       ${medalHTML(neuroByLabel, profile.neuro_top3)}
     </div>
     <p class="disclaimer" style="margin-top:14px;">
-      ※ これらの神経システムは、回答パターンから推定される<strong>関連可能性</strong>を表示しています。
-      実際の脳活動の測定ではありません。
+      ${t("disclaimer.neuro")}
     </p>
   `);
 
-  const axisHTML = section("認知プロフィール", "🧩", `
+  const axisHTML = section(t("type.section.profile"), "🧩", `
     <ul class="type-axis-list">
       ${axisRowsHTML(profile.axis_labels)}
     </ul>
-    <p class="disclaimer">※ 5 つの軸のうち、軸1〜4 がタイプ判定に使われ、軸5（情動の安定）は修飾子として別表示です。</p>
+    <p class="disclaimer">${t("type.scopeDisclaimer")}</p>
   `);
 
-  const strengthsHTML = listSection("あなたの強み", "💡", profile.strengths);
-  const warningsHTML = listSection("注意したいポイント", "⚠️", profile.warnings);
-  const stressHTML = paragraphSection("ストレス時の傾向", "🌀", profile.stress);
-  const learningHTML = paragraphSection("学習するとき", "📚", profile.learning);
-  const workHTML = paragraphSection("仕事では", "💼", profile.work);
-  const relationshipsHTML = paragraphSection("人間関係では", "👥", profile.relationships);
-  const growthHTML = listSection("あなたの成長ポイント", "🚀", profile.growth);
-  const sciBgHTML = paragraphSection("科学的背景", "🔬", profile.scientific_background);
-  const sciNoteHTML = paragraphSection("科学的な注意", "⚠️", profile.scientific_note);
+  const strengthsHTML = listSection(t("result.section.strengths"), "💡", profile.strengths);
+  const warningsHTML = listSection(t("result.section.warnings"), "⚠️", profile.warnings);
+  const stressHTML = paragraphSection(t("result.section.stressShort"), "🌀", profile.stress);
+  const learningHTML = paragraphSection(t("result.section.learning"), "📚", profile.learning);
+  const workHTML = paragraphSection(t("result.section.work"), "💼", profile.work);
+  const relationshipsHTML = paragraphSection(t("result.section.relationships"), "👥", profile.relationships);
+  const growthHTML = listSection(t("result.section.growth"), "🚀", profile.growth);
+  const sciBgHTML = paragraphSection(t("result.section.science"), "🔬", profile.scientific_background);
+  const sciNoteHTML = paragraphSection(t("type.section.sciNote"), "⚠️", profile.scientific_note);
 
   const shareHTML = `
-    <section class="section" aria-label="共有カード">
-      <h2><span class="icon">📤</span>共有カード</h2>
+    <section class="section" aria-label="${esc(t("type.section.share"))}">
+      <h2><span class="icon">📤</span>${esc(t("type.section.share"))}</h2>
       <div class="share-card">
         <img class="share-card-img"
              src="assets/brain/${esc(profile.code)}.png"
              data-detail-src="assets/brain/${esc(profile.code)}.png"
-             alt="${esc(profile.name)} のアイコン"
+             alt="${esc(fmt(t("img.typeAlt"), { name: profile.name }))}"
              loading="lazy" decoding="async"
              width="80" height="80" />
         <div>
@@ -270,9 +269,9 @@ function renderProfile(profile, types, neuroByLabel) {
         </div>
       </div>
       <div class="share-actions">
-        <button class="btn-secondary" id="btn-copy-share" type="button">共有テキストをコピー</button>
-        <a class="btn-secondary" href="${FALLBACK_URL}" role="button">タイプ一覧に戻る</a>
-        <a class="btn-primary" href="index.html" role="button">診断を受ける</a>
+        <button class="btn-secondary" id="btn-copy-share" type="button">${esc(t("share.copyText"))}</button>
+        <a class="btn-secondary" href="${FALLBACK_URL}" role="button">${esc(t("type.backToList"))}</a>
+        <a class="btn-primary" href="index.html" role="button">${esc(t("types.takeCheck"))}</a>
       </div>
     </section>
   `;
@@ -313,10 +312,10 @@ function renderRelated(profile, types) {
     .sort((a, b) => a.code.localeCompare(b.code));
   if (same.length === 0) return "";
   return `
-    <section class="section" aria-label="同じグループの他のタイプ">
-      <h2><span class="icon">🔗</span>同じグループの他のタイプ</h2>
+    <section class="section" aria-label="${esc(t("type.section.related"))}">
+      <h2><span class="icon">🔗</span>${esc(t("type.section.related"))}</h2>
       <div class="type-related">
-        ${same.map(t => `<a href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(t.code)}">${esc(t.code)} ${esc(t.name)}</a>`).join("")}
+        ${same.map(x => `<a href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(x.code)}">${esc(x.code)} ${esc(x.name)}</a>`).join("")}
       </div>
     </section>
   `;
@@ -328,9 +327,9 @@ function renderError(msg) {
   root.removeAttribute("aria-busy");
   root.innerHTML = `
     <section class="card">
-      <h2>タイプ情報を読み込めませんでした</h2>
+      <h2>${esc(t("type.loadErrorTitle"))}</h2>
       <p>${esc(msg)}</p>
-      <p><a class="btn-primary" href="${FALLBACK_URL}">タイプ一覧へ戻る</a></p>
+      <p><a class="btn-primary" href="${FALLBACK_URL}">${esc(t("type.backToList"))}</a></p>
     </section>
   `;
 }
@@ -418,14 +417,14 @@ function renderPrevNextNav(code, types) {
   const next = order[(idx + 1) % order.length];
   const prevMeta = types[prev] || {};
   const nextMeta = types[next] || {};
-  const prevLabel = prev === code ? "最初のタイプへ" : "前のタイプ";
-  const nextLabel = next === code ? "最初のタイプへ" : "次のタイプ";
+  const prevLabel = prev === code ? t("type.toFirst") : t("type.prev");
+  const nextLabel = next === code ? t("type.toFirst") : t("type.next");
   return `
-    <nav class="type-prevnext" aria-label="前後のタイプへ">
+    <nav class="type-prevnext" aria-label="${esc(t("type.prevNav"))}">
       <a class="type-prevnext-link type-prevnext-prev"
          href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(prev)}"
          data-type-color="${esc(prevMeta.color || "")}"
-         aria-label="${esc(prevLabel)}: ${esc(prevMeta.name || prev)}（${esc(prev)}）へ">
+         aria-label="${esc(fmt(t("type.navTo"), { label: prevLabel, name: prevMeta.name || prev, code: prev }))}">
         <span class="type-prevnext-arrow" aria-hidden="true">←</span>
         <span class="type-prevnext-text">
           <span class="type-prevnext-eyebrow">${esc(prevLabel)}</span>
@@ -436,7 +435,7 @@ function renderPrevNextNav(code, types) {
       <a class="type-prevnext-link type-prevnext-next"
          href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(next)}"
          data-type-color="${esc(nextMeta.color || "")}"
-         aria-label="${esc(nextLabel)}: ${esc(nextMeta.name || next)}（${esc(next)}）へ">
+         aria-label="${esc(fmt(t("type.navTo"), { label: nextLabel, name: nextMeta.name || next, code: next }))}">
         <span class="type-prevnext-text">
           <span class="type-prevnext-eyebrow">${esc(nextLabel)}</span>
           <span class="type-prevnext-name">${esc(nextMeta.name || next)}</span>

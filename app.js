@@ -1,7 +1,7 @@
 // app.js — UI state machine, rendering, share. No external deps.
 // Source of truth: data/*.json (fetched at startup). Language resolution via app/i18n.js.
 import { computeScore } from "./app/scoring.js";
-import { applyLang, currentLang, onChange, pickL10n, withLang } from "./app/i18n.js";
+import { applyLang, currentLang, fmt, onChange, pickL10n, t, withLang } from "./app/i18n.js";
 
 // Data containers — populated by loadData() on startup, rebuilt when language changes.
 // Shapes (after i18n resolution) match what the scoring engine and the renderers expect:
@@ -136,14 +136,14 @@ function startQuiz() {
 
 function renderQuestion() {
   const q = QUESTIONS.questions[state.index];
-  const kindLabel = q.kind === "regular" ? "本診断の質問"
-    : q.kind === "social" ? "信頼性チェック（社会的望ましさ）"
-    : q.kind === "attention" ? "信頼性チェック（注意散漫）"
-    : q.kind === "consistency" ? "信頼性チェック（回答の一貫性）"
-    : q.kind === "central" ? "信頼性チェック（中央寄り）"
-    : q.kind === "meta" ? "信頼性チェック（総合）"
-    : "質問";
-  $("#q-kind").textContent = `Q${q.id} / ${TOTAL_QUESTIONS} — ${kindLabel}`;
+  const kindKey = q.kind === "regular" ? "quiz.kind.regular"
+    : q.kind === "social" ? "quiz.kind.social"
+    : q.kind === "attention" ? "quiz.kind.attention"
+    : q.kind === "consistency" ? "quiz.kind.consistency"
+    : q.kind === "central" ? "quiz.kind.central"
+    : q.kind === "meta" ? "quiz.kind.meta"
+    : "quiz.kind.question";
+  $("#q-kind").textContent = `Q${q.id} / ${TOTAL_QUESTIONS} — ${t(kindKey)}`;
   $("#q-text").textContent = q.text;
 
   // Pre-select if user is going back
@@ -158,7 +158,7 @@ function renderQuestion() {
 
   // Buttons
   $("#btn-prev").disabled = state.index === 0;
-  $("#btn-next").textContent = (state.index === TOTAL_QUESTIONS - 1) ? "結果を見る →" : "次へ →";
+  $("#btn-next").textContent = (state.index === TOTAL_QUESTIONS - 1) ? t("btn.seeResults") : t("btn.next");
 }
 
 function goPrev() {
@@ -170,7 +170,7 @@ function goPrev() {
 function goNext() {
   const checked = $("input[name=answer]:checked");
   if (!checked) {
-    alert("回答を選んでください。");
+    alert(t("alert.needAnswer"));
     return;
   }
   const q = QUESTIONS.questions[state.index];
@@ -194,8 +194,8 @@ function renderRegionHighlight(medals, neuroByLabel) {
   return `
     <p class="hero-region">
       <span class="hero-region-dot" aria-hidden="true"></span>
-      関連が研究されている部位：<strong>${escapeHTML(meta.region)}</strong>
-      <span class="hero-region-hint">（傾向推定の参考）</span>
+      ${escapeHTML(t("result.regionLabel"))} <strong>${escapeHTML(meta.region)}</strong>
+      <span class="hero-region-hint">${escapeHTML(t("result.regionHint"))}</span>
     </p>
   `;
 }
@@ -213,11 +213,11 @@ function starsFor(score) {
   return "★".repeat(n) + "☆".repeat(5 - n);
 }
 function tierLabel(score) {
-  if (score >= 80) return "非常に働きやすい可能性";
-  if (score >= 60) return "働きやすい可能性";
-  if (score >= 40) return "中程度の傾向";
-  if (score >= 20) return "他の系統が相対的に目立つ";
-  return "この系統より他が前面に立つ傾向";
+  if (score >= 80) return t("tier.veryHigh");
+  if (score >= 60) return t("tier.high");
+  if (score >= 40) return t("tier.mid");
+  if (score >= 20) return t("tier.low");
+  return t("tier.other");
 }
 
 function axisBarHTML(axisId, p, modifier) {
@@ -236,7 +236,7 @@ function axisBarHTML(axisId, p, modifier) {
         <span class="axis-bar-fill" style="width:${fill}%;"></span>
         <span class="axis-bar-marker"></span>
       </div>
-      <div class="axis-bar-note">${a.name}：${p == null ? "診断不能" : Math.round(p) + " / 100"}</div>
+      <div class="axis-bar-note">${escapeHTML(a.name)}：${p == null ? escapeHTML(t("result.cannotDetermine")) : Math.round(p) + " / 100"}</div>
     </div>
   `;
 }
@@ -244,7 +244,7 @@ function axisBarHTML(axisId, p, modifier) {
 function renderResult(result) {
   const profile = PROFILES[result.typeCode];
   if (!profile) {
-    $("#result-root").innerHTML = `<div class="section"><h2>結果を表示できませんでした</h2><p>回答パターンが想定外でした。もう一度お試しください。</p></div>`;
+    $("#result-root").innerHTML = `<div class="section"><h2>${escapeHTML(t("result.errorTitle"))}</h2><p>${escapeHTML(t("result.errorBody"))}</p></div>`;
     return;
   }
   const color = profile.color || "#FFB454";
@@ -260,30 +260,30 @@ function renderResult(result) {
   const midAxes = AXIS_META.axes.filter(a => a.type_role === "primary" && result.polarities[a.id] === "MID").map(a => a.name);
   let judgmentSentence;
   if (midAxes.length === 0) {
-    judgmentSentence = `あなたの回答パターンは「${profile.name}」（${profile.code}）の傾向と一致しています。`;
+    judgmentSentence = fmt(t("judgment.match"), { name: profile.name, code: profile.code });
   } else {
-    judgmentSentence = `あなたの回答は「${profile.name}」（${profile.code}）に最も近い傾向です（${midAxes.join("・")} は中性的）。`;
+    judgmentSentence = fmt(t("judgment.close"), { name: profile.name, code: profile.code, axes: midAxes.join("・") });
   }
 
   const flags = result.reliability.flags;
-  const gradeLabel = ({high:"信頼度：高", mid:"信頼度：中", low:"信頼度：低"})[result.reliability.grade];
+  const gradeLabel = ({high:"grade.high", mid:"grade.mid", low:"grade.low"})[result.reliability.grade];
   const flagBits = [];
-  if (flags.missing > 0) flagBits.push(`未回答 ${flags.missing} 問`);
-  if (flags.socialDesirability >= 1) flagBits.push(`社会的望ましさ検出（${flags.socialDesirability} 件）`);
-  if (flags.attentionExtreme >= 1) flagBits.push(`注意散漫可能性（${flags.attentionExtreme} 件）`);
-  if (flags.centerRatio > 0.6) flagBits.push(`「どちらともいえない」の多用`);
-  if (flags.extremeRatio > 0.7) flagBits.push(`極端回答の多用`);
-  if (flags.allSameValue) flagBits.push(`同一回答の連打`);
-  const flagLine = flagBits.length ? `（検出された傾向：${flagBits.join("・")}）` : "";
+  if (flags.missing > 0) flagBits.push(fmt(t("flags.missing"), { n: flags.missing }));
+  if (flags.socialDesirability >= 1) flagBits.push(fmt(t("flags.social"), { n: flags.socialDesirability }));
+  if (flags.attentionExtreme >= 1) flagBits.push(fmt(t("flags.attention"), { n: flags.attentionExtreme }));
+  if (flags.centerRatio > 0.6) flagBits.push(t("flags.center"));
+  if (flags.extremeRatio > 0.7) flagBits.push(t("flags.extreme"));
+  if (flags.allSameValue) flagBits.push(t("flags.same"));
+  const flagLine = flagBits.length ? `${t("flags.linePrefix")}${flagBits.join("、")}${t("flags.lineSuffix")}` : "";
 
   const unableNote = result.diagnostics.unable
-    ? `<p class="disclaimer" style="border-left-color:var(--danger);"><strong>回答数が不足しているため、診断を確定できません。</strong> もう一度お試しください。</p>`
+    ? `<p class="disclaimer" style="border-left-color:var(--danger);"><strong>${escapeHTML(t("result.unable"))}</strong></p>`
     : "";
 
   const html = `
     ${unableNote}
-    <section class="hero" aria-label="タイプ名と画像">
-      <img class="hero-img" src="assets/brain/${profile.code}.png" alt="${escapeHTML(profile.name)} のアイコン" />
+    <section class="hero" aria-label="${escapeHTML(t("result.heroLabel"))}">
+      <img class="hero-img" src="assets/brain/${profile.code}.png" alt="${escapeHTML(fmt(t("img.typeAlt"), { name: profile.name }))}" />
       <div class="hero-meta">
         <span class="hero-code">${escapeHTML(profile.code)}</span>
         <div class="hero-name">${escapeHTML(profile.name)}</div>
@@ -293,15 +293,15 @@ function renderResult(result) {
       </div>
     </section>
 
-    <section class="section" aria-label="あなたの特徴">
-      <h2><span class="icon">🧠</span>あなたの特徴</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.traits"))}">
+      <h2><span class="icon">🧠</span>${escapeHTML(t("result.section.traits"))}</h2>
       <p>${escapeHTML(profile.features_short)}</p>
       <p>${escapeHTML(profile.features_long)}</p>
-      <p class="disclaimer">※ 以下は回答パターンからの<strong>傾向推定</strong>です（脳の測定ではありません）。</p>
+      <p class="disclaimer">${t("disclaimer.feature")}</p>
     </section>
 
-    <section class="section" aria-label="特に働きやすい可能性のある神経システム">
-      <h2><span class="icon">🔥</span>特に働きやすい可能性のある神経システム</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.neuro"))}">
+      <h2><span class="icon">🔥</span>${escapeHTML(t("result.section.neuro"))}</h2>
       <div class="medal-list">
         ${medals.map((m, i) => {
           const meta = neuroByLabel[m.label];
@@ -310,7 +310,7 @@ function renderResult(result) {
               <div class="medal-emoji">${["🥇","🥈","🥉"][i]}</div>
               <div>
                 <div class="medal-label">${escapeHTML(m.label)}${meta ? `（${escapeHTML(meta.region)}）` : ""}</div>
-                <div class="medal-stars">${starsFor(m.score)} <span style="color:var(--ink-muted);font-size:12px;">${tierLabel(m.score)}</span></div>
+                <div class="medal-stars">${starsFor(m.score)} <span style="color:var(--ink-muted);font-size:12px;">${escapeHTML(tierLabel(m.score))}</span></div>
                 <div class="medal-desc">${meta ? escapeHTML(meta.description) : ""}</div>
               </div>
             </div>
@@ -325,61 +325,61 @@ function renderResult(result) {
           </div>
         `).join("")}
       </div>
-      <p class="disclaimer" style="margin-top:14px;">※ これらの神経システムは、回答パターンから推定される<strong>関連可能性</strong>を表示しています。実際の脳活動の測定ではありません。</p>
+      <p class="disclaimer" style="margin-top:14px;">${t("disclaimer.neuro")}</p>
     </section>
 
-    <section class="section" aria-label="認知プロフィール">
-      <h2><span class="icon">🧩</span>認知プロフィール（0〜100）</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.profile"))}">
+      <h2><span class="icon">🧩</span>${escapeHTML(t("result.section.profile"))}</h2>
       <div class="axis-bars">
         ${axisRows.join("")}
       </div>
-      <p class="disclaimer">※ 5 つの軸のうち、軸1〜4 がタイプ判定に使われ、軸5（情動の安定）は修飾子として別表示です。</p>
+      <p class="disclaimer">${escapeHTML(t("axis.fourAxesHint"))}</p>
     </section>
 
-    <section class="section" aria-label="あなたの強み">
-      <h2><span class="icon">💡</span>あなたの強み（傾向として）</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.strengths"))}">
+      <h2><span class="icon">💡</span>${escapeHTML(t("result.section.strengths"))}</h2>
       <ul>${profile.strengths.map(s => `<li>${escapeHTML(s)}</li>`).join("")}</ul>
     </section>
 
-    <section class="section" aria-label="注意したいポイント">
-      <h2><span class="icon">⚠️</span>注意したいポイント</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.warnings"))}">
+      <h2><span class="icon">⚠️</span>${escapeHTML(t("result.section.warnings"))}</h2>
       <ul>${profile.warnings.map(s => `<li>${escapeHTML(s)}</li>`).join("")}</ul>
     </section>
 
-    <section class="section" aria-label="ストレス時の傾向">
-      <h2><span class="icon">🌀</span>ストレス時の脳・認知傾向</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.stress"))}">
+      <h2><span class="icon">🌀</span>${escapeHTML(t("result.section.stress"))}</h2>
       <p>${escapeHTML(profile.stress).replace(/\n/g, "<br>")}</p>
     </section>
 
-    <section class="section" aria-label="学習するとき">
-      <h2><span class="icon">📚</span>学習するとき</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.learning"))}">
+      <h2><span class="icon">📚</span>${escapeHTML(t("result.section.learning"))}</h2>
       <p>${escapeHTML(profile.learning).replace(/\n/g, "<br>")}</p>
     </section>
 
-    <section class="section" aria-label="仕事では">
-      <h2><span class="icon">💼</span>仕事では</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.work"))}">
+      <h2><span class="icon">💼</span>${escapeHTML(t("result.section.work"))}</h2>
       <p>${escapeHTML(profile.work).replace(/\n/g, "<br>")}</p>
     </section>
 
-    <section class="section" aria-label="人間関係では">
-      <h2><span class="icon">👥</span>人間関係では</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.relationships"))}">
+      <h2><span class="icon">👥</span>${escapeHTML(t("result.section.relationships"))}</h2>
       <p>${escapeHTML(profile.relationships).replace(/\n/g, "<br>")}</p>
     </section>
 
-    <section class="section" aria-label="成長ポイント">
-      <h2><span class="icon">🚀</span>あなたの成長ポイント</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.growth"))}">
+      <h2><span class="icon">🚀</span>${escapeHTML(t("result.section.growth"))}</h2>
       <ul>${profile.growth.map(s => `<li>${escapeHTML(s)}</li>`).join("")}</ul>
     </section>
 
-    <section class="section" aria-label="科学的背景">
-      <h2><span class="icon">🔬</span>科学的背景</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.science"))}">
+      <h2><span class="icon">🔬</span>${escapeHTML(t("result.section.science"))}</h2>
       <p>${escapeHTML(profile.scientific_background).replace(/\n/g, "<br>")}</p>
     </section>
 
-    <section class="section" aria-label="共有カード">
-      <h2><span class="icon">📤</span>共有カード</h2>
+    <section class="section" aria-label="${escapeHTML(t("result.section.share"))}">
+      <h2><span class="icon">📤</span>${escapeHTML(t("result.section.share"))}</h2>
       <div class="share-card" id="share-card">
-        <img class="share-card-img" src="assets/brain/${profile.code}.png" alt="${escapeHTML(profile.name)} のアイコン" />
+        <img class="share-card-img" src="assets/brain/${profile.code}.png" alt="${escapeHTML(fmt(t("img.typeAlt"), { name: profile.name }))}" />
         <div>
           <p class="share-card-title">${escapeHTML(profile.name)}</p>
           <p class="share-card-code">${escapeHTML(profile.code)}</p>
@@ -392,19 +392,19 @@ function renderResult(result) {
         </div>
       </div>
       <div class="share-actions">
-        <button class="btn-secondary" id="btn-copy-share" type="button">共有テキストをコピー</button>
-        <button class="btn-secondary" id="btn-copy-share-url" type="button">結果URLをコピー</button>
-        <button class="btn-primary" id="btn-download-card" type="button">カード画像を保存</button>
-        <a class="btn-secondary" id="btn-share-x" target="_blank" rel="noopener" href="#" role="button">X でシェア</a>
-        <a class="btn-secondary" id="btn-share-line" target="_blank" rel="noopener" href="#" role="button">LINE でシェア</a>
-        <button class="btn-secondary" id="btn-restart" type="button">もう一度診断する</button>
+        <button class="btn-secondary" id="btn-copy-share" type="button">${escapeHTML(t("share.copyText"))}</button>
+        <button class="btn-secondary" id="btn-copy-share-url" type="button">${escapeHTML(t("share.copyUrl"))}</button>
+        <button class="btn-primary" id="btn-download-card" type="button">${escapeHTML(t("share.saveCard"))}</button>
+        <a class="btn-secondary" id="btn-share-x" target="_blank" rel="noopener" href="#" role="button">${escapeHTML(t("share.shareX"))}</a>
+        <a class="btn-secondary" id="btn-share-line" target="_blank" rel="noopener" href="#" role="button">${escapeHTML(t("share.shareLine"))}</a>
+        <button class="btn-secondary" id="btn-restart" type="button">${escapeHTML(t("share.restart"))}</button>
       </div>
     </section>
 
-    <section class="section" aria-label="信頼性">
-      <h2><span class="icon">🛡️</span>回答の信頼性</h2>
-      <p><strong>${escapeHTML(gradeLabel)}</strong> ${escapeHTML(flagLine)}</p>
-      <p class="disclaimer">※ 信頼度は、回答パターンから自動推定された参考値です。回答を見直す目安としてご確認ください。</p>
+    <section class="section" aria-label="${escapeHTML(t("result.section.reliability"))}">
+      <h2><span class="icon">🛡️</span>${escapeHTML(t("result.section.reliability"))}</h2>
+      <p><strong>${escapeHTML(t(gradeLabel))}</strong> ${escapeHTML(flagLine)}</p>
+      <p class="disclaimer">${t("disclaimer.reliability")}</p>
     </section>
 
     <p class="disclaimer" style="margin-top:20px;">
@@ -418,14 +418,14 @@ function renderResult(result) {
     const text = buildShareText(profile, result);
     try {
       await navigator.clipboard.writeText(text);
-      flashCopy($("#btn-copy-share"), "コピーしました ✓");
+      flashCopy($("#btn-copy-share"), t("share.copied"));
     } catch {
       // Fallback: select + execCommand
       const ta = document.createElement("textarea");
       ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
       document.body.appendChild(ta); ta.select();
-      try { document.execCommand("copy"); flashCopy($("#btn-copy-share"), "コピーしました ✓"); }
-      catch { alert("コピーできませんでした。テキストを長押しで選択してください。\n\n" + text); }
+      try { document.execCommand("copy"); flashCopy($("#btn-copy-share"), t("share.copied")); }
+      catch { alert(fmt(t("share.copyFailed"), { text })); }
       document.body.removeChild(ta);
     }
   });
@@ -437,7 +437,7 @@ function renderResult(result) {
     generateShareCard(profile, result);
   });
   $("#btn-restart").addEventListener("click", () => {
-    if (confirm("回答をリセットして最初に戻ります。よろしいですか？")) {
+    if (confirm(t("restart.confirm"))) {
       startQuiz();
     }
   });
@@ -454,7 +454,7 @@ function shareUrlFor(code) {
 async function generateShareCard(profile, result) {
   const btn = $("#btn-download-card");
   const orig = btn.textContent;
-  btn.textContent = "生成中…";
+  btn.textContent = t("share.generating");
   btn.disabled = true;
   try {
     const W = 1080, H = 1350; // vertical card, mobile/SNS friendly
@@ -523,7 +523,7 @@ async function generateShareCard(profile, result) {
     ctx.fillStyle = "rgba(255,255,255,0.75)";
     ctx.font = "30px system-ui, sans-serif";
     ctx.fillText(shareUrlFor(profile.code).replace(/^https?:\/\//, ""), W / 2, H - 60);
-    ctx.fillText("※ 脳の測定ではなく、傾向の推定です", W / 2, H - 24);
+    ctx.fillText(t("share.cardDisclaimer"), W / 2, H - 24);
 
     // Download
     const blob = await new Promise((res) => canvas.toBlob(res, "image/png"));
@@ -537,12 +537,12 @@ async function generateShareCard(profile, result) {
     a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 2000);
 
-    flashCopy(btn, "保存しました ✓");
+    flashCopy(btn, t("share.saved"));
   } catch (err) {
     console.error(err);
     btn.textContent = orig;
     btn.disabled = false;
-    alert("カード画像の生成に失敗しました。");
+    alert(t("share.cardFailed"));
   }
 }
 
@@ -592,7 +592,7 @@ function buildShareText(profile, result) {
   result.neuroScores.slice(0,3).forEach((m, i) => lines.push(`${["🥇","🥈","🥉"][i]} ${m.label}`));
   lines.push("");
   lines.push(profile.share.disclaimer);
-  lines.push("※ 信頼度：" + ({high:"高", mid:"中", low:"低"})[result.reliability.grade]);
+  lines.push(fmt(t("share.reliability"), { grade: t("gradeShort." + result.reliability.grade) }));
   return lines.join("\n");
 }
 
@@ -643,7 +643,7 @@ async function boot() {
     console.error(err);
     const intro = document.getElementById("screen-intro");
     if (intro) {
-      intro.innerHTML = `<div class="card"><h2>診断データを読み込めませんでした</h2><p>ローカル静的サーバ（<code>npm run serve</code> など）で開いてください。</p><pre style="white-space:pre-wrap;color:var(--danger);">${escapeHTML(String(err && err.message || err))}</pre></div>`;
+      intro.innerHTML = `<div class="card"><h2>${escapeHTML(t("types.loadError"))}</h2><p>${escapeHTML(t("types.localServerHint").replace(/<[^>]+>/g, ""))}</p><pre style="white-space:pre-wrap;color:var(--danger);">${escapeHTML(String(err && err.message || err))}</pre></div>`;
     }
     return;
   }
