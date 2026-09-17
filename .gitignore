@@ -5,6 +5,7 @@ node_modules/
 .env
 .venv/
 .i18n_tmp/
+.wrangler/
 scripts/en_head.py
 scripts/en_profiles.py
 scripts/en_profiles2.py
