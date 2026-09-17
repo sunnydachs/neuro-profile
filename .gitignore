@@ -4,6 +4,11 @@ __pycache__/
 node_modules/
 .env
 .venv/
+.i18n_tmp/
+scripts/en_head.py
+scripts/en_profiles.py
+scripts/en_profiles2.py
+scripts/en_profiles_shared.py
 
 # Experimental brain-character assets (not part of the public product)
 assets/brain-sample-*.png
