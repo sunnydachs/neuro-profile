@@ -262,7 +262,8 @@ function renderResult(result) {
   if (midAxes.length === 0) {
     judgmentSentence = fmt(t("judgment.match"), { name: profile.name, code: profile.code });
   } else {
-    judgmentSentence = fmt(t("judgment.close"), { name: profile.name, code: profile.code, axes: midAxes.join("・") });
+    // Locale-aware separator for listing multiple MID axis names.
+    judgmentSentence = fmt(t("judgment.close"), { name: profile.name, code: profile.code, axes: midAxes.join(t("list.separator")) });
   }
 
   const flags = result.reliability.flags;

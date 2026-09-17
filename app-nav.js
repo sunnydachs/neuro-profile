@@ -22,10 +22,20 @@ function isEn() {
 }
 
 // Resolve a JA-relative href to the corresponding page in the current locale.
-// Nav links live at the language root (/ … and /en/ …), so a plain relative
-// href already points at the same page in the other locale; no "../" needed.
+// Automatically points to /en/<path> when we're inside the English tree so the
+// shared nav doesn't blast English users to the Japanese pages.
 function localizedHref(href) {
-  return href;
+  // normalize to absolute path (handles /en/…, /, *.html etc.)
+  const p = href.startsWith("/") ? href : "/" + href;
+  if (isEn()) {
+    // keep /en/ prefix for known pages and fallback to /en/index.html
+    if (p === "/" || p === "/index.html") return "/en/index.html";
+    if (p === "/types.html") return "/en/types.html";
+    if (p === "/type.html") return "/en/type.html";
+    // already en-prefixed or other assets — leave alone
+    return p.startsWith("/en/") ? p : "/en" + p;
+  }
+  return p;
 }
 
 function renderLangSelector(root, lang) {

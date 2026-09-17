@@ -1,3 +1,4 @@
+"""Generate English Q/A + axis_meta values for data/*.json (writes .i18n_tmp/en_qa.json)."""
 # English translation of data/questions.json (50 items + 5-point scale) and
 # axis_meta labels/regions. Run: python3 scripts/gen_en_questions.py
 # then: python3 scripts/merge_en_questions.py
@@ -57,7 +58,7 @@ Q[46] = "(consistency) If you answered 'act before thinking', did you answer the
 Q[47] = "(consistency) If you answered 'plan carefully', does it contradict your other answers?"
 Q[48] = "In every situation, I can stay perfectly calm."
 Q[49] = "I am never at all flustered or anxious about anything."
-Q[50] = "(meta) Did you avoid overusing 'Neither' when no option fit?"
+Q[50] = "(meta) Did you avoid overusing 'Neutral' when no option fit?"
 
 SCALE = {"5":"Strongly agree","4":"Somewhat agree","3":"Neutral","2":"Somewhat disagree","1":"Strongly disagree"}
 

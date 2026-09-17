@@ -7,6 +7,12 @@ import { applyLang, fmt, t, withLang } from "./app/i18n.js";
 const FALLBACK_URL = "types.html";
 function isEn() { return (location.pathname || "").startsWith("/en/"); }
 
+// Localized type-detail URL for a given code (respects the language tree so
+// English pages don't link out to the Japanese root).
+function typeDetailHref(code) {
+  return `${isEn() ? "/en/" : "/"}type.html?type=${encodeURIComponent(code)}`;
+}
+
 const MEDALS = ["🥇", "🥈", "🥉"];
 
 function esc(s) {
@@ -315,7 +321,7 @@ function renderRelated(profile, types) {
     <section class="section" aria-label="${esc(t("type.section.related"))}">
       <h2><span class="icon">🔗</span>${esc(t("type.section.related"))}</h2>
       <div class="type-related">
-        ${same.map(x => `<a href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(x.code)}">${esc(x.code)} ${esc(x.name)}</a>`).join("")}
+        ${same.map(x => `<a href="${typeDetailHref(x.code)}">${esc(x.code)} ${esc(x.name)}</a>`).join("")}
       </div>
     </section>
   `;
@@ -422,7 +428,7 @@ function renderPrevNextNav(code, types) {
   return `
     <nav class="type-prevnext" aria-label="${esc(t("type.prevNav"))}">
       <a class="type-prevnext-link type-prevnext-prev"
-         href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(prev)}"
+         href="${typeDetailHref(prev)}"
          data-type-color="${esc(prevMeta.color || "")}"
          aria-label="${esc(fmt(t("type.navTo"), { label: prevLabel, name: prevMeta.name || prev, code: prev }))}">
         <span class="type-prevnext-arrow" aria-hidden="true">←</span>
@@ -433,7 +439,7 @@ function renderPrevNextNav(code, types) {
         </span>
       </a>
       <a class="type-prevnext-link type-prevnext-next"
-         href="${isEn() ? "../og/type-" : "og/type-"}${encodeURIComponent(next)}"
+         href="${typeDetailHref(next)}"
          data-type-color="${esc(nextMeta.color || "")}"
          aria-label="${esc(fmt(t("type.navTo"), { label: nextLabel, name: nextMeta.name || next, code: next }))}">
         <span class="type-prevnext-text">
