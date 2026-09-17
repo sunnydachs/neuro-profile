@@ -1,33 +1,13 @@
 // types.js — Renders the 16-type list, grouped by axis1×axis2.
 // Source of truth: data/types.json (cards). Language resolution via app/i18n.js.
 // No external deps.
-import { applyLang, currentLang, withLang } from "./app/i18n.js";
+import { applyLang, fmt, t, withLang } from "./app/i18n.js";
 
 const GROUP_DEFS = [
-  {
-    id: "EI",
-    title: "探索 × 直感（ひらめきで新しい世界へ）",
-    sub: "報酬接近と直感・即応の傾向。変化とひらめきをエネルギーにします。",
-    color: "#FFB454",
-  },
-  {
-    id: "EA",
-    title: "探索 × 分析（構想を段取りで形にする）",
-    sub: "報酬接近と分析・計画の傾向。構想を描き、手順に落とし込みます。",
-    color: "#E8843C",
-  },
-  {
-    id: "VI",
-    title: "警戒 × 直感（感性と慎重さで周囲を感じる）",
-    sub: "警戒・回避と直感・即応の傾向。気配りや内省と素早い反応が同居します。",
-    color: "#8FB6E0",
-  },
-  {
-    id: "VA",
-    title: "警戒 × 分析（慎重さと計画で確実を積む）",
-    sub: "警戒・回避と分析・計画の傾向。検証と見通しで失敗を遠ざけます。",
-    color: "#5C7CA8",
-  },
+  { id: "EI", titleKey: "group.EI.title", subKey: "group.EI.sub", color: "#FFB454" },
+  { id: "EA", titleKey: "group.EA.title", subKey: "group.EA.sub", color: "#E8843C" },
+  { id: "VI", titleKey: "group.VI.title", subKey: "group.VI.sub", color: "#8FB6E0" },
+  { id: "VA", titleKey: "group.VA.title", subKey: "group.VA.sub", color: "#5C7CA8" },
 ];
 
 function groupOf(code) {
@@ -53,45 +33,45 @@ function renderGroup(def, items, currentCode) {
   const section = document.createElement("section");
   section.className = "types-group";
   section.style.setProperty("--group-color", def.color);
-  section.setAttribute("aria-label", def.title);
+  section.setAttribute("aria-label", t(def.titleKey));
 
   const head = document.createElement("div");
   head.className = "types-group-head";
   head.innerHTML = `
     <span class="types-group-bar" aria-hidden="true"></span>
-    <h2 class="types-group-title">${esc(def.title)}</h2>
-    <p class="types-group-sub">${esc(def.sub)}</p>
+    <h2 class="types-group-title">${esc(t(def.titleKey))}</h2>
+    <p class="types-group-sub">${esc(t(def.subKey))}</p>
   `;
   section.appendChild(head);
 
   const grid = document.createElement("div");
   grid.className = "types-grid";
 
-  for (const t of items) {
+  for (const it of items) {
     const a = document.createElement("a");
     a.className = "type-card";
     // On /en/ pages, link to the type detail under /en/type.html.
-    const detailHref = isEn() ? `type.html?type=${encodeURIComponent(t.code)}` : `type.html?type=${encodeURIComponent(t.code)}`;
+    const detailHref = `type.html?type=${encodeURIComponent(it.code)}`;
     a.href = detailHref;
-    a.style.setProperty("--type-color", t.color || def.color);
-    a.setAttribute("aria-label", `${t.name}（${t.code}）の詳細を見る`);
-    if (currentCode && currentCode === t.code) {
+    a.style.setProperty("--type-color", it.color || def.color);
+    a.setAttribute("aria-label", fmt(t("types.detailFor"), { name: it.name, code: it.code }));
+    if (currentCode && currentCode === it.code) {
       a.classList.add("is-current");
       a.setAttribute("aria-current", "page");
     }
     a.innerHTML = `
       <img class="type-card-img"
-           src="assets/brain/${esc(t.code)}.png"
-           data-detail-src="assets/brain/${esc(t.code)}.png"
-           alt="${esc(t.name)} のアイコン"
+           src="assets/brain/${esc(it.code)}.png"
+           data-detail-src="assets/brain/${esc(it.code)}.png"
+           alt="${esc(fmt(t("img.typeAlt"), { name: it.name }))}"
            loading="lazy"
            decoding="async"
            width="88" height="88" />
       <div class="type-card-meta">
-        <p class="type-card-code">${esc(t.code)}</p>
-        <p class="type-card-neural">${esc(t.neural_name || "")}</p>
-        <p class="type-card-name">${esc(t.name)}</p>
-        <p class="type-card-catch">${esc(t.catch || "")}</p>
+        <p class="type-card-code">${esc(it.code)}</p>
+        <p class="type-card-neural">${esc(it.neural_name || "")}</p>
+        <p class="type-card-name">${esc(it.name)}</p>
+        <p class="type-card-catch">${esc(it.catch || "")}</p>
       </div>
     `;
     grid.appendChild(a);
@@ -106,9 +86,9 @@ function renderError(msg) {
   root.removeAttribute("aria-busy");
   root.innerHTML = `
     <section class="card">
-      <h2>タイプ一覧を読み込めませんでした</h2>
+      <h2>${esc(t("types.loadError"))}</h2>
       <p>${esc(msg)}</p>
-      <p>ローカル静的サーバ（<code>npm run serve</code> など）で開いてください。</p>
+      <p>${t("types.localServerHint")}</p>
     </section>
   `;
 }

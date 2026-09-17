@@ -6,19 +6,24 @@
       "low_code": "V",
       "type_role": "primary",
       "name": {
-        "ja": "動機の方向"
+        "ja": "動機の方向",
+        "en": "Motivation & Direction"
       },
       "positive": {
-        "ja": "探索・報酬接近"
+        "ja": "探索・報酬接近",
+        "en": "Exploration & Reward-Seeking"
       },
       "negative": {
-        "ja": "警戒・回避"
+        "ja": "警戒・回避",
+        "en": "Vigilance & Avoidance"
       },
       "positive_short": {
-        "ja": "探索"
+        "ja": "探索",
+        "en": "Exploration"
       },
       "negative_short": {
-        "ja": "警戒"
+        "ja": "警戒",
+        "en": "Vigilance"
       }
     },
     {
@@ -27,19 +32,24 @@
       "low_code": "A",
       "type_role": "primary",
       "name": {
-        "ja": "処理様式"
+        "ja": "処理様式",
+        "en": "Processing Style"
       },
       "positive": {
-        "ja": "直感・即応"
+        "ja": "直感・即応",
+        "en": "Intuition & Rapid Response"
       },
       "negative": {
-        "ja": "分析・計画"
+        "ja": "分析・計画",
+        "en": "Analysis & Planning"
       },
       "positive_short": {
-        "ja": "直感"
+        "ja": "直感",
+        "en": "Intuition"
       },
       "negative_short": {
-        "ja": "分析"
+        "ja": "分析",
+        "en": "Analysis"
       }
     },
     {
@@ -48,19 +58,24 @@
       "low_code": "X",
       "type_role": "primary",
       "name": {
-        "ja": "処理対象"
+        "ja": "処理対象",
+        "en": "Processing Target"
       },
       "positive": {
-        "ja": "内的世界"
+        "ja": "内的世界",
+        "en": "Inner World"
       },
       "negative": {
-        "ja": "外的世界"
+        "ja": "外的世界",
+        "en": "Outer World"
       },
       "positive_short": {
-        "ja": "内的"
+        "ja": "内的",
+        "en": "Inner"
       },
       "negative_short": {
-        "ja": "外的"
+        "ja": "外的",
+        "en": "Outer"
       }
     },
     {
@@ -69,19 +84,24 @@
       "low_code": "D",
       "type_role": "primary",
       "name": {
-        "ja": "対人志向"
+        "ja": "対人志向",
+        "en": "Interpersonal Orientation"
       },
       "positive": {
-        "ja": "共感・社会認知"
+        "ja": "共感・社会認知",
+        "en": "Empathy & Social Cognition"
       },
       "negative": {
-        "ja": "独立・分析的対人"
+        "ja": "独立・分析的対人",
+        "en": "Independent, Analytical Relating"
       },
       "positive_short": {
-        "ja": "共感"
+        "ja": "共感",
+        "en": "Empathy"
       },
       "negative_short": {
-        "ja": "独立"
+        "ja": "独立",
+        "en": "Independent"
       }
     },
     {
@@ -90,19 +110,24 @@
       "low_code": "L",
       "type_role": "modifier",
       "name": {
-        "ja": "情動の安定"
+        "ja": "情動の安定",
+        "en": "Emotional Stability"
       },
       "positive": {
-        "ja": "ゆれ小"
+        "ja": "ゆれ小",
+        "en": "Low Variability"
       },
       "negative": {
-        "ja": "ゆれ大"
+        "ja": "ゆれ大",
+        "en": "High Variability"
       },
       "positive_short": {
-        "ja": "ゆれ小"
+        "ja": "ゆれ小",
+        "en": "Stable"
       },
       "negative_short": {
-        "ja": "ゆれ大"
+        "ja": "ゆれ大",
+        "en": "Fluctuating"
       }
     }
   ],
@@ -117,13 +142,16 @@
         "5": 0
       },
       "label": {
-        "ja": "報酬・動機づけ系"
+        "ja": "報酬・動機づけ系",
+        "en": "Reward & Motivation System"
       },
       "region": {
-        "ja": "腹側線条体を中心とする報酬回路"
+        "ja": "腹側線条体を中心とする報酬回路",
+        "en": "reward circuitry centred on the ventral striatum"
       },
       "description": {
-        "ja": "目標や報酬に向かって働きかける傾向"
+        "ja": "目標や報酬に向かって働きかける傾向",
+        "en": "a tendency to pursue goals and rewards"
       }
     },
     {
@@ -136,13 +164,16 @@
         "5": -0.2
       },
       "label": {
-        "ja": "警戒・脅威処理系"
+        "ja": "警戒・脅威処理系",
+        "en": "Vigilance & Threat-Processing System"
       },
       "region": {
-        "ja": "扁桃体を含む"
+        "ja": "扁桃体を含む",
+        "en": "includes the amygdala"
       },
       "description": {
-        "ja": "危険や不確実な手掛かりへの敏感さ"
+        "ja": "危険や不確実な手掛かりへの敏感さ",
+        "en": "sensitivity to danger and uncertain cues"
       }
     },
     {
@@ -155,13 +186,16 @@
         "5": -0.3
       },
       "label": {
-        "ja": "実行制御ネットワーク"
+        "ja": "実行制御ネットワーク",
+        "en": "Executive Control Network"
       },
       "region": {
-        "ja": "前頭前野・頭頂葉"
+        "ja": "前頭前野・頭頂葉",
+        "en": "prefrontal and parietal cortex"
       },
       "description": {
-        "ja": "計画・集中・抑制の傾向"
+        "ja": "計画・集中・抑制の傾向",
+        "en": "a tendency for planning, focus and inhibition"
       }
     },
     {
@@ -174,13 +208,16 @@
         "5": -0.4
       },
       "label": {
-        "ja": "デフォルトモード"
+        "ja": "デフォルトモード",
+        "en": "Default Mode Network"
       },
       "region": {
-        "ja": "内側前頭・後帯状皮質など"
+        "ja": "内側前頭・後帯状皮質など",
+        "en": "medial frontal and posterior cingulate cortex, among others"
       },
       "description": {
-        "ja": "内的思考・想像・振り返りの傾向"
+        "ja": "内的思考・想像・振り返りの傾向",
+        "en": "a tendency for inner thought, imagination and reflection"
       }
     },
     {
@@ -193,13 +230,16 @@
         "5": 0.1
       },
       "label": {
-        "ja": "サリエンス／内受容系"
+        "ja": "サリエンス／内受容系",
+        "en": "Salience / Interoceptive System"
       },
       "region": {
-        "ja": "島皮質・前帯状皮質"
+        "ja": "島皮質・前帯状皮質",
+        "en": "insula and anterior cingulate cortex"
       },
       "description": {
-        "ja": "身体感覚や重要情報への気づき"
+        "ja": "身体感覚や重要情報への気づき",
+        "en": "awareness of body sensations and salient information"
       }
     },
     {
@@ -212,13 +252,16 @@
         "5": 0
       },
       "label": {
-        "ja": "社会認知ネットワーク"
+        "ja": "社会認知ネットワーク",
+        "en": "Social Cognition Network"
       },
       "region": {
-        "ja": "側頭頭頂接合部など"
+        "ja": "側頭頭頂接合部など",
+        "en": "temporo-parietal junction, among others"
       },
       "description": {
-        "ja": "他者の気持ちや視点を読む傾向"
+        "ja": "他者の気持ちや視点を読む傾向",
+        "en": "a tendency to read others' feelings and perspectives"
       }
     },
     {
@@ -231,13 +274,16 @@
         "5": 0.9
       },
       "label": {
-        "ja": "情動調節系"
+        "ja": "情動調節系",
+        "en": "Emotion Regulation System"
       },
       "region": {
-        "ja": "前頭−辺縁調節回路"
+        "ja": "前頭−辺縁調節回路",
+        "en": "fronto-limbic regulation circuitry"
       },
       "description": {
-        "ja": "気持ちの揺れからの回復・安定"
+        "ja": "気持ちの揺れからの回復・安定",
+        "en": "recovering from and stabilising emotional swings"
       }
     }
   ]

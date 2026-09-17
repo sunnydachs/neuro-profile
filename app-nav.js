@@ -5,8 +5,8 @@
 import { currentLang, setLang, t } from "./app/i18n.js";
 
 const NAV_LINKS = [
-  { href: "index.html", label: "診断" },
-  { href: "types.html", label: "タイプ一覧" },
+  { href: "index.html", labelKey: "nav.diagnose" },
+  { href: "types.html", labelKey: "nav.types" },
 ];
 
 function currentPage() {
@@ -22,12 +22,9 @@ function isEn() {
 }
 
 // Resolve a JA-relative href to the corresponding page in the current locale.
+// Nav links live at the language root (/ … and /en/ …), so a plain relative
+// href already points at the same page in the other locale; no "../" needed.
 function localizedHref(href) {
-  if (isEn()) {
-    if (href === "index.html") return "../index.html";
-    if (href === "types.html") return "../types.html";
-    if (href === "type.html")  return "../type.html";
-  }
   return href;
 }
 
@@ -72,7 +69,7 @@ export function initSiteNav() {
   for (const link of NAV_LINKS) {
     const a = document.createElement("a");
     a.href = localizedHref(link.href);
-    a.textContent = link.label;
+    a.textContent = t(link.labelKey);
     const isActive = (here === link.href) || (link.href === "types.html" && onTypes);
     if (isActive) a.classList.add("is-active");
     a.setAttribute("aria-current", isActive ? "page" : "false");
