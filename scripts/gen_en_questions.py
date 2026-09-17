@@ -58,7 +58,7 @@ Q[46] = "(consistency) If you answered 'act before thinking', did you answer the
 Q[47] = "(consistency) If you answered 'plan carefully', does it contradict your other answers?"
 Q[48] = "In every situation, I can stay perfectly calm."
 Q[49] = "I am never at all flustered or anxious about anything."
-Q[50] = "(meta) Did you avoid overusing 'Neutral' when no option fit?"
+Q[50] = "(meta) Did you avoid overusing 'Neutral' when no option fits?"
 
 SCALE = {"5":"Strongly agree","4":"Somewhat agree","3":"Neutral","2":"Somewhat disagree","1":"Strongly disagree"}
 
