@@ -1,4 +1,5 @@
 # Merge English Q/A + axis_meta into data/*.json (preserves ja; only fills en).
+"""Merge .i18n_tmp/en_qa.json into data/questions.json and data/axis_meta.json (ja preserved)."""
 # Run after scripts/gen_en_questions.py .
 import json, os, sys
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir)

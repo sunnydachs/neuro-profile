@@ -1,4 +1,5 @@
 # Merge script: inject generated English into data/profiles.json and data/types.json.
+"""Inject .i18n_tmp/en_output.json English into data/profiles.json & data/types.json (ja preserved)."""
 # - runs only after scripts/gen_en_data.py produced .i18n_tmp/en_output.json
 # - preserves existing "ja" values; only adds/overwrites the "en" siblings
 # - UNSHARES share: {ja:{title,bullets,medals,disclaimer}, en:{...}}
@@ -23,6 +24,7 @@ STR_FIELDS = ["name","catch","axis_labels","axis_focus","features_short","featur
               "scientific_background","scientific_note","neuro_top3"]
 
 def unshare(sub):
+    """Return a new {ja, en} dict from an already-wrapped field dict."""
     return {"ja": sub["ja"], "en": sub["en"]}
 
 missing = []
@@ -30,11 +32,6 @@ for code, en in EN["profiles"].items():
     if code not in P:
         missing.append(("profiles", code)); continue
     prof = P[code]
-    # ensure share has both langs (re-shape even if old code has {ja:...})
-    def share_field(obj, *keys):
-        for k in keys:
-            if k in obj:
-                obj[k] = unshare(obj[k])
     for k, v in en.items():
         if k == "share":
             continue

@@ -51,7 +51,7 @@ function renderGroup(def, items, currentCode) {
     const a = document.createElement("a");
     a.className = "type-card";
     // On /en/ pages, link to the type detail under /en/type.html.
-    const detailHref = `type.html?type=${encodeURIComponent(it.code)}`;
+    const detailHref = `${isEn() ? "/en/" : "/"}type.html?type=${encodeURIComponent(it.code)}`;
     a.href = detailHref;
     a.style.setProperty("--type-color", it.color || def.color);
     a.setAttribute("aria-label", fmt(t("types.detailFor"), { name: it.name, code: it.code }));

@@ -1,4 +1,5 @@
 # Generates en siblings for data/profiles.json and data/types.json from a single
+"""Generate the English field maps for all 16 types (writes .i18n_tmp/en_output.json)."""
 # definition of the 16-type English content. Run via: python3 scripts/gen_en_data.py
 # Keeps the canonical repeated phrases DRY; output is merged by the JS-free merge
 # helper (scripts/merge_en_json.py). Idempotent.
@@ -107,8 +108,10 @@ FOCUS_S = "likes emotional connection with others"
 FOCUS_D = "moves forward guided by their own values"
 
 def axis_labels(code):
+    """Localized English axis-label list for a type code (motivation, processing, target, interpersonal)."""
     return [LABEL[code[0]], LABEL[code[1]], LABEL[code[2]], LABEL[code[3]]]
 def axis_focus(code):
+    """Localized English axis-focus sentences for a type code."""
     m = code[0] == "V"
     return [FOCUS_V if m else FOCUS_N,
             FOCUS_A if code[1] == "A" else FOCUS_I,
@@ -153,6 +156,7 @@ ANA = [F_ORGANIZE, F_PLAN]
 INT = [F_GUT, F_QUICK]
 
 def build_st(code):
+    """Return 8 localized English strengths for a type code."""
     first = CORE_E if code[0] == "E" else CORE_V
     proc = ANA if code[1] == "A" else INT
     # target axis: inner vs outer
@@ -162,6 +166,7 @@ def build_st(code):
     return (first + proc + target + interp)[:8]
 
 def build_wt(code):
+    """Return 8 localized English watchpoints (warnings) for a type code."""
     w = []
     if code[0] == "E":
         w += [W_JUMP, W_RISK]
@@ -172,6 +177,7 @@ def build_wt(code):
     w += [W_DISTANT, W_FRICTION] if code[3] == "D" else [W_MOVED, W_BOUNDARY]
     return w[:8]
 def build_gr(code):
+    """Return 4 localized English growth suggestions for a type code."""
     g = ["Sometimes pause to check the risk before acting.",
          "After a gut call, take a moment to check the evidence."] if code[1]=="I" else \
         ["Sometimes pause to check the risk before acting.",
@@ -193,6 +199,7 @@ STRESS_V = ("Under stress your vigilance rises and anxiety or worry can get in t
             "To settle, avoid assuming the worst — take one small step and rebuild a sense of safety.")
 def stress(code): return STRESS_E if code[0]=="E" else STRESS_V
 def learn(code):
+    """Return the localized English learning style for a type code."""
     if code[1]=="A": return LEARN_PROCEDURE
     return LEARN_EXPERIENCE if code[2]=="X" else LEARN_REFLECTIVE
 def rel(code): return REL_WARM if code[3]=="S" else REL_COOL
@@ -238,14 +245,17 @@ SCI = {
 CODES = list(NAME.keys())
 
 def features_short(code):
+    """Return the one-line English feature summary for a type code."""
     return ". ".join(axis_labels(code)) + "."
 def features_long(code):
+    """Return the English long description for a type code."""
     return (axis_labels(code)[0].capitalize() + ", an approach that " + axis_labels(code)[1] +
             ", one that " + axis_labels(code)[2] + ", and a style that " + axis_labels(code)[3] +
             " — this combination forms a distinctive cognitive profile.")
 
 # ---------------- build per-code en map (fields present in profiles.json) ----------------
 def build_profile(code, profile=None):
+    """Build the full English field map for one type code (name..neuro_top3, share)."""
     profile = profile or {}
     ja_top3 = (profile.get("neuro_top3") or {}).get("ja") or []
     labels = axis_labels(code)

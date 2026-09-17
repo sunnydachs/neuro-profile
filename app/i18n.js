@@ -133,6 +133,7 @@ const UI_STRINGS = {
     // judgment
     "judgment.match": "あなたの回答パターンは「{name}」（{code}）の傾向と一致しています。",
     "judgment.close": "あなたの回答は「{name}」（{code}）に最も近い傾向です（{axes} は中性的）。",
+    "list.separator": "・",
     // reliability
     "grade.high": "信頼度：高",
     "grade.mid": "信頼度：中",
@@ -265,6 +266,7 @@ const UI_STRINGS = {
     // judgment
     "judgment.match": "Your answer pattern matches the inclination of “{name}” ({code}).",
     "judgment.close": "Your answers are closest to “{name}” ({code}) ({axes} are neutral).",
+    "list.separator": ", ",
     // reliability
     "grade.high": "Reliability: high",
     "grade.mid": "Reliability: moderate",
