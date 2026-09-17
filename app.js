@@ -2,6 +2,7 @@
 // Source of truth: data/*.json (fetched at startup). Language resolution via app/i18n.js.
 import { computeScore } from "./app/scoring.js";
 import { applyLang, currentLang, fmt, onChange, pickL10n, t, withLang } from "./app/i18n.js";
+import { trackQuizStart, trackQuizComplete, trackShareClick } from "./app/metrics.js";
 
 // Data containers — populated by loadData() on startup, rebuilt when language changes.
 // Shapes (after i18n resolution) match what the scoring engine and the renderers expect:
@@ -125,11 +126,15 @@ function show(name) {
 const state = {
   index: 0,
   answers: {}, // { [qid]: number }
+  startedAt: 0,
 };
 
 function startQuiz() {
   state.index = 0;
   state.answers = {};
+  state.startedAt = Date.now();
+  // Funnel: user has started the quiz (privacy-first beacon; see app/metrics.js)
+  trackQuizStart();
   show("quiz");
   renderQuestion();
 }
@@ -416,6 +421,8 @@ function renderResult(result) {
 
   // share copy handler
   $("#btn-copy-share").addEventListener("click", async () => {
+    // Funnel: share-related action (text copy)
+    trackShareClick("text", profile.code);
     const text = buildShareText(profile, result);
     try {
       await navigator.clipboard.writeText(text);
@@ -430,11 +437,39 @@ function renderResult(result) {
       document.body.removeChild(ta);
     }
   });
+  // Copy result URL
+  const _shareUrlCopy = shareUrlFor(profile.code);
+  $("#btn-copy-share-url").addEventListener("click", async () => {
+    // Funnel: share-related action (url copy)
+    trackShareClick("url", profile.code);
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(_shareUrlCopy);
+      copied = true;
+    } catch { /* fall through to execCommand below */ }
+    if (!copied) {
+      // Fallback for older browsers / non-secure contexts (same as text copy)
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = _shareUrlCopy; ta.style.position = "fixed"; ta.style.opacity = "0";
+        document.body.appendChild(ta); ta.select();
+        copied = document.execCommand("copy");
+        document.body.removeChild(ta);
+      } catch { copied = false; }
+    }
+    if (copied) flashCopy($("#btn-copy-share-url"), t("share.copied"));
+    else alert(fmt(t("share.copyFailed"), { text: _shareUrlCopy }));
+  });
   // Social share buttons — point to the type detail page (server-renderable, crawler-friendly).
   const shareUrl = shareUrlFor(profile.code);
   $("#btn-share-x").href = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(buildShareText(profile, result)) + "&url=" + encodeURIComponent(shareUrl);
   $("#btn-share-line").href = "https://line.me/R/msg/text/?" + encodeURIComponent(buildShareText(profile, result) + "\n" + shareUrl);
+  // Funnel: outbound share intents (actual SNS post happens on the SNS side)
+  $("#btn-share-x").addEventListener("click", () => trackShareClick("x", profile.code));
+  $("#btn-share-line").addEventListener("click", () => trackShareClick("line", profile.code));
   $("#btn-download-card").addEventListener("click", () => {
+    // Funnel: share-card generation (image saved for social posting)
+    trackShareClick("card", profile.code);
     generateShareCard(profile, result);
   });
   $("#btn-restart").addEventListener("click", () => {
@@ -607,6 +642,10 @@ function flashCopy(btn, msg) {
 // ----------------- finish -----------------
 function finishQuiz() {
   const result = computeScore({ answers: state.answers, questions: QUESTIONS.questions, axesMeta: AXIS_META });
+  // Funnel: quiz completed — type code, reliability grade, duration, answered count
+  const answered = Object.keys(state.answers).length;
+  const durationSec = state.startedAt ? (Date.now() - state.startedAt) / 1000 : 0;
+  trackQuizComplete(result, durationSec, answered);
   renderResult(result);
   show("result");
 }
