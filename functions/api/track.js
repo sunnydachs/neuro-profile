@@ -54,6 +54,16 @@ export async function onRequestPost(context) {
     return json({ ok: false, error: "forbidden" }, 403);
   }
 
+  // Platform-enforced abuse bound (Workers Rate Limiting binding): 30 req/min
+  // per client IP. Real quiz sessions stay far below this; bulk replay hits 429.
+  if (env.TRACK_LIMITER) {
+    const ip = request.headers.get("cf-connecting-ip") || "";
+    const { success } = await env.TRACK_LIMITER.limit({ key: ip });
+    if (!success) {
+      return json({ ok: false, error: "rate_limited" }, 429);
+    }
+  }
+
   let body;
   try {
     body = await request.json();

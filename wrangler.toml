@@ -5,3 +5,15 @@ pages_build_output_dir = "."
 [[analytics_engine_datasets]]
 binding = "NEURO_METRICS"
 dataset = "neuro_metrics"
+
+# Abuse bound for the beacon endpoint (Workers Rate Limiting binding).
+# A legitimate quiz session sends <10 beacons total; 30/min per client IP is
+# far above real usage and blocks bulk replay/inflation. Counter is per
+# Cloudflare location, permissive — fit for abuse reduction, not accounting.
+[[ratelimits]]
+name = "TRACK_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 30
+  period = 60
