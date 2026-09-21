@@ -1,0 +1,18 @@
+# Brain / Cognitive Type Check (tendency inference)
+
+> Answer 50 questions and the app infers which of 16 brain/cognitive-type tendencies
+> you are closest to. Fully client-side, no backend, no data leaves the browser.
+> Not a medical diagnosis or a brain measurement — a self-check for self-understanding.
+
+Static HTML + vanilla JS with a local scoring module (pytest-style tests cover
+scoring and integration). Japanese is primary; English pages live under /en/.
+
+## Pages
+
+- [Type check (50 questions)](https://neuro-profile.pages.dev/): the quiz. Auto-detects language; English version at /en/.
+- [Type list (16 types, 4 groups)](https://neuro-profile.pages.dev/types.html): 探索×直感・探索×分析・警戒×直感・警戒×分析. English at /en/types.html.
+- [Type detail](https://neuro-profile.pages.dev/type.html): the selected type's profile. English at /en/type.html.
+
+## Optional
+
+- [Source code](https://github.com/sunnydachs/neuro-profile): MIT, vanilla JS scoring, Cloudflare Pages + Functions, CI on Node 18/20/22.
