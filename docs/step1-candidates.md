@@ -152,5 +152,5 @@
 [14] 社会認知の階層モデル（Schurz 2020）
 [15] 遅延割引と背側 PFC 結合（Mehta 2023）
 
-※ 詳細 URL は ledger（~/.hermes/cache/citations/ledger.json）に格納。
-※ 完全な 8 項目評価表は `step1-evaluation.md` に分割して後続で作成する。
+※ 各文献は著者名・年で特定できる形で挙げています。
+※ 8 項目の評価は `step1-evaluation-part1.md` / `step1-evaluation-part2.md` に分けて書いています。
