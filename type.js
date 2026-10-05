@@ -3,6 +3,7 @@
 // the 14 spec sections. Falls back to types.html for missing/invalid codes.
 // Language resolution via app/i18n.js.
 import { applyLang, fmt, t, withLang } from "./app/i18n.js";
+import { trackPageView } from "./app/metrics.js";
 
 const FALLBACK_URL = "types.html";
 function isEn() { return (location.pathname || "").startsWith("/en/"); }
@@ -347,6 +348,8 @@ async function main() {
     location.replace(isEn() ? "../types.html" : FALLBACK_URL);
     return;
   }
+  // Funnel: page view for a valid type detail (invalid codes redirect above).
+  trackPageView();
   try {
     const [rawProfiles, rawTypes, rawAxisMeta] = await Promise.all([
       loadJSON("data/profiles.json"),

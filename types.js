@@ -2,6 +2,7 @@
 // Source of truth: data/types.json (cards). Language resolution via app/i18n.js.
 // No external deps.
 import { applyLang, fmt, t, withLang } from "./app/i18n.js";
+import { trackPageView } from "./app/metrics.js";
 
 const GROUP_DEFS = [
   { id: "EI", titleKey: "group.EI.title", subKey: "group.EI.sub", color: "#FFB454" },
@@ -104,6 +105,8 @@ function currentTypeCode() {
 
 async function main() {
   applyLang();
+  // Funnel: page view for the type list.
+  trackPageView();
   const currentCode = currentTypeCode();
   const root = document.getElementById("types-root");
   if (!root) return;
