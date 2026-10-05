@@ -15,20 +15,27 @@
 // - Max 10 events per request.
 //
 // Schema (stable — do not reorder; AE blobs are positional):
-//   blobs[0]  event name        quiz_start | quiz_complete | share_click
+//   blobs[0]  event name        quiz_start | quiz_complete | share_click | page_view | quiz_exit
 //   blobs[1]  language          ja | en
 //   blobs[2]  session id        [a-z0-9]{4,32} — random per page load
 //   blobs[3]  type code         [A-Z]{4} when known (quiz_complete, share_*)
 //   blobs[4]  share target      x | line | text | url | card (share_click only)
 //   blobs[5]  reliability grade high | mid | low (quiz_complete only)
-//   doubles[0] duration seconds quiz time (quiz_complete only)
-//   doubles[1] answered count  regular items answered (quiz_complete only)
+//   blobs[6]  page kind         home | types | type (page_view only)
+//   doubles[0] duration seconds quiz time (quiz_complete, quiz_exit)
+//   doubles[1] answered count   regular items answered (quiz_complete, quiz_exit only)
 //   indexes[0] date (YYYY-MM-DD, UTC) — sampling/retention key
+//
+// Funnel semantics:
+//   page_view   = a page was rendered (denominator for start/completion rates)
+//   quiz_start  = the user began the quiz
+//   quiz_exit   = the user left mid-quiz; doubles[1] holds the furthest answered count
 
-const EVENTS = ["quiz_start", "quiz_complete", "share_click"];
+const EVENTS = ["quiz_start", "quiz_complete", "share_click", "page_view", "quiz_exit"];
 const LANGS = ["ja", "en"];
 const TARGETS = ["x", "line", "text", "url", "card"];
 const GRADES = ["high", "mid", "low"];
+const PAGE_KINDS = ["home", "types", "type"];
 const SID_RE = /^[a-z0-9]{4,32}$/;
 const CODE_RE = /^[A-Z]{4}$/;
 
@@ -90,8 +97,9 @@ export async function onRequestPost(context) {
     const typeCode = typeof ev.typeCode === "string" && CODE_RE.test(ev.typeCode) ? ev.typeCode : "";
     const target = ev.name === "share_click" ? clean(ev.target, TARGETS) : "";
     const grade = ev.name === "quiz_complete" ? clean(ev.grade, GRADES) : "";
+    const page = ev.name === "page_view" ? clean(ev.page, PAGE_KINDS) : "";
     env.NEURO_METRICS.writeDataPoint({
-      blobs: [ev.name, lang, sid, typeCode, target, grade],
+      blobs: [ev.name, lang, sid, typeCode, target, grade, page],
       doubles: [num(ev.durationSec, 0, 6 * 3600), num(ev.answered, 0, 50)],
       indexes: [date],
     });
