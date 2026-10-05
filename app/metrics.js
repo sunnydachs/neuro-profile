@@ -14,11 +14,18 @@ function lang() {
   return (location.pathname || "").startsWith("/en/") ? "en" : "ja";
 }
 
-// Coarse page classifier for the funnel denominator (folder/extension both handled).
-function pageKind() {
-  const path = (location.pathname || "").toLowerCase();
-  if (path.includes("type.html")) return "type";
-  if (path.includes("types")) return "types";
+// Coarse page classifier for the funnel denominator. Cloudflare Pages strips
+// ".html" (clean URLs), so match on the LAST path segment — this covers
+// /type, /type.html, /en/type, /og/type-EINS, plus the list page /types.
+export function pageKind() {
+  const seg = (location.pathname || "")
+    .toLowerCase()
+    .replace(/\.html$/, "")
+    .split("/")
+    .filter(Boolean)
+    .pop() || "";
+  if (seg === "type" || /^type-[a-z]{4}$/.test(seg)) return "type";
+  if (seg === "types") return "types";
   return "home";
 }
 
