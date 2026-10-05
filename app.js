@@ -2,7 +2,7 @@
 // Source of truth: data/*.json (fetched at startup). Language resolution via app/i18n.js.
 import { computeScore } from "./app/scoring.js";
 import { applyLang, currentLang, fmt, onChange, pickL10n, t, withLang } from "./app/i18n.js";
-import { trackQuizStart, trackQuizComplete, trackShareClick } from "./app/metrics.js";
+import { trackPageView, trackQuizStart, trackQuizComplete, trackQuizExit, trackShareClick } from "./app/metrics.js";
 
 // Data containers — populated by loadData() on startup, rebuilt when language changes.
 // Shapes (after i18n resolution) match what the scoring engine and the renderers expect:
@@ -128,11 +128,15 @@ const state = {
   answers: {}, // { [qid]: number }
   startedAt: 0,
 };
+// Set once the quiz is finished, so the pagehide drop-off beacon doesn't also
+// fire for a completed run (avoids double-counting completion as an exit).
+let quizCompleted = false;
 
 function startQuiz() {
   state.index = 0;
   state.answers = {};
   state.startedAt = Date.now();
+  quizCompleted = false;
   // Funnel: user has started the quiz (privacy-first beacon; see app/metrics.js)
   trackQuizStart();
   show("quiz");
@@ -641,6 +645,7 @@ function flashCopy(btn, msg) {
 
 // ----------------- finish -----------------
 function finishQuiz() {
+  quizCompleted = true;
   const result = computeScore({ answers: state.answers, questions: QUESTIONS.questions, axesMeta: AXIS_META });
   // Funnel: quiz completed — type code, reliability grade, duration, answered count
   const answered = Object.keys(state.answers).length;
@@ -670,6 +675,8 @@ function rerenderForLang() {
 
 // ----------------- bootstrap -----------------
 async function boot() {
+  // Funnel: page view denominator (fires even if data loading below fails).
+  trackPageView();
   applyLang();
   try {
     const [q, a, p] = await Promise.all([
@@ -701,6 +708,14 @@ document.addEventListener("keydown", (ev) => {
   if (!screens || screens.quiz.hidden) return;
   if (ev.key === "ArrowLeft") goPrev();
   else if (ev.key === "Enter" || ev.key === "ArrowRight") goNext();
+});
+
+// Drop-off: if the user leaves mid-quiz, report how far they got. pagehide +
+// sendBeacon is the reliable pair for tab close / mobile backgrounding; the
+// same session id ties this exit to the matching quiz_start.
+window.addEventListener("pagehide", () => {
+  if (!state.startedAt || quizCompleted) return;
+  trackQuizExit(Object.keys(state.answers).length);
 });
 
 // expose for tests in case
