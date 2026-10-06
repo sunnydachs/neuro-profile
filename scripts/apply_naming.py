@@ -10,7 +10,7 @@ type-naming-final.md の確定版に一括更新する。
 import json
 from pathlib import Path
 
-ROOT = Path("/home/arari/projects/neuro-profile")
+ROOT = Path(__file__).resolve().parent.parent
 
 # code -> (neural_name, japanese_type)
 NAMING = {

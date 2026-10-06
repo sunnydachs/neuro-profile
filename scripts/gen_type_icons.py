@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """16タイプの診断アイコンを Pixazo (Flux-Schnell) で生成する。"""
 import json, os, sys, time, urllib.request
+from pathlib import Path
 
 PIXAZO_URL = "https://gateway.pixazo.ai/flux-1-schnell/v1/getData"
 
@@ -38,8 +39,8 @@ def style(desc, bg):
 def main():
     key = os.environ.get("PIXAZO_API_KEY")
     if not key:
-        # .env から読む
-        env = "/home/arari/projects/ai-short-video/.env"
+        # リポジトリ直下の .env から読む(git対象外)
+        env = Path(__file__).resolve().parent.parent / ".env"
         if os.path.exists(env):
             for line in open(env):
                 line = line.strip()
@@ -48,7 +49,7 @@ def main():
     if not key:
         print("ERROR: PIXAZO_API_KEY not found", file=sys.stderr); sys.exit(1)
 
-    outdir = "/home/arari/projects/neuro-profile/assets/types"
+    outdir = Path(__file__).resolve().parent.parent / "assets" / "types"
     os.makedirs(outdir, exist_ok=True)
 
     for code, desc in CHARACTERS.items():
