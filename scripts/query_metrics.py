@@ -1,15 +1,22 @@
 """Query funnel events from Workers Analytics Engine via GraphQL.
 
-Usage (token+account from ~/.env):
+Usage (token+account from the repo-root .env, git-ignored, or CLOUDFLARE_API_TOKEN /
+CLOUDFLARE_ACCOUNT_ID environment variables):
   python3 scripts/query_metrics.py              # last 7 days, grouped by event
   python3 scripts/query_metrics.py --days 30    # last 30 days
   python3 scripts/query_metrics.py --share      # share_click breakdown by target/type
 """
 import json, os, sys, urllib.request
+from pathlib import Path
 
 def _load_env():
     env = {}
-    for ln in open(os.path.expanduser("~/.env")):
+    candidates = [Path(__file__).resolve().parent.parent / ".env",
+                  Path(os.path.expanduser("~/.env"))]
+    env_file = next((p for p in candidates if p.exists()), None)
+    if env_file is None:
+        raise RuntimeError("no .env found (repo root or ~/.env); set CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID instead")
+    for ln in open(env_file):
         if "=" in ln and not ln.startswith("#"):
             k, v = ln.strip().split("=", 1)
             env[k] = v

@@ -34,7 +34,7 @@ GROUP_COLOR = {
 def load_key():
     key = os.environ.get("PIXAZO_API_KEY")
     if key: return key
-    env = "<projects-dir>/.env"
+    env = Path(__file__).resolve().parent.parent / ".env"
     if os.path.exists(env):
         for line in open(env):
             if line.startswith("PIXAZO_API_KEY="):
@@ -65,8 +65,8 @@ def gen_image(path, prompt, key, seed, w, h):
 
 def main():
     key = load_key()
-    out_detail = Path("<repo-root>/assets/types-detail")
-    out_og = Path("<repo-root>/assets/og")
+    out_detail = Path(__file__).resolve().parent.parent / "assets" / "types-detail"
+    out_og = Path(__file__).resolve().parent.parent / "assets" / "og"
     out_detail.mkdir(parents=True, exist_ok=True)
     out_og.mkdir(parents=True, exist_ok=True)
 

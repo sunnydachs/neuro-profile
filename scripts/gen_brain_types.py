@@ -10,14 +10,14 @@ import json, os, time, urllib.request
 from pathlib import Path
 
 PIXAZO_URL = "https://gateway.pixazo.ai/flux-1-schnell/v1/getData"
-OUT = Path("<repo-root>/assets/brain")
+OUT = Path(__file__).resolve().parent.parent / "assets" / "brain"
 
 
 def load_key():
     key = os.environ.get("PIXAZO_API_KEY")
     if key:
         return key
-    env = "<projects-dir>/.env"
+    env = Path(__file__).resolve().parent.parent / ".env"
     if os.path.exists(env):
         for line in open(env):
             if line.startswith("PIXAZO_API_KEY="):
